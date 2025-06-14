@@ -9,6 +9,18 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/ImageNativeLib" />
+            <option value="$PROJECT_DIR$/Libs" />
+            <option value="$PROJECT_DIR$/Libs/Base" />
+            <option value="$PROJECT_DIR$/Libs/FlowBus" />
+            <option value="$PROJECT_DIR$/Libs/NetWork" />
+            <option value="$PROJECT_DIR$/Libs/NetWork/CompanyLibs" />
+            <option value="$PROJECT_DIR$/Libs/NetWork/SunnyLibs" />
+            <option value="$PROJECT_DIR$/Libs/Utils" />
+            <option value="$PROJECT_DIR$/Libs/Utils/File" />
+            <option value="$PROJECT_DIR$/Libs/Utils/MediaPicker" />
+            <option value="$PROJECT_DIR$/Libs/Utils/Permission" />
+            <option value="$PROJECT_DIR$/Libs/VideoEditing" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>

@@ -1,0 +1,24 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+apply from: "$rootDir$Android"
+android library()
+
+android {
+    namespace 'com.ethan.sunny'
+}
+
+dependencies {
+
+    implementation "androidx.core:core-ktx:${KTX_CORE_VERSION}"
+    implementation "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${INTEREPTOR_VERSION}"
+    implementation "com.squareup.retrofit2:converter-gson:${RETROFIT_VERSION}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${COROUTINES_VERSION}"
+    implementation 'org.jsoup:jsoup:1.14.3'
+    implementation "com.blankj:utilcode:${UTILS_VERSION}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${LIFECYCLE_VERSION}"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${LIFECYCLE_VERSION}"
+    implementation project(path: ':Libs:NetWork:CompanyLibs')
+}

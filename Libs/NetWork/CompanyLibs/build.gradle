@@ -1,0 +1,55 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+apply from: "$rootDir$Android"
+android library()
+
+android {
+    namespace 'com.ethan.company'
+
+    ext {
+        prodDomain = "https://ven-api.hitpaw.com" as String
+        devDomain = "https://ven-api-test.hitpaw.com" as String
+        localDomain = "http://ven-api-local.hitpaw.com" as String
+
+        prodShareUrl = "https://play.google.com/store/apps/details?id=" as String
+        devShareUrl = "https://play.google.com/store/apps/details?id=" as String
+        prodShareUrl = "https://play.google.com/store/apps/details?id=" as String
+    }
+
+    flavorDimensions = ["appConfig"]
+    productFlavors {
+        //正式版
+        prodVersion {
+            dimension "appConfig"
+            buildConfigField("String", "stsServerDomain", "\"${prodDomain}\"")
+            buildConfigField("String", "shareUrl", "\"${prodShareUrl}\"")
+        }
+        //内网版
+        innerVersion {
+            dimension "appConfig"
+            buildConfigField("String", "stsServerDomain", "\"${localDomain}\"")
+            buildConfigField("String", "shareUrl", "\"${devShareUrl}\"")
+        }
+        //开发版
+        devVersion {
+            dimension "appConfig"
+            buildConfigField("String", "stsServerDomain", "\"${devDomain}\"")
+            buildConfigField("String", "shareUrl", "\"${devShareUrl}\"")
+
+        }
+    }
+}
+
+dependencies {
+
+    implementation "androidx.core:core-ktx:${KTX_CORE_VERSION}"
+    implementation "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${INTEREPTOR_VERSION}"
+    implementation "com.squareup.retrofit2:converter-gson:${RETROFIT_VERSION}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${COROUTINES_VERSION}"
+    implementation 'org.jsoup:jsoup:1.14.3'
+    implementation project(':Libs:Utils:File')
+    implementation "com.blankj:utilcode:${UTILS_VERSION}"
+}

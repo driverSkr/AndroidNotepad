@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="all_photo">ALL</string>
+    <string name="app_name" />
+    <string name="prompt_describe_03" />
+    <string name="change_settings" />
+    <string name="tips" />
+    <string name="needs_your_permission_to_access_your_camera_to_create_more_images" />
+    <string name="sample">Sample</string>
+    <string name="all_video">All video</string>
+</resources>
