@@ -1,0 +1,17 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+apply from: "$rootDir$Android"
+
+android library()
+
+android {
+    namespace 'com.ethan.wechat'
+}
+
+dependencies {
+    implementation "androidx.core:core-ktx:${KTX_CORE_VERSION}"
+    implementation "com.google.code.gson:gson:${GSON_VERSION}"
+    api "com.tencent.mm.opensdk:wechat-sdk-android:${WECHAT_VERSION}"
+}

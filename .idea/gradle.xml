@@ -9,6 +9,16 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Components" />
+            <option value="$PROJECT_DIR$/Components/Login" />
+            <option value="$PROJECT_DIR$/Components/Login/AlicomFusion" />
+            <option value="$PROJECT_DIR$/Components/Login/GoogleLogin" />
+            <option value="$PROJECT_DIR$/Components/Pay" />
+            <option value="$PROJECT_DIR$/Components/Pay/Alipay" />
+            <option value="$PROJECT_DIR$/Components/Pay/GPay" />
+            <option value="$PROJECT_DIR$/Components/Pay/WeChat" />
+            <option value="$PROJECT_DIR$/Components/Sharer" />
+            <option value="$PROJECT_DIR$/Components/Sharer/Share" />
             <option value="$PROJECT_DIR$/ImageNativeLib" />
             <option value="$PROJECT_DIR$/Libs" />
             <option value="$PROJECT_DIR$/Libs/Base" />

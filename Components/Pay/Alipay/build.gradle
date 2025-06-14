@@ -1,0 +1,16 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+apply from: "$rootDir$Android"
+
+android library()
+
+android {
+    namespace 'com.ethan.alipay'
+}
+
+dependencies {
+    implementation "androidx.core:core-ktx:${KTX_CORE_VERSION}"
+    api 'com.alipay.sdk:alipaysdk-android:15.8.17@aar'
+}

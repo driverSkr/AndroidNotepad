@@ -1,3 +1,66 @@
 <resources>
-    <string name="app_name">AndroidNotepad</string>
+    <string name="app_name" translatable="false">安卓笔记</string>
+
+    <string name="feature_suggestion" translatable="false">功能建议</string>
+    <string name="technical_issues" translatable="false">技术问题</string>
+    <string name="complaint" translatable="false">投诉</string>
+    <string name="purchase_problem" translatable="false">购买问题</string>
+    <string name="refund_consultation" translatable="false">退款咨询</string>
+
+    <!--阿里云一键登录-->
+    <string name="terms_of_use">用户协议</string>
+    <string name="privacy_policy">隐私政策</string>
+    <string name="one_click_login_with_local_phone_number">本机号码一键登录</string>
+    <string name="login_with_other_phone_numbers">其他手机号码登录</string>
+    <string name="agree_agreement_1">我同意《用户服务协议》和《隐私政策》 以及《中国移动认证服务条款》</string>
+    <string name="please_enter_your_phone_number">请输入手机号</string>
+    <string name="verification_code">验证码</string>
+    <string name="get_verification_code">获取验证码</string>
+    <string name="verification_code_error">验证码输入错误</string>
+    <string name="sending">发送中</string>
+    <string name="resend">重新发送</string>
+    <string name="agree_agreement_2">我同意《用户服务协议》和《隐私政策》</string>
+    <string name="user_service_agreement_line">《用户服务协议》</string>
+    <string name="user_agreement_line">《用户协议》</string>
+    <string name="membership_service_agreement_line">《会员服务协议》</string>
+    <string name="membership_service_agreement_text">会员服务协议</string>
+    <string name="user_agreement_text">用户协议</string>
+    <string name="automatic_renewal_agreement_line">《自动续费协议》</string>
+    <string name="automatic_renewal_agreement_text">自动续费协议</string>
+    <string name="privacy_policy_line">《隐私政策》</string>
+    <string name="china_mobile_certification_service_terms_and_conditions">《中国移动认证服务条款》</string>
+    <string name="identity_ordinary_users">普通用户</string>
+    <string name="identity_member_users">会员有效期至：%1$s</string>
+    <string name="log_out_and_log_in">退出登录</string>
+    <string name="logging_in">登录中</string>
+    <string name="login_succeeded">登录成功</string>
+    <string name="login_failed">登录失败</string>
+    <string name="something_went_wrong_please_check">网络异常，请检查您的网络连接并重试。</string>
+    <string name="network_timeout">网络超时</string>
+    <string name="login">登录</string>
+    <string name="agree">同意</string>
+    <string name="disagree">不同意</string>
+    <string name="warm_prompt">温馨提示</string>
+    <string name="instructions_for_use">使用须知</string>
+    <string name="access_album_permissions">访问相册权限</string>
+    <string name="access_album_permissions_tv">使用幻影AI的服务需要您选择一张照片，以便为你生成AI写真照片。</string>
+    <string name="feedback_tip">我们将在15个工作日内处理您的反馈信息</string>
+    <string name="initiated_permission_access_prompt_dialog_tv">尊敬的用户，您开始使用幻脸AI前，您应充分阅读《用户协议》和《隐私政策》。如果您同意，请点击“同意”开始使用我们的服务。\n你同意《用户协议》和《隐私政策》仅代表您同意幻脸AI以为您提供图片写真的基本功能为目的，收集必要的个人信息。</string>
+    <string name="protocol_prompt_dialog_tv">尊敬的用户，在您同意并接受《用户协议》和《隐私政策》的全部条款后，才能正常使用幻脸AI的完整功能。</string>
+    <string name="are_you_sure_you_want_to_log_out">确定退出登录吗？</string>
+    <string name="cancellation">取消</string>
+    <string name="agree_the_following_agreements">请先阅读并同意以下协议、政策和条款</string>
+    <string name="please_enter_correct_phone_number">请输入正确的手机号</string>
+
+    <string name="avatars_switch_another">Switch to another</string>
+    <string name="avatars_corpus1">清晨的第一缕阳光洒在窗台，唤醒了沉睡的大地。鸟儿在枝头欢快地歌唱，微风轻轻拂过树叶，发出沙沙的声响。远处的山峦被薄雾笼罩，仿佛一幅水墨画。大自然的声音如此美妙，仿佛在诉说着无尽的故事。</string>
+    <string name="avatars_corpus2">厨房里弥漫着咖啡的香气，锅铲在锅里翻动着煎蛋，发出滋滋的声音。面包在烤箱里慢慢变金黄，果酱的甜香与咖啡的苦涩交织在一起。窗外的阳光洒在餐桌上，早餐的准备工作井然有序。这是属于我的早晨，充满了温暖和满足。</string>
+    <string name="avatars_corpus3">窗外的雨滴敲打着玻璃，发出轻柔的声响。我坐在咖啡馆的角落，手中捧着一杯热咖啡，香气弥漫。周围是低语声和咖啡机的嗡嗡声，偶尔还有收银机的提示音。雨天总是让人想要停下来，享受片刻的宁静与温暖。</string>
+    <string name="avatars_corpus4">火车缓缓驶出站台，窗外的景色逐渐变得模糊。我靠在窗边，听着车轮与铁轨的摩擦声，思绪也随之飘远。沿途的田野、村庄、山脉一一掠过，像是无声的电影。车厢里的人们低声交谈，偶尔传来笑声。这样的旅程总是让人充满期待。</string>
+    <string name="avatars_corpus5">记得小时候，我和小伙伴们总是在田野里奔跑，追逐着蝴蝶和蜻蜓。夕阳西下，金色的阳光洒在大地上，我们的笑声回荡在空气中。那时的夏天总是特别长，蝉鸣声此起彼伏，仿佛永远不会停歇。那些无忧无虑的日子，至今仍让我怀念。</string>
+    <string name="avatars_corpus6">城市的夜晚灯火通明，霓虹灯在街道上投下斑斓的光影。车流如织，行人们匆匆而过，每个人都有自己的目的地。远处的高楼大厦在夜空中闪烁，像是无数星星坠落人间。这样的夜晚总是充满活力，仿佛永远不会入睡。</string>
+    <string name="avatars_corpus7">窗外的雪花纷纷扬扬，给大地披上了一层白色的外衣。树枝上挂满了雪，像是开满了白色的花朵。我站在窗前，看着孩子们在雪地里打雪仗、堆雪人，笑声回荡在空气中。冬日的雪景总是让人感到宁静而美好。</string>
+    <string name="avatars_corpus8">小时候，我最喜欢夏天的傍晚。爷爷会带我坐在院子里，一边摇着蒲扇，一边给我讲星星的故事。那些闪烁的星光，仿佛藏着无尽的秘密。如今回忆起来，依然是心中最温暖的画面。</string>
+    <string name="avatars_corpus9">春风拂过柳梢时，嫩芽在枝头跳起华尔兹；夏蝉躲进树荫，用鸣叫编织燥热的午后；秋雨敲打窗棂，带着桂花的甜香浸润书页；冬雪覆盖屋檐，炉火噼啪声中藏着童话。四季更迭像一首循环播放的诗，每个章节都刻着时光的密码</string>
+    <string name="avatars_corpus10">面团在掌心旋转延展，发酵产生的气孔如同呼吸的节奏。熬煮三小时的牛骨高汤泛起琥珀色涟漪，撒上现磨山椒粉的瞬间，蒸汽裹挟着辛辣窜入鼻腔。烹饪是场精确的混沌艺术——火候的毫厘之差，食材的阴阳相济，最终在舌尖绽放出超越味觉的史诗。</string>
 </resources>

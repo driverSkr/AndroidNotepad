@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog"
+    android:layout_width="336dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_bg_24r">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="336dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="32dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:gravity="center"
+            android:text="@string/are_you_sure_you_want_to_log_out"
+            android:textSize="14sp"
+            android:textColor="@color/text_black_60" />
+
+        <LinearLayout
+            android:id="@+id/btn_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:background="@drawable/theme_16_bg">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btn_cancellation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="16dp"
+                android:textSize="14sp"
+                android:text="@string/cancellation"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/btn_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/selector_dialog_them_bg">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btn_log_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingVertical="16dp"
+                android:textSize="14sp"
+                android:text="@string/log_out_and_log_in" />
+        </FrameLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</FrameLayout>

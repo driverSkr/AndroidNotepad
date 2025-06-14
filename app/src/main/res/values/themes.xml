@@ -1,9 +1,20 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.AndroidNotepad" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Base.Theme.ComposeProject" parent="Theme.Material3.DayNight.NoActionBar" />
+
+    <style name="Theme.ComposeProject" parent="Base.Theme.ComposeProject" />
+
+    <style name="ComposeBottomSheetDialog" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
     </style>
 
-    <style name="Theme.AndroidNotepad" parent="Base.Theme.AndroidNotepad" />
+    <style name="pop_win_anim_style">
+        <item name="android:windowEnterAnimation">@anim/pop_wind_enter</item>
+        <item name="android:windowExitAnimation">@anim/pop_wind_exit</item>
+    </style>
 </resources>

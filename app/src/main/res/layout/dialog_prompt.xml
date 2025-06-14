@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="322dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_bg_24r">
+
+    <ImageView
+        android:id="@+id/close_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/svg_close_grey"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="25dp">
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/warm_prompt"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@color/text_black"
+            android:layout_marginTop="30dp"
+            android:gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/msg_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/initiated_permission_access_prompt_dialog_tv"
+            android:textSize="12sp"
+            android:textColor="@color/text_gray"
+            android:layout_marginTop="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp">
+
+            <TextView
+                android:id="@+id/disagree_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_gray"
+                android:layout_marginEnd="15dp"
+                android:gravity="center"
+                android:paddingTop="13dp"
+                android:paddingBottom="14dp"
+                android:text="@string/disagree"
+                android:background="@drawable/grey_btn__10_bg"/>
+
+            <TextView
+                android:id="@+id/agree_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/theme_10_bg"
+                android:gravity="center"
+                android:paddingTop="13dp"
+                android:paddingBottom="14dp"
+                android:text="@string/agree"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
