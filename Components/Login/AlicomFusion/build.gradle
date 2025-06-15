@@ -15,4 +15,5 @@ dependencies {
     implementation "androidx.core:core-ktx:${KTX_CORE_VERSION}"
 
     implementation project(path: ':Libs:Base')
+    api files('libs/fusionauth-1.1.2-online-release.aar')
 }

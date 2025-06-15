@@ -237,5 +237,5 @@ dependencies {
 
     implementation "com.github.skydoves:bundler:1.0.4"
 
-    compileOnly fileTree(dir: "libs", include: ["*.aar"])
+//    compileOnly fileTree(dir: "libs", include: ["*.aar"])
 }
