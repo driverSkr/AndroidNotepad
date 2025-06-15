@@ -50,6 +50,7 @@ fun TechniquePage() {
         CardItem("腾讯pag动画组件libpag的使用", true, isCompleted = false),
         CardItem("高斯模糊组件haze的使用", true, isCompleted = false),
         CardItem("谷歌登录组件", true, isCompleted = false),
+        CardItem("阿里云融合认证", true, isCompleted = false),
         CardItem("支付宝、微信支付组件", true, isCompleted = false),
     )
 
