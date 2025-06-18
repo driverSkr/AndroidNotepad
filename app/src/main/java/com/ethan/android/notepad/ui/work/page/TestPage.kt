@@ -1,7 +1,9 @@
 package com.ethan.android.notepad.ui.work.page
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -13,6 +15,7 @@ import androidx.wear.compose.material.Text
 import com.ethan.android.notepad.ui.custom.view.StatusBarsView
 import com.ethan.android.notepad.ui.technique.TechniquePreviewActivity
 import com.ethan.android.notepad.ui.technique.model.PageType
+import com.ethan.android.notepad.widget.SaveV2CommonContrastView
 
 @Composable
 @Preview
@@ -26,5 +29,9 @@ fun TestPage() {
         }) {
             Text("加载动画")
         }
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        SaveV2CommonContrastView()
     }
 }

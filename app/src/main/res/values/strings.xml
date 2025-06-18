@@ -52,6 +52,9 @@
     <string name="agree_the_following_agreements">请先阅读并同意以下协议、政策和条款</string>
     <string name="please_enter_correct_phone_number">请输入正确的手机号</string>
 
+    <string name="before">处理前</string>
+    <string name="after">处理后</string>
+
     <string name="avatars_switch_another">Switch to another</string>
     <string name="avatars_corpus1">清晨的第一缕阳光洒在窗台，唤醒了沉睡的大地。鸟儿在枝头欢快地歌唱，微风轻轻拂过树叶，发出沙沙的声响。远处的山峦被薄雾笼罩，仿佛一幅水墨画。大自然的声音如此美妙，仿佛在诉说着无尽的故事。</string>
     <string name="avatars_corpus2">厨房里弥漫着咖啡的香气，锅铲在锅里翻动着煎蛋，发出滋滋的声音。面包在烤箱里慢慢变金黄，果酱的甜香与咖啡的苦涩交织在一起。窗外的阳光洒在餐桌上，早餐的准备工作井然有序。这是属于我的早晨，充满了温暖和满足。</string>

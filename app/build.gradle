@@ -236,6 +236,7 @@ dependencies {
     implementation ("com.blankj:utilcode:1.30.7")
 
     implementation "com.github.skydoves:bundler:1.0.4"
+    implementation ("com.github.Almeros:android-gesture-detectors:v1.0")
 
 //    compileOnly fileTree(dir: "libs", include: ["*.aar"])
 }
