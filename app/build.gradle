@@ -167,6 +167,7 @@ dependencies {
 
     implementation 'androidx.activity:activity:1.8.0'
     implementation libs.exifinterface
+    implementation libs.constraintlayout
     //================================compose dependencies area==============================
     def composeBom = platform("androidx.compose:compose-bom:2024.09.00")
     implementation composeBom

@@ -55,6 +55,7 @@
     <string name="before">处理前</string>
     <string name="after">处理后</string>
     <string name="hint_blurhash">BlurHash string</string>
+    <string name="title_button_encode">Encode!</string>
     <string name="title_button_decode">Decode!</string>
 
     <string name="avatars_switch_another">Switch to another</string>

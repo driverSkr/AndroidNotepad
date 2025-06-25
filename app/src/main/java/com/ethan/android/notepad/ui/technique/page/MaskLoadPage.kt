@@ -1,15 +1,22 @@
 package com.ethan.android.notepad.ui.technique.page
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.SystemClock
 import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
 import com.ethan.android.notepad.databinding.LayoutMaskLoadBinding
+import com.ethan.android.notepad.extension.dp
+import com.ethan.android.notepad.extension.findBaseActivityVBind
+import com.ethan.android.notepad.ui.technique.view.BlurHashActivity
 import com.ethan.maskload.BlurHashDecoder
 
 /**
@@ -18,14 +25,21 @@ import com.ethan.maskload.BlurHashDecoder
  */
 @Composable
 fun MaskLoadPage() {
+    val context = LocalContext.current
     Box(modifier = Modifier.fillMaxSize()) {
         AndroidView(factory = { c ->
             val binding = LayoutMaskLoadBinding.inflate(LayoutInflater.from(c))
+            binding.tvEncode.setOnClickListener {
+                context.findBaseActivityVBind()?.let {
+                    context.startActivity(Intent(it, BlurHashActivity::class.java))
+                }
+            }
             binding.tvDecode.setOnClickListener {
                 var bitmap: Bitmap? = null
                 val time = timed {
-                    bitmap = BlurHashDecoder.decode(binding.etInput.text.toString(), 800, 480)
+                    bitmap = BlurHashDecoder.decode(binding.etInput.text.toString(), 24, 48)
                 }
+                binding.ivResult.layoutParams = LinearLayout.LayoutParams(240.dp, 480.dp)
                 binding.ivResult.setImageBitmap(bitmap)
                 binding.ivResultTime.text = "Time: $time ms"
             }
