@@ -13,6 +13,7 @@ import com.ethan.android.notepad.theme.Transparent
 import com.ethan.android.notepad.ui.technique.model.PageType
 import com.ethan.android.notepad.ui.technique.page.LanguagePage
 import com.ethan.android.notepad.ui.technique.page.LoadAnimationPage
+import com.ethan.android.notepad.ui.technique.page.MaskLoadPage
 import com.skydoves.bundler.bundle
 import com.skydoves.bundler.intentOf
 
@@ -39,6 +40,7 @@ class TechniquePreviewActivity : BaseActivityVBind<LayoutComposeContainerBinding
                             when(pageType) {
                                 PageType.LanguagePage -> LanguagePage()
                                 PageType.LoadAnimation -> LoadAnimationPage()
+                                PageType.MaskLoad -> MaskLoadPage()
                                 else -> LanguagePage()
                             }
                         }

@@ -23,6 +23,7 @@
             <option value="$PROJECT_DIR$/Libs" />
             <option value="$PROJECT_DIR$/Libs/Base" />
             <option value="$PROJECT_DIR$/Libs/FlowBus" />
+            <option value="$PROJECT_DIR$/Libs/MaskLoading" />
             <option value="$PROJECT_DIR$/Libs/NetWork" />
             <option value="$PROJECT_DIR$/Libs/NetWork/CompanyLibs" />
             <option value="$PROJECT_DIR$/Libs/NetWork/SunnyLibs" />

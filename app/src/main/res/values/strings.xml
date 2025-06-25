@@ -54,6 +54,8 @@
 
     <string name="before">处理前</string>
     <string name="after">处理后</string>
+    <string name="hint_blurhash">BlurHash string</string>
+    <string name="title_button_decode">Decode!</string>
 
     <string name="avatars_switch_another">Switch to another</string>
     <string name="avatars_corpus1">清晨的第一缕阳光洒在窗台，唤醒了沉睡的大地。鸟儿在枝头欢快地歌唱，微风轻轻拂过树叶，发出沙沙的声响。远处的山峦被薄雾笼罩，仿佛一幅水墨画。大自然的声音如此美妙，仿佛在诉说着无尽的故事。</string>

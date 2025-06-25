@@ -202,6 +202,7 @@ dependencies {
     implementation project(path: ':Libs:Base')
     implementation project(path: ':Libs:FlowBus')
     implementation project(path: ':Libs:VideoEditing')
+    implementation project(path: ':Libs:MaskLoading')
     implementation project(path: ':Libs:Utils:File')
     implementation project(path: ':Libs:Utils:MediaPicker')
     implementation project(path: ':Libs:Utils:Permission')
