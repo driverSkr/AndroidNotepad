@@ -35,6 +35,7 @@ fun TechniquePage() {
         CardItem("共享元素转场动画", true, isCompleted = false),
         CardItem("图片加载动画", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.LoadAnimation) },
         CardItem("蒙层加载", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.MaskLoad) },
+        CardItem("不规则横向列表", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.GroupRow) },
     )
 
     val items2 = listOf(
