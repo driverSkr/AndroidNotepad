@@ -4,20 +4,35 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.SystemClock
 import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import coil3.compose.AsyncImage
 import com.ethan.android.notepad.databinding.LayoutMaskLoadBinding
-import com.ethan.android.notepad.extension.dp
 import com.ethan.android.notepad.extension.findBaseActivityVBind
+import com.ethan.android.notepad.ui.custom.view.TitleCardView
 import com.ethan.android.notepad.ui.technique.view.BlurHashActivity
 import com.ethan.maskload.BlurHashDecoder
+import com.ethan.android.notepad.extension.dp as dpInt
 
 /**
  * 渐进式加载:由模糊到清晰
@@ -26,26 +41,63 @@ import com.ethan.maskload.BlurHashDecoder
 @Composable
 fun MaskLoadPage() {
     val context = LocalContext.current
-    Box(modifier = Modifier.fillMaxSize()) {
-        AndroidView(factory = { c ->
-            val binding = LayoutMaskLoadBinding.inflate(LayoutInflater.from(c))
-            binding.tvEncode.setOnClickListener {
-                context.findBaseActivityVBind()?.let {
-                    context.startActivity(Intent(it, BlurHashActivity::class.java))
-                }
+
+    LazyColumn(modifier = Modifier.fillMaxSize().statusBarsPadding(), horizontalAlignment = Alignment.CenterHorizontally) {
+
+        item {
+            TitleCardView("模糊加载", modifier = Modifier.height(200.dp)) {
+                MaskLoadImageView()
             }
-            binding.tvDecode.setOnClickListener {
-                var bitmap: Bitmap? = null
-                val time = timed {
-                    bitmap = BlurHashDecoder.decode(binding.etInput.text.toString(), 24, 48)
+        }
+
+        item {
+            AndroidView(factory = { c ->
+                val binding = LayoutMaskLoadBinding.inflate(LayoutInflater.from(c))
+                binding.tvEncode.setOnClickListener {
+                    context.findBaseActivityVBind()?.let {
+                        context.startActivity(Intent(it, BlurHashActivity::class.java))
+                    }
                 }
-                binding.ivResult.layoutParams = LinearLayout.LayoutParams(240.dp, 480.dp)
-                binding.ivResult.setImageBitmap(bitmap)
-                binding.ivResultTime.text = "Time: $time ms"
-            }
-            binding.root
-        },
-            modifier = Modifier.align(Alignment.Center ))
+                binding.tvDecode.setOnClickListener {
+                    var bitmap: Bitmap? = null
+                    val time = timed {
+                        bitmap = BlurHashDecoder.decode(binding.etInput.text.toString(), 24, 48)
+                    }
+                    binding.ivResult.layoutParams = LinearLayout.LayoutParams(240.dpInt, 480.dpInt)
+                    binding.ivResult.setImageBitmap(bitmap)
+                    binding.ivResultTime.text = "Time: $time ms"
+                }
+                binding.root
+            },
+                modifier = Modifier.padding(top = 20.dp))
+        }
+
+    }
+}
+
+@Composable
+@Preview
+fun MaskLoadImageView(maskCode: String = "LEHV6nWB2yk8pyo0adR*.7kCMdnj") {
+    val isShowMask = remember { mutableStateOf(true) }
+
+    Box(modifier = Modifier.width(120.dp).height(160.dp).clip(RoundedCornerShape(12.dp))) {
+        val bitmap = BlurHashDecoder.decode(maskCode, 24, 48)
+        AsyncImage(
+            model = "https://img-blog.csdnimg.cn/20200401094829557.jpg",
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            onLoading = {
+                isShowMask.value = true
+            },
+            onSuccess = {
+                isShowMask.value = false
+            },
+            modifier = Modifier.width(120.dp).height(160.dp)
+        )
+
+        if (isShowMask.value) {
+            bitmap?.let { Image(bitmap = it.asImageBitmap(), contentDescription = null, modifier = Modifier.fillMaxSize(), contentScale = ContentScale.Crop) }
+        }
     }
 }
 

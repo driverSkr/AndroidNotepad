@@ -50,7 +50,6 @@ import com.ethan.maskload.BlurHashDecoder
 fun ImagePage() {
 
     val context = LocalContext.current
-
     val bitmap1 = BitmapFactory.decodeResource(context.resources, R.mipmap.banner_01)
     val imageRequest = remember {
         ImageRequest.Builder(context)
@@ -60,8 +59,6 @@ fun ImagePage() {
             .build()
     }
 
-    val isShowMask = remember { mutableStateOf(true) }
-
     Column(modifier = Modifier
         .fillMaxWidth()
         .fillMaxHeight(0.7f)
@@ -69,35 +66,6 @@ fun ImagePage() {
         .navigationBarsPadding()
         .verticalScroll(rememberScrollState())
     ) {
-        TitleCardView("模糊加载", modifier = Modifier.height(200.dp)) {
-            Box(modifier = Modifier
-                .width(120.dp)
-                .height(160.dp)
-                .clip(RoundedCornerShape(12.dp))) {
-
-                val maskCode = "LEHV6nWB2yk8pyo0adR*.7kCMdnj"
-                val bitmap = BlurHashDecoder.decode(maskCode, 24, 48)
-                AsyncImage(
-                    model = "https://img-blog.csdnimg.cn/20200401094829557.jpg",
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop,
-                    onLoading = {
-                        isShowMask.value = true
-                    },
-                    onSuccess = {
-                        isShowMask.value = false
-                    },
-                    modifier = Modifier
-                        .width(120.dp)
-                        .height(160.dp)
-                )
-
-                if (isShowMask.value) {
-                    bitmap?.let { Image(bitmap = it.asImageBitmap(), contentDescription = null, modifier = Modifier.fillMaxSize(), contentScale = ContentScale.Crop) }
-                }
-            }
-        }
-
         Spacer(modifier = Modifier.height(10.dp))
         TitleCardView("基本使用", modifier = Modifier.height(100.dp)) {
             Image(painter = painterResource(id = R.mipmap.banner_01), contentDescription = "A woman", modifier = Modifier.size(64.dp))
