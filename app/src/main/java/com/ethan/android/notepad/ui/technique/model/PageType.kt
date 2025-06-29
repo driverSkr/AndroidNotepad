@@ -4,5 +4,6 @@ enum class PageType {
     LanguagePage,
     LoadAnimation,
     MaskLoad,
-    GroupRow
+    GroupRow,
+    SwitchBtnColorWithBannerBg
 }

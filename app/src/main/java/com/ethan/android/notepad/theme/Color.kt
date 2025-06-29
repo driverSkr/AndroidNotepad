@@ -2,6 +2,10 @@ package com.ethan.android.notepad.theme
 
 import androidx.compose.ui.graphics.Color
 
+fun parseColor(colorHex: String): Color {
+    return Color(android.graphics.Color.parseColor(colorHex))
+}
+
 val Transparent = Color(0x00000000)
 
 val Purple80 = Color(0xFFD0BCFF)
