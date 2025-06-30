@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -45,7 +46,7 @@ fun MaskLoadPage() {
     LazyColumn(modifier = Modifier.fillMaxSize().statusBarsPadding(), horizontalAlignment = Alignment.CenterHorizontally) {
 
         item {
-            TitleCardView("模糊加载", modifier = Modifier.height(200.dp)) {
+            TitleCardView("模糊加载", modifier = Modifier.height(250.dp)) {
                 MaskLoadImageView()
             }
         }
@@ -80,10 +81,10 @@ fun MaskLoadPage() {
 fun MaskLoadImageView(maskCode: String = "LEHV6nWB2yk8pyo0adR*.7kCMdnj") {
     val isShowMask = remember { mutableStateOf(true) }
 
-    Box(modifier = Modifier.width(120.dp).height(160.dp).clip(RoundedCornerShape(12.dp))) {
+    Box(modifier = Modifier.width(120.dp).aspectRatio(0.5625f).clip(RoundedCornerShape(12.dp))) {
         val bitmap = BlurHashDecoder.decode(maskCode, 24, 48)
         AsyncImage(
-            model = "https://img-blog.csdnimg.cn/20200401094829557.jpg",
+            model = "https://material.hitpaw.com/static/c8dcdb02426dea4fd90a303bf3fde30b/upload/475af39b9672e4fce58153cc2de26a3eFin-tasticMermaid.webp",
             contentDescription = null,
             contentScale = ContentScale.Crop,
             onLoading = {
@@ -92,7 +93,6 @@ fun MaskLoadImageView(maskCode: String = "LEHV6nWB2yk8pyo0adR*.7kCMdnj") {
             onSuccess = {
                 isShowMask.value = false
             },
-            modifier = Modifier.width(120.dp).height(160.dp)
         )
 
         if (isShowMask.value) {

@@ -14,7 +14,7 @@ class BlurHashActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Sample image.
-        val bitmap = BitmapFactory.decodeResource(resources, R.mipmap.book)
+        val bitmap = BitmapFactory.decodeResource(resources, R.mipmap.mask_templete)
         binding.original.setImageBitmap(bitmap)
         binding.original.layoutParams.height = bitmap.height
         binding.original.layoutParams.width = bitmap.width
