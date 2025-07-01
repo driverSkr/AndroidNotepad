@@ -5,5 +5,6 @@ enum class PageType {
     LoadAnimation,
     MaskLoad,
     GroupRow,
-    SwitchBtnColorWithBannerBg
+    SwitchBtnColorWithBannerBg,
+    GaussianBlur    //高斯模糊
 }

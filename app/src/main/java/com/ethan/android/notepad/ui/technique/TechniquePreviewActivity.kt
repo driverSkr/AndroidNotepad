@@ -11,6 +11,7 @@ import com.ethan.android.notepad.databinding.LayoutComposeContainerBinding
 import com.ethan.android.notepad.theme.ComposeProjectTheme
 import com.ethan.android.notepad.theme.Transparent
 import com.ethan.android.notepad.ui.technique.model.PageType
+import com.ethan.android.notepad.ui.technique.page.GaussianBlurPage
 import com.ethan.android.notepad.ui.technique.page.GroupRowPage
 import com.ethan.android.notepad.ui.technique.page.LanguagePage
 import com.ethan.android.notepad.ui.technique.page.LoadAnimationPage
@@ -45,6 +46,7 @@ class TechniquePreviewActivity : BaseActivityVBind<LayoutComposeContainerBinding
                                 PageType.MaskLoad -> MaskLoadPage()
                                 PageType.GroupRow -> GroupRowPage()
                                 PageType.SwitchBtnColorWithBannerBg -> SwitchBtnColorWithBannerBgPage()
+                                PageType.GaussianBlur -> GaussianBlurPage()
                                 else -> LanguagePage()
                             }
                         }

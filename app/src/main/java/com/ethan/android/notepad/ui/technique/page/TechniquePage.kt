@@ -52,7 +52,7 @@ fun TechniquePage() {
         CardItem("相册选择页", true, isCompleted = false),
         CardItem("腾讯缓存组件MMKV的使用", true, isCompleted = false),
         CardItem("腾讯pag动画组件libpag的使用", true, isCompleted = false),
-        CardItem("高斯模糊组件haze的使用", true, isCompleted = false),
+        CardItem("高斯模糊组件haze的使用", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.GaussianBlur) },
         CardItem("谷歌登录组件", true, isCompleted = false),
         CardItem("阿里云融合认证", true, isCompleted = false),
         CardItem("支付宝、微信支付组件", true, isCompleted = false),
