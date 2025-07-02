@@ -20,6 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ComposeProject"
         android:usesCleartextTraffic="${useHttp}"
+        android:enableOnBackInvokedCallback="true"
         tools:targetApi="31">
         <activity
             android:name=".ui.technique.view.BlurHashActivity"

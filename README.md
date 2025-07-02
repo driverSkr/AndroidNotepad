@@ -4,6 +4,7 @@
    * csdn里关于Markdown的格式写法  
    * 关于怎么在安卓里实现一个顶部弹窗的操作（PopupWindow、传统Dialog）  
    * 在LazyColumn中使用时，确保为每个项目设置唯一的key以提高性能
+   * 稀土掘金里收藏里一篇动画的帖子，记得抄代码
 
 # 开发知识
 1. api 会将依赖传递给使用该 library 的模块，而 implementation 则不会
