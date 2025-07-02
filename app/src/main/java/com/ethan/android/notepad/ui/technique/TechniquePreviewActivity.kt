@@ -16,6 +16,7 @@ import com.ethan.android.notepad.ui.technique.page.GroupRowPage
 import com.ethan.android.notepad.ui.technique.page.LanguagePage
 import com.ethan.android.notepad.ui.technique.page.LoadAnimationPage
 import com.ethan.android.notepad.ui.technique.page.MaskLoadPage
+import com.ethan.android.notepad.ui.technique.page.SharedTransitionPage
 import com.ethan.android.notepad.ui.technique.page.SwitchBtnColorWithBannerBgPage
 import com.skydoves.bundler.bundle
 import com.skydoves.bundler.intentOf
@@ -47,6 +48,7 @@ class TechniquePreviewActivity : BaseActivityVBind<LayoutComposeContainerBinding
                                 PageType.GroupRow -> GroupRowPage()
                                 PageType.SwitchBtnColorWithBannerBg -> SwitchBtnColorWithBannerBgPage()
                                 PageType.GaussianBlur -> GaussianBlurPage()
+                                PageType.SharedTransition -> SharedTransitionPage()
                                 else -> LanguagePage()
                             }
                         }

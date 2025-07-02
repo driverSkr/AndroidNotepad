@@ -78,7 +78,7 @@ fun MaskLoadPage() {
 
 @Composable
 @Preview
-fun MaskLoadImageView(maskCode: String = "LEHV6nWB2yk8pyo0adR*.7kCMdnj") {
+fun MaskLoadImageView(maskCode: String = "URKJoW-;nS=cqFx[%fNv%#odNwNHEOVs\$*xG") {
     val isShowMask = remember { mutableStateOf(true) }
 
     Box(modifier = Modifier.width(120.dp).aspectRatio(0.5625f).clip(RoundedCornerShape(12.dp))) {

@@ -6,5 +6,6 @@ enum class PageType {
     MaskLoad,
     GroupRow,
     SwitchBtnColorWithBannerBg,
-    GaussianBlur    //高斯模糊
+    GaussianBlur,    //高斯模糊
+    SharedTransition,   //共享元素转场动画
 }
