@@ -102,3 +102,13 @@ val Purple = Color(0xFF800080) //紫色
 
 val Pink = Color(0xFFFFC0CB) //粉红
 val LightPink = Color(0xFFFFB6C1) //浅粉红
+
+val color1 = Color(0xFF7DB1C2)
+val color2 = Color(0xFFBC9F94)
+val color3 = Color(0xFFA28DBB)
+val color4 = Color(0xFF7AA6CB)
+val color5 = Color(0xFF5B967D)
+val color6 = Color(0xFFBDA877)
+val color7 = Color(0xFFAFAA97)
+val color8 = Color(0xFF87A7C5)
+val color9 = Color(0xFF679CAC)
