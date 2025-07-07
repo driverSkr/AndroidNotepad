@@ -1,6 +1,5 @@
 package com.ethan.android.notepad.ui.technique.page
 
-import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionLayout
@@ -9,10 +8,10 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
-import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -21,6 +20,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
@@ -30,6 +31,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,11 +41,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import androidx.wear.compose.material.ExperimentalWearMaterialApi
+import androidx.wear.compose.material.FractionalThreshold
+import androidx.wear.compose.material.SwipeableState
+import androidx.wear.compose.material.rememberSwipeableState
+import androidx.wear.compose.material.swipeable
 import com.ethan.android.notepad.R
-
+import com.ethan.android.notepad.theme.Black40
+import com.ethan.android.notepad.theme.White
+import kotlin.math.roundToInt
 
 private val listSnacks = listOf(
     Snack("Cupcake", "", R.mipmap.cupcake),
@@ -56,11 +67,18 @@ private val listSnacks = listOf(
 
 private val shapeForSharedElement = RoundedCornerShape(16.dp)
 
-@OptIn(ExperimentalSharedTransitionApi::class)
-@Preview
+@OptIn(ExperimentalSharedTransitionApi::class, ExperimentalWearMaterialApi::class)
 @Composable
-fun SharedTransitionPage5() {
+fun SharedTransitionPage6() {
     var selectedSnack by remember { mutableStateOf<Snack?>(null) }
+    val swipeableState = rememberSwipeableState(initialValue = 0)
+
+    // 当selectedSnack变化时重置swipeableState
+    LaunchedEffect(selectedSnack) {
+        if (selectedSnack == null) {
+            swipeableState.animateTo(0)
+        }
+    }
 
     SharedTransitionLayout(modifier = Modifier.fillMaxSize()) {
         LazyColumn(
@@ -101,8 +119,9 @@ fun SharedTransitionPage5() {
                 }
             }
         }
-        SnackEditDetails(
+        BottomSheetWithSharedElement(
             snack = selectedSnack,
+            swipeableState = swipeableState,
             onConfirmClick = {
                 selectedSnack = null
             }
@@ -110,64 +129,80 @@ fun SharedTransitionPage5() {
     }
 }
 
-@OptIn(ExperimentalSharedTransitionApi::class)
+@OptIn(ExperimentalWearMaterialApi::class, ExperimentalSharedTransitionApi::class)
 @Composable
-fun SharedTransitionScope.SnackEditDetails(
+private fun SharedTransitionScope.BottomSheetWithSharedElement(
     snack: Snack?,
+    swipeableState: SwipeableState<Int>,
     modifier: Modifier = Modifier,
     onConfirmClick: () -> Unit
 ) {
-    AnimatedContent(
-        modifier = modifier,
-        targetState = snack,
-        transitionSpec = {
-            fadeIn() togetherWith fadeOut()
-        },
-        label = "SnackEditDetails"
-    ) { targetSnack ->
+    val screenHeight = LocalConfiguration.current.screenHeightDp.dp
+    val sheetHeight = screenHeight * 0.7f
+    val sheetHeightPx = with(LocalDensity.current) { sheetHeight.toPx() }
+    val anchors = mapOf(0f to 0, sheetHeightPx to 1)
+
+    AnimatedVisibility(
+        visible = snack != null,
+        enter = fadeIn(),
+        exit = fadeOut(),
+        modifier = Modifier.fillMaxSize()
+    ) {
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            if (targetSnack != null) {
+            Box(modifier = Modifier
+                .fillMaxSize()
+                .background(color = Black40)
+                .clickable(onClick = onConfirmClick)
+            ) {
                 Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .clickable {
-                            onConfirmClick()
-                        }
-                        .background(Color.Black.copy(alpha = 0.5f))
-                )
-                Column(
-                    modifier = Modifier
-                        .padding(horizontal = 16.dp)
-                        .sharedBounds(
-                            sharedContentState = rememberSharedContentState(key = "${targetSnack.name}-bounds"),
-                            animatedVisibilityScope = this@AnimatedContent,
-                            clipInOverlayDuringTransition = OverlayClip(shapeForSharedElement)
+                    modifier = modifier
+                        .offset { IntOffset(0, swipeableState.offset.value.roundToInt()) }
+                        .swipeable(
+                            state = swipeableState,
+                            anchors = anchors,
+                            thresholds = { _, _ -> FractionalThreshold(0.3f) },
+                            orientation = Orientation.Vertical,
+                            reverseDirection = true
                         )
-                        .background(Color.White, shapeForSharedElement)
-                        .clip(shapeForSharedElement)
+                        .align(Alignment.BottomCenter)
+                        .height(sheetHeight)
+                        .fillMaxWidth()
+                        .background(
+                            color = White,
+                            shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
+                        )
                 ) {
-
-                    SnackContents(
-                        snack = targetSnack,
-                        modifier = Modifier.sharedElement(
-                            state = rememberSharedContentState(key = targetSnack.name),
-                            animatedVisibilityScope = this@AnimatedContent,
-                        ),
-                        onClick = {
-                            onConfirmClick()
-                        }
-                    )
-                    Row(
-                        Modifier
-                            .fillMaxWidth()
-                            .padding(bottom = 8.dp, end = 8.dp),
-                        horizontalArrangement = Arrangement.End
-                    ) {
-                        TextButton(onClick = { onConfirmClick() }) {
-                            Text(text = "Save changes")
+                    snack?.let { targetSnack ->
+                        Column(
+                            modifier = Modifier
+                                .padding(16.dp)
+                                .sharedBounds(
+                                    sharedContentState = rememberSharedContentState(key = "${targetSnack.name}-bounds"),
+                                    animatedVisibilityScope = this@AnimatedVisibility,
+                                    clipInOverlayDuringTransition = OverlayClip(shapeForSharedElement)
+                                )
+                        ) {
+                            SnackContents(
+                                snack = targetSnack,
+                                modifier = Modifier.sharedElement(
+                                    state = rememberSharedContentState(key = targetSnack.name),
+                                    animatedVisibilityScope = this@AnimatedVisibility,
+                                ),
+                                onClick = onConfirmClick
+                            )
+                            Row(
+                                Modifier
+                                    .fillMaxWidth()
+                                    .padding(bottom = 8.dp, end = 8.dp),
+                                horizontalArrangement = Arrangement.End
+                            ) {
+                                TextButton(onClick = { onConfirmClick() }) {
+                                    Text(text = "Save changes")
+                                }
+                            }
                         }
                     }
                 }

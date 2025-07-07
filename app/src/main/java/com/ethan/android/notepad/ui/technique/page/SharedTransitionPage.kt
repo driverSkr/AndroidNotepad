@@ -32,6 +32,7 @@ fun SharedTransitionPage() {
                 3 -> SharedTransitionPage3()
                 4 -> SharedTransitionPage4()
                 5 -> SharedTransitionPage5()
+                6 -> SharedTransitionPage6()
                 else -> SelectPage(selectPage)
             }
         }
@@ -63,6 +64,11 @@ fun SelectPage(selectPage: MutableIntState) {
         Spacer(modifier = Modifier.height(10.dp))
         Button(onClick = { selectPage.intValue = 5 }) {
             Text("页面5")
+        }
+
+        Spacer(modifier = Modifier.height(10.dp))
+        Button(onClick = { selectPage.intValue = 6 }) {
+            Text("页面6")
         }
     }
 }
