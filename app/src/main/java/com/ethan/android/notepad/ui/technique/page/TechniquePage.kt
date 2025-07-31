@@ -22,6 +22,8 @@ import com.ethan.android.notepad.ui.technique.model.PageType
  * 工作中学到的技巧、技术、知识合集
  * Modifier.onGloballyPositioned {  }
  * Modifier.onPlaced {  }
+ * Modifier.imePadding() 自动增加底部内边距以适应软键盘
+ * 动画设置activity从下向上打开
  */
 @Composable
 @Preview
