@@ -108,7 +108,7 @@ fun SharedTransitionPage6() {
                         SnackContents(
                             snack = snack,
                             modifier = Modifier.sharedElement(
-                                state = rememberSharedContentState(key = snack.name),
+                                sharedContentState = rememberSharedContentState(key = snack.name),
                                 animatedVisibilityScope = this@AnimatedVisibility
                             ),
                             onClick = {
@@ -188,7 +188,7 @@ private fun SharedTransitionScope.BottomSheetWithSharedElement(
                             SnackContents(
                                 snack = targetSnack,
                                 modifier = Modifier.sharedElement(
-                                    state = rememberSharedContentState(key = targetSnack.name),
+                                    sharedContentState = rememberSharedContentState(key = targetSnack.name),
                                     animatedVisibilityScope = this@AnimatedVisibility,
                                 ),
                                 onClick = onConfirmClick

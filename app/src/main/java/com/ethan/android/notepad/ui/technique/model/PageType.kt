@@ -8,4 +8,5 @@ enum class PageType {
     SwitchBtnColorWithBannerBg,
     GaussianBlur,    //高斯模糊
     SharedTransition,   //共享元素转场动画
+    ImePadding
 }

@@ -90,7 +90,7 @@ fun SharedTransitionPage5() {
                         SnackContents(
                             snack = snack,
                             modifier = Modifier.sharedElement(
-                                state = rememberSharedContentState(key = snack.name),
+                                sharedContentState = rememberSharedContentState(key = snack.name),
                                 animatedVisibilityScope = this@AnimatedVisibility
                             ),
                             onClick = {
@@ -153,7 +153,7 @@ fun SharedTransitionScope.SnackEditDetails(
                     SnackContents(
                         snack = targetSnack,
                         modifier = Modifier.sharedElement(
-                            state = rememberSharedContentState(key = targetSnack.name),
+                            sharedContentState = rememberSharedContentState(key = targetSnack.name),
                             animatedVisibilityScope = this@AnimatedContent,
                         ),
                         onClick = {

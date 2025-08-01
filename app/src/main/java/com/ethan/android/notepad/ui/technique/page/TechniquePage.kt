@@ -22,6 +22,8 @@ import com.ethan.android.notepad.ui.technique.model.PageType
  * 工作中学到的技巧、技术、知识合集
  * Modifier.onGloballyPositioned {  }
  * Modifier.onPlaced {  }
+ * Modifier.imePadding() 自动增加底部内边距以适应软键盘
+ * 动画设置activity从下向上打开
  */
 @Composable
 @Preview
@@ -37,7 +39,7 @@ fun TechniquePage() {
         CardItem("蒙层加载", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.MaskLoad) },
         CardItem("分组横向列表", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.GroupRow) },
         CardItem("按钮随banner主色调切换", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.SwitchBtnColorWithBannerBg) },
-
+        CardItem("imePadding() 自动增加底部内边距以适应软键盘", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.ImePadding) },
     )
 
     val items2 = listOf(

@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android'
     id 'kotlin-kapt' // 必须添加 kapt 插件
+    id 'org.jetbrains.kotlin.plugin.compose'
 }
 
 android {
@@ -169,7 +170,7 @@ dependencies {
     implementation libs.exifinterface
     implementation libs.constraintlayout
     //================================compose dependencies area==============================
-    def composeBom = platform("androidx.compose:compose-bom:2024.09.00")
+    def composeBom = platform('androidx.compose:compose-bom:2025.06.01')
     implementation composeBom
     androidTestImplementation composeBom
     implementation("androidx.activity:activity-compose:1.9.3")
@@ -188,7 +189,8 @@ dependencies {
 
     //================================lifecycle viewmodel==============================
     implementation "androidx.core:core-ktx:${KTX_CORE_VERSION}"
-    implementation "androidx.appcompat:appcompat:${ANDROID_X_VERSION}"
+    implementation "androidx.appcompat:appcompat:${ANDROIDX_APPCOMPAT_VERSION}"
+    implementation "androidx.activity:activity-ktx:${ANDROID_X_VERSION}"
     implementation "com.google.android.material:material:${MATERIAL_VERSION}"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:${LIFECYCLE_VERSION}"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${LIFECYCLE_VERSION}"

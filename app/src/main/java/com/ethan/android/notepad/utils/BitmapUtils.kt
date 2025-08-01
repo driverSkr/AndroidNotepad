@@ -376,10 +376,9 @@ object BitmapUtils {
         val bottom = dp2px(context, 12f)
         val viewMaxWidth = getScreenWidth(context)
         val viewMaxHeight = getScreenHeight(context) - dp2px(context, 162f)
-        val ret = src.copy(src.config, true)
+        val ret = src.config?.let { src.copy(it, true) }
         val paint = Paint(Paint.ANTI_ALIAS_FLAG)
         paint.alpha = 255
-        val canvas = Canvas(ret)
         val rectSrc = Rect(0, 0, watermark.width, watermark.height)
         val drawWidth: Int
         val drawHeight: Int
@@ -394,7 +393,7 @@ object BitmapUtils {
         val x = Integer.max(0, src.width - drawWidth - drawRight)
         val y = Integer.max(0, src.height - drawHeight - drawBottom)
         val rectDest = Rect(x, y, x + drawWidth, y + drawHeight)
-        canvas.drawBitmap(watermark, rectSrc, rectDest, paint)
+        ret?.let { Canvas(it) }?.drawBitmap(watermark, rectSrc, rectDest, paint)
         return ret
     }
 
