@@ -21,6 +21,7 @@ import com.ethan.android.notepad.ui.media.view.RecordView
 @Preview
 fun AudioRecordPage() {
 
+    //流程：录音裁剪集成在一个组件里
     var selectPage by remember { mutableStateOf(AudioRecordPageEnum.MediaRecorderMediaPlayer) }
     val items = listOf(
         CardItem("MediaRecorder 录音 + MediaPlayer  播放", true) { selectPage =

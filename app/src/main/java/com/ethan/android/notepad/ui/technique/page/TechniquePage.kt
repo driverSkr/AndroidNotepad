@@ -39,7 +39,7 @@ fun TechniquePage() {
         CardItem("蒙层加载", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.MaskLoad) },
         CardItem("分组横向列表", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.GroupRow) },
         CardItem("按钮随banner主色调切换", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.SwitchBtnColorWithBannerBg) },
-
+        CardItem("imePadding() 自动增加底部内边距以适应软键盘", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.ImePadding) },
     )
 
     val items2 = listOf(
