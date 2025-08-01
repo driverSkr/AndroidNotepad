@@ -13,5 +13,5 @@ android {
 dependencies {
 
     implementation "androidx.core:core-ktx:${KTX_CORE_VERSION}"
-    implementation "androidx.appcompat:appcompat:${ANDROID_X_VERSION}"
+    implementation "androidx.appcompat:appcompat:${ANDROIDX_APPCOMPAT_VERSION}"
 }
