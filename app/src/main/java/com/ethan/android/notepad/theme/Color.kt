@@ -1,9 +1,10 @@
 package com.ethan.android.notepad.theme
 
 import androidx.compose.ui.graphics.Color
+import androidx.core.graphics.toColorInt
 
 fun parseColor(colorHex: String): Color {
-    return Color(android.graphics.Color.parseColor(colorHex))
+    return Color(colorHex.toColorInt())
 }
 
 val Transparent = Color(0x00000000)
@@ -112,3 +113,5 @@ val color6 = Color(0xFFBDA877)
 val color7 = Color(0xFFAFAA97)
 val color8 = Color(0xFF87A7C5)
 val color9 = Color(0xFF679CAC)
+
+val colorList = listOf("#8D7D90", "#D39F81", "#9CAEC9", "#959D88", "#757E6D", "#BCA163", "#D4B7A8", "#675F54", "#336279", "#5E3F2C")

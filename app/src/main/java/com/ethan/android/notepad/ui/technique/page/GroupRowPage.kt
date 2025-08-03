@@ -30,6 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ethan.android.notepad.R
+import com.ethan.android.notepad.theme.Black
 import com.ethan.android.notepad.theme.RedFF5F2D
 import com.ethan.android.notepad.theme.White
 import com.ethan.android.notepad.theme.White12
@@ -205,12 +206,11 @@ fun FuncGroupRowView() {
         .padding(bottom = 16.dp)
     ) {
         Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp), verticalAlignment = Alignment.CenterVertically) {
-            //todo 需要多语言
-            Text("图生视频", fontSize = 16.sp, fontWeight = FontWeight.W700, color = White)
+            Text("图生视频", fontSize = 16.sp, fontWeight = FontWeight.W700, color = Black)
             Spacer(modifier = Modifier.weight(1f))
-            Text("更多", fontSize = 14.sp, fontWeight = FontWeight.W400, color = White)
+            Text("更多", fontSize = 14.sp, fontWeight = FontWeight.W400, color = Black)
             Spacer(modifier = Modifier.width(2.dp))
-            Image(painter = painterResource(R.drawable.svg_icon_next), contentDescription = null)
+            Image(painter = painterResource(R.drawable.svg_icon_next_black), contentDescription = null)
         }
 
         Spacer(modifier = Modifier.height(12.dp))

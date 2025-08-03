@@ -17,6 +17,7 @@ import com.ethan.android.notepad.ui.technique.page.ImePaddingPage
 import com.ethan.android.notepad.ui.technique.page.LanguagePage
 import com.ethan.android.notepad.ui.technique.page.LoadAnimationPage
 import com.ethan.android.notepad.ui.technique.page.MaskLoadPage
+import com.ethan.android.notepad.ui.technique.page.ModifierPage
 import com.ethan.android.notepad.ui.technique.page.SharedTransitionPage
 import com.ethan.android.notepad.ui.technique.page.SwitchBtnColorWithBannerBgPage
 import com.skydoves.bundler.bundle
@@ -51,6 +52,7 @@ class TechniquePreviewActivity : BaseActivityVBind<LayoutComposeContainerBinding
                                 PageType.GaussianBlur -> GaussianBlurPage()
                                 PageType.SharedTransition -> SharedTransitionPage()
                                 PageType.ImePadding -> ImePaddingPage()
+                                PageType.Modifier -> ModifierPage()
                                 else -> LanguagePage()
                             }
                         }
