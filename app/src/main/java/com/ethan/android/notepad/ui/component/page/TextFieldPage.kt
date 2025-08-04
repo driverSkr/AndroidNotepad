@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -27,7 +28,6 @@ import com.ethan.android.notepad.ui.component.view.MyTextField
 import com.ethan.android.notepad.ui.component.view.TelephoneInput
 import com.ethan.android.notepad.ui.component.view.TextInput
 import com.ethan.android.notepad.ui.component.view.VerificationCodeInput
-import com.ethan.android.notepad.ui.custom.view.StatusBarsView
 import com.ethan.android.notepad.ui.custom.view.StatusBarsViewWhite
 
 @Composable
@@ -85,6 +85,10 @@ fun TextFieldPage() {
                 Spacer(Modifier.height(12.dp))
                 Text(text = "文本域（带删除和文本数量显示）", color = White, fontSize = 14.sp)
                 MyTextField()
+            }
+
+            item {
+                Spacer(Modifier.height(20.dp).navigationBarsPadding())
             }
         }
     }
