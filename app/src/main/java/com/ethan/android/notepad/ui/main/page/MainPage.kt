@@ -17,7 +17,7 @@ import com.ethan.android.notepad.ui.dialog.DialogActivity
 import com.ethan.android.notepad.ui.media.MediaActivity
 import com.ethan.android.notepad.ui.room.RoomActivity
 import com.ethan.android.notepad.ui.technique.TechniqueActivity
-import com.ethan.android.notepad.ui.work.TestActivity
+import com.ethan.android.notepad.ui.test.TestActivity
 
 /**
  * 首页

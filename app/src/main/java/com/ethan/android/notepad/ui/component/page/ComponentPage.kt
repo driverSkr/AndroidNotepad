@@ -20,6 +20,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ethan.android.notepad.theme.White
+import com.ethan.android.notepad.ui.component.ComponentPreviewActivity
+import com.ethan.android.notepad.ui.component.context.PageType
 import com.ethan.android.notepad.ui.component.page.swipe.SwipeActivity
 import com.ethan.android.notepad.ui.custom.model.CardItem
 import com.ethan.android.notepad.ui.custom.view.ListCardView
@@ -64,12 +66,7 @@ fun ComponentPage() {
                 dialog.show()
             }
         },
-        CardItem("TextField", false) {
-            showView.intValue = 4
-            scope.launch {
-                dialog.show()
-            }
-        },
+        CardItem("TextField", true) { ComponentPreviewActivity.launch(context, PageType.TextField) },
         CardItem("侧滑删除组件", true, isCompleted = false) {
             SwipeActivity.launch(context)
         },

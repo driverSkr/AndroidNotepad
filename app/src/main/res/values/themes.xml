@@ -17,4 +17,19 @@
         <item name="android:windowEnterAnimation">@anim/pop_wind_enter</item>
         <item name="android:windowExitAnimation">@anim/pop_wind_exit</item>
     </style>
+
+    <style name="SlideUpDownTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowAnimationStyle">@style/SlideUpDownAnimation</item>
+    </style>
+
+    <style name="SlideUpDownAnimation" parent="@android:style/Animation.Activity">
+        <!-- 新 Activity 进入：从下往上 -->
+        <item name="android:activityOpenEnterAnimation">@anim/slide_up_enter</item>
+        <!-- 旧 Activity 退出：保持不动 -->
+        <item name="android:activityOpenExitAnimation">@anim/slide_down_exit</item>
+        <!-- 返回时旧 Activity 重新进入：保持不动 -->
+        <item name="android:activityCloseEnterAnimation">@anim/slide_down_enter</item>
+        <!-- 返回时新 Activity 退出：从下往上滑出 -->
+        <item name="android:activityCloseExitAnimation">@anim/slide_up_exit</item>
+    </style>
 </resources>

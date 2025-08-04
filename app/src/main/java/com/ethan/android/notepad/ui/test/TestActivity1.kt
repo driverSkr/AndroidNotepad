@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.work
+package com.ethan.android.notepad.ui.test
 
 import android.content.Context
 import android.os.Bundle
@@ -10,14 +10,14 @@ import com.ethan.android.notepad.base.BaseActivityVBind
 import com.ethan.android.notepad.databinding.LayoutComposeContainerBinding
 import com.ethan.android.notepad.theme.ComposeProjectTheme
 import com.ethan.android.notepad.theme.Transparent
-import com.ethan.android.notepad.ui.work.page.TestPage
+import com.ethan.android.notepad.ui.test.page.TestPage1
 import com.skydoves.bundler.intentOf
 
-class TestActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
+class TestActivity1 : BaseActivityVBind<LayoutComposeContainerBinding>() {
 
     companion object {
         fun launch(context: Context) {
-            context.intentOf<TestActivity> {
+            context.intentOf<TestActivity1> {
                 startActivity(context)
             }
         }
@@ -30,7 +30,7 @@ class TestActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
                 CompositionLocalProvider {
                     ComposeProjectTheme {
                         Surface(modifier = Modifier.fillMaxSize(), color = Transparent) {
-                            TestPage()
+                            TestPage1()
                         }
                     }
                 }

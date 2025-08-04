@@ -2,7 +2,6 @@ package com.ethan.android.notepad.ui.technique.page
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.Button
+import com.ethan.android.notepad.ui.custom.view.StatusBarsWithExplainView
 import com.ethan.android.notepad.ui.technique.view.SharedTransitionView1
 import com.ethan.android.notepad.ui.technique.view.SharedTransitionView2
 import com.ethan.android.notepad.ui.technique.view.SharedTransitionView3
@@ -30,7 +30,9 @@ fun SharedTransitionPage() {
     val selectPage = remember { mutableIntStateOf(0) }
 
     BackHandler { selectPage.intValue = 0 }
-    Box(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = Modifier.fillMaxSize()) {
+        StatusBarsWithExplainView(title = "SharedTransition", content = "安卓官方推荐的共享元素动画")
+
         AnimatedContent(selectPage.intValue, label = "") {
             when (it) {
                 1 -> SharedTransitionView1()

@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.work.page
+package com.ethan.android.notepad.ui.test.page
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

@@ -1,22 +1,25 @@
 package com.ethan.android.notepad.ui.component.page
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -32,8 +35,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -44,16 +45,17 @@ import androidx.compose.ui.unit.sp
 import com.ethan.android.notepad.R
 import com.ethan.android.notepad.theme.Black
 import com.ethan.android.notepad.theme.Black0C0C0F
+import com.ethan.android.notepad.theme.Black242427
 import com.ethan.android.notepad.theme.NO_PADDING_TEXT_STYLE
 import com.ethan.android.notepad.theme.Transparent
 import com.ethan.android.notepad.theme.White
 import com.ethan.android.notepad.theme.White10
+import com.ethan.android.notepad.theme.White30
 import com.ethan.android.notepad.theme.White40
 
 @Composable
 @Preview
 fun TextFieldPage() {
-
     //todo BasicTextField
     val context = LocalContext.current
     var email by remember { mutableStateOf("") }
@@ -68,13 +70,7 @@ fun TextFieldPage() {
         context.getString(R.string.refund_consultation)
     )
 
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight(0.7f)
-            .background(color = Black)
-            .padding(horizontal = 16.dp)
-    ) {
+    Column(modifier = Modifier.fillMaxSize().background(color = Black).statusBarsPadding().padding(horizontal = 16.dp)) {
 
         Spacer(Modifier.height(12.dp))
         Text(text = "输入框", color = White, fontSize = 14.sp)
@@ -86,7 +82,11 @@ fun TextFieldPage() {
 
         Spacer(Modifier.height(12.dp))
         Text(text = "文本域", color = White, fontSize = 14.sp)
-        MyTextField(content, { content = it }, "告诉我们您对程序的反馈")
+        MyTextField(content = content, hint = "告诉我们您对程序的反馈") { content = it }
+
+        Spacer(Modifier.height(12.dp))
+        Text(text = "文本域（带删除和文本数量显示）", color = White, fontSize = 14.sp)
+        MyTextField()
     }
 }
 
@@ -222,11 +222,11 @@ fun DropdownMenu(feedbackType: String, options: List<String>, onOptionSelected: 
  */
 @Composable
 fun MyTextField(
+    modifier: Modifier = Modifier,
     content: String,
-    onValueChange: (String) -> Unit,
     hint: String,
     maxLength: Int = Int.MAX_VALUE,
-    modifier: Modifier = Modifier,
+    onValueChange: (String) -> Unit,
 ) {
 
     val trimmedContent = content.take(maxLength)
@@ -277,37 +277,48 @@ fun MyTextField(
 }
 
 @Composable
-fun CustomBasicTextField(
-    text: String,
-    onValueChange: (String) -> Unit,
-    hint: String,
-    modifier: Modifier = Modifier
+fun MyTextField(
+    modifier: Modifier = Modifier,
+    maxLength: Int = 1500
 ) {
-    BasicTextField(
-        value = text,
-        onValueChange = onValueChange,
-        cursorBrush = SolidColor(White),
-        textStyle = TextStyle.Default.copy(color = White, fontSize = 16.sp),
-        modifier = modifier
-            .background(color = White10, shape = RoundedCornerShape(6.dp))
-            .padding(horizontal = 12.dp, vertical = 16.dp),
-        decorationBox = { innerTextField ->
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(IntrinsicSize.Min)
-            ) {
-                if (text.isEmpty()) {
-                    Text(
-                        text = hint,
-                        style = TextStyle(fontSize = 16.sp, color = Color.DarkGray),
-                        modifier = Modifier
-                            .align(alignment = Alignment.CenterStart)
-                            .padding(start = 16.dp)
-                    )
-                }
-                innerTextField()
+    val prompt = remember { mutableStateOf("") }
+
+    Box(modifier = modifier.fillMaxWidth().height(248.dp).background(color = Black242427, shape = RoundedCornerShape(8.dp))) {
+        TextField(
+            value = prompt.value,
+            onValueChange = { prompt.value = it.take(maxLength) },
+            placeholder = { Text("描述你想生成的画面和动作，例如微笑特写，张开双臂，冷色调等", fontSize = 12.sp, color = White30, fontWeight = FontWeight.W400) },
+            textStyle = TextStyle(fontSize = 12.sp, fontWeight = FontWeight.W400),
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = Transparent, // 聚焦时背景颜色
+                unfocusedContainerColor = Transparent, // 未聚焦时背景颜色
+                disabledContainerColor = Transparent, // 禁用时背景颜色
+                cursorColor = White, // 光标颜色
+                focusedTextColor = White, // 聚焦时文本颜色
+                unfocusedTextColor = White, // 未聚焦时文本颜色
+                focusedIndicatorColor = Transparent, // 聚焦时指示器颜色
+                unfocusedIndicatorColor = Transparent, // 未聚焦时指示器颜色
+                disabledIndicatorColor = Transparent, // 禁用时指示器颜色
+            ),
+            enabled = true,
+            modifier = modifier.padding(bottom = 18.dp).fillMaxSize()
+        )
+
+        Row(modifier.align(Alignment.BottomCenter).fillMaxWidth().padding(start = 12.dp, end = 12.dp, bottom = 12.dp), verticalAlignment = Alignment.CenterVertically) {
+            AnimatedVisibility(prompt.value.isNotEmpty()) {
+                Image(
+                    painter = painterResource(R.drawable.svg_icon_delete),
+                    contentDescription = "Left icon",
+                    modifier = Modifier.size(20.dp).clickable{ prompt.value = "" }
+                )
+            }
+
+            Spacer(modifier.weight(1f))
+
+            Row(modifier = Modifier) {
+                Text("${prompt.value.length}", fontSize = 12.sp, color = if (prompt.value.isNotEmpty()) White else White30, style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W400))
+                Text("/$maxLength", fontSize = 12.sp, color = White30, style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W400))
             }
         }
-    )
+    }
 }

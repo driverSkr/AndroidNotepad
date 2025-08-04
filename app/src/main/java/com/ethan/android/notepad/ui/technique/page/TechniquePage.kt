@@ -17,6 +17,7 @@ import com.ethan.android.notepad.ui.custom.view.ListCardView
 import com.ethan.android.notepad.ui.custom.view.StatusBarsView
 import com.ethan.android.notepad.ui.technique.TechniquePreviewActivity
 import com.ethan.android.notepad.ui.technique.model.PageType
+import com.ethan.android.notepad.ui.test.TestActivity1
 
 /**
  * 工作中学到的技巧、技术、知识合集
@@ -29,12 +30,13 @@ fun TechniquePage() {
     val context = LocalContext.current
 
     val items1 = listOf(
-        CardItem("共享元素转场动画", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.SharedTransition) },
+        CardItem("共享元素转场动画", true) { TechniquePreviewActivity.launch(context, PageType.SharedTransition) },
         CardItem("图片加载动画", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.LoadAnimation) },
         CardItem("蒙层加载", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.MaskLoad) },
         CardItem("分组横向列表", true) { TechniquePreviewActivity.launch(context, PageType.GroupRow) },
         CardItem("按钮随banner主色调切换", true) { TechniquePreviewActivity.launch(context, PageType.SwitchBtnColorWithBannerBg) },
         CardItem("Modifier实用方法", true) { TechniquePreviewActivity.launch(context, PageType.Modifier) },
+        CardItem("Activity打开与关闭动画", true) { TestActivity1.launch(context) },
     )
 
     val items2 = listOf(
