@@ -60,7 +60,7 @@ fun SwipePage() {
     val isSelected = remember { mutableStateOf(false) }
 
     Column(modifier = Modifier.fillMaxSize()) {
-        StatusBarsView("侧滑组件", true)
+        StatusBarsView(title = "侧滑组件", canBack = true)
 
         Column(modifier = Modifier
             .fillMaxWidth()

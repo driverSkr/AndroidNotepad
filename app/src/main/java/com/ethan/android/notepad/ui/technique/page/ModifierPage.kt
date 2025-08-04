@@ -27,7 +27,7 @@ fun ModifierPage() {
     )
 
     Column(modifier = Modifier.fillMaxSize()) {
-        StatusBarsView("Modifier实用方法")
+        StatusBarsView(title = "Modifier实用方法")
 
         ListCardView(items = items)
     }

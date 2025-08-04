@@ -17,6 +17,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.Button
+import com.ethan.android.notepad.ui.technique.view.SharedTransitionView1
+import com.ethan.android.notepad.ui.technique.view.SharedTransitionView2
+import com.ethan.android.notepad.ui.technique.view.SharedTransitionView3
+import com.ethan.android.notepad.ui.technique.view.SharedTransitionView4
+import com.ethan.android.notepad.ui.technique.view.SharedTransitionView5
+import com.ethan.android.notepad.ui.technique.view.SharedTransitionView6
 
 
 @Composable
@@ -27,12 +33,12 @@ fun SharedTransitionPage() {
     Box(modifier = Modifier.fillMaxSize()) {
         AnimatedContent(selectPage.intValue, label = "") {
             when (it) {
-                1 -> SharedTransitionPage1()
-                2 -> SharedTransitionPage2()
-                3 -> SharedTransitionPage3()
-                4 -> SharedTransitionPage4()
-                5 -> SharedTransitionPage5()
-                6 -> SharedTransitionPage6()
+                1 -> SharedTransitionView1()
+                2 -> SharedTransitionView2()
+                3 -> SharedTransitionView3()
+                4 -> SharedTransitionView4()
+                5 -> SharedTransitionView5()
+                6 -> SharedTransitionView6()
                 else -> SelectPage(selectPage)
             }
         }

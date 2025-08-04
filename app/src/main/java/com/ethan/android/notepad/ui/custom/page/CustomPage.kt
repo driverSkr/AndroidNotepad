@@ -39,7 +39,7 @@ fun CustomPage() {
     )
 
     Column(modifier = Modifier.fillMaxSize()) {
-        StatusBarsView("自定义组件")
+        StatusBarsView(title = "自定义组件")
         ListCardView(items)
     }
 }

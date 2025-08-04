@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.technique.page
+package com.ethan.android.notepad.ui.technique.view
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibilityScope
@@ -41,7 +41,7 @@ import com.ethan.android.notepad.R
 
 @OptIn(ExperimentalSharedTransitionApi::class, ExperimentalAnimationApi::class)
 @Composable
-fun SharedTransitionPage2() {
+fun SharedTransitionView2() {
     var showDetails by remember { mutableStateOf(false) }
 
     SharedTransitionLayout {

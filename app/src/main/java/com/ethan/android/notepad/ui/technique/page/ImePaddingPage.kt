@@ -1,5 +1,6 @@
 package com.ethan.android.notepad.ui.technique.page
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -30,6 +31,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.TextStyle
@@ -46,12 +48,15 @@ import com.ethan.android.notepad.theme.Purple8A49FF
 import com.ethan.android.notepad.theme.Transparent
 import com.ethan.android.notepad.theme.White
 import com.ethan.android.notepad.theme.colorList
-import com.ethan.android.notepad.ui.custom.view.StatusBarsView
+import com.ethan.android.notepad.ui.custom.view.StatusBarsWithExplainView
+import com.ethan.android.notepad.utils.ToastType
 import com.ethan.android.notepad.utils.antiShakeClick
+import com.ethan.android.notepad.utils.showToast
 
 @Composable
 @Preview
 fun ImePaddingPage() {
+    val context = LocalContext.current
     var content by remember { mutableStateOf("") }
     val focusManger = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -61,10 +66,9 @@ fun ImePaddingPage() {
         .statusBarsPadding()
         .navigationBarsPadding()
         .imePadding()
-        .padding(horizontal = 12.dp)
     ) {
-        StatusBarsView("imePadding() 自动增加底部内边距以适应软键盘")
-        LazyColumn(modifier = Modifier.fillMaxWidth().weight(1f).padding(top = 8.dp)) {
+        StatusBarsWithExplainView(title = "imePadding", content = "自动增加底部内边距以适应软键盘")
+        LazyColumn(modifier = Modifier.fillMaxWidth().weight(1f).padding(horizontal = 12.dp).padding(top = 8.dp)) {
             item {
                 CustomTextField(content, { content = it }, "这是个输入框")
             }
@@ -83,10 +87,12 @@ fun ImePaddingPage() {
             .fillMaxWidth()
             .height(80.dp)
             .padding(10.dp)
+            .padding(horizontal = 12.dp)
             .background(color = Purple8A49FF, shape = RoundedCornerShape(16.dp))
             .antiShakeClick {
                 focusManger.clearFocus() //让输入框失去焦点
                 keyboardController?.hide()  //收起软键盘
+                "focusManger.clearFocus()让输入框失去焦点\nkeyboardController?.hide()收起软键盘".showToast(context, ToastType.HINT, Toast.LENGTH_LONG)
             }
         ) {
             Text(text = "这是个按钮", color = White, fontSize = 16.sp, modifier = Modifier.align(Alignment.Center))

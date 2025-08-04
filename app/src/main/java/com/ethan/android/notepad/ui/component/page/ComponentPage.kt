@@ -78,7 +78,7 @@ fun ComponentPage() {
     Column(modifier = Modifier
         .fillMaxSize()
         .background(color = Color.White)) {
-        StatusBarsView("基础组件")
+        StatusBarsView(title = "基础组件")
         ListCardView(items)
     }
 }

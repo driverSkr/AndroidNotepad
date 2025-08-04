@@ -52,7 +52,7 @@ fun CompositePage() {
     )
 
     Column(modifier = Modifier.fillMaxSize()) {
-        StatusBarsView("组合组件", true)
+        StatusBarsView(title = "组合组件", canBack = true)
         ListCardView(items = items)
     }
 }

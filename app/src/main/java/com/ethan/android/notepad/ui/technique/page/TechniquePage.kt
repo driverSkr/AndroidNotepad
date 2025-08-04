@@ -55,8 +55,8 @@ fun TechniquePage() {
         CardItem("支付宝、微信支付组件", true, isCompleted = false),
     )
 
-    Column(modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
-        StatusBarsView("技术、技巧、知识", true)
+    Column(modifier = Modifier.fillMaxSize().navigationBarsPadding().verticalScroll(rememberScrollState())) {
+        StatusBarsView(title = "技术、技巧、知识", canBack = true)
 
         ListCardView(items = items1)
 
@@ -64,6 +64,6 @@ fun TechniquePage() {
         ListCardView(items = items2)
 
         Spacer(modifier = Modifier.height(20.dp))
-        ListCardView(items = items3, modifier = Modifier.navigationBarsPadding())
+        ListCardView(items = items3)
     }
 }

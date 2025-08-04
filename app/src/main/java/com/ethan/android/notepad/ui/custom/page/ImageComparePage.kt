@@ -36,7 +36,7 @@ fun ImageComparePage() {
     val after = remember { BitmapFactory.decodeResource(context.resources, R.mipmap.img_breast_enlargement_auto_example_after).asImageBitmap() }
 
     Column(modifier = Modifier.fillMaxSize().padding(horizontal = 8.dp)) {
-        StatusBarsView("图片对比动画")
+        StatusBarsView(title = "图片对比动画")
 
         Spacer(modifier = Modifier.height(20.dp))
 

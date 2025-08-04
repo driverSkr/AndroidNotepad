@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.technique.page
+package com.ethan.android.notepad.ui.technique.view
 
 import androidx.annotation.DrawableRes
 import androidx.compose.animation.AnimatedContentScope
@@ -36,7 +36,7 @@ import com.ethan.android.notepad.R
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
-fun SharedTransitionPage3() {
+fun SharedTransitionView3() {
     val listSnacks = listOf(
         Snack("item1", "sdnjfndjsww", R.drawable.svg_no_net),
         Snack("item2", "sdnjfndjsww", R.drawable.svg_check),

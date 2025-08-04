@@ -75,7 +75,7 @@ fun LanguagePage() {
     )
 
     Column(modifier = Modifier.fillMaxSize()) {
-        StatusBarsView(title = "多语言自动切换", true)
+        StatusBarsView(title = "多语言自动切换", canBack = true)
         //强制刷新键（key）
         key(refreshKey) {
             TitleCardView(isShowTitle = false, modifier = Modifier

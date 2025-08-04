@@ -2,6 +2,8 @@ package com.ethan.android.notepad.ui.custom.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,9 +24,10 @@ import androidx.compose.ui.unit.sp
 import com.ethan.android.notepad.R
 import com.ethan.android.notepad.extension.findBaseActivityVBind
 import com.ethan.android.notepad.theme.Black
+import com.ethan.android.notepad.theme.Black60
 
 @Composable
-fun StatusBarsView(title: String, canBack: Boolean = true, modifier: Modifier = Modifier) {
+fun StatusBarsView(modifier: Modifier = Modifier, title: String, canBack: Boolean = true) {
     val context = LocalContext.current
 
     Row(modifier = modifier
@@ -43,8 +46,35 @@ fun StatusBarsView(title: String, canBack: Boolean = true, modifier: Modifier = 
     }
 }
 
+@Composable
+fun StatusBarsWithExplainView(modifier: Modifier = Modifier, title: String, content: String, canBack: Boolean = true) {
+    val context = LocalContext.current
+
+    Row(modifier = modifier
+        .statusBarsPadding()
+        .fillMaxWidth()
+        .padding(start = 18.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        if (canBack) {
+            Image(painter = painterResource(R.drawable.svg_back_black), contentDescription = null, modifier = Modifier
+                .clickable { context.findBaseActivityVBind()?.finish() })
+            Spacer(modifier = Modifier.width(8.dp))
+        }
+
+        Column(modifier = Modifier.padding(vertical = 5.dp).fillMaxWidth(), verticalArrangement = Arrangement.Center) {
+            Text(text = title, color = Black, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.height(3.dp))
+            Text(text = content, color = Black60, fontSize = 14.sp, fontWeight = FontWeight.W400)
+        }
+    }
+}
+
 @Preview
 @Composable
 fun PreStatusBarsView() {
-    StatusBarsView("示例")
+    Column {
+        StatusBarsView(title = "示例")
+        StatusBarsWithExplainView(title = "示例", content = "内容")
+    }
 }

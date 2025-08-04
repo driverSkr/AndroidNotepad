@@ -23,7 +23,7 @@ fun TestPage() {
     val context = LocalContext.current
 
     Column(modifier = Modifier.fillMaxSize()) {
-        StatusBarsView("测试代码", true)
+        StatusBarsView(title = "测试代码", canBack = true)
         Button(modifier = Modifier.width(150.dp), onClick = {
             TechniquePreviewActivity.launch(context, PageType.LoadAnimation)
         }) {

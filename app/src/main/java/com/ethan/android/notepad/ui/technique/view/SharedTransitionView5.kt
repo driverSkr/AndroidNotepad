@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.technique.page
+package com.ethan.android.notepad.ui.technique.view
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
@@ -59,7 +59,7 @@ private val shapeForSharedElement = RoundedCornerShape(16.dp)
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Preview
 @Composable
-fun SharedTransitionPage5() {
+fun SharedTransitionView5() {
     var selectedSnack by remember { mutableStateOf<Snack?>(null) }
 
     SharedTransitionLayout(modifier = Modifier.fillMaxSize()) {

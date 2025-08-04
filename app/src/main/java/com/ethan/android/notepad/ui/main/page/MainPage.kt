@@ -39,7 +39,7 @@ fun MainPage() {
 
     BackHandler {  }
     Column(modifier = Modifier.fillMaxSize()) {
-        StatusBarsView("主页", false)
+        StatusBarsView(title = "主页", canBack = false)
         ListCardView(items)
     }
 }

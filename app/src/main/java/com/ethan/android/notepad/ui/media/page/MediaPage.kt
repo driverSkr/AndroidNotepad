@@ -24,7 +24,7 @@ fun MediaPage() {
     )
 
     Column(modifier = Modifier.fillMaxSize()) {
-        StatusBarsView("多媒体组件多媒体组件")
+        StatusBarsView(title = "多媒体组件多媒体组件")
 
         ListCardView(items)
     }

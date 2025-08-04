@@ -72,7 +72,7 @@ fun DialogPage() {
     )
 
     Column(modifier = Modifier.fillMaxSize()) {
-        StatusBarsView("弹窗组件")
+        StatusBarsView(title = "弹窗组件")
         ListCardView(items)
     }
 }

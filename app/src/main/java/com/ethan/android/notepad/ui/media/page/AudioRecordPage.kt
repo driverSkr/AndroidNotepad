@@ -36,7 +36,7 @@ fun AudioRecordPage() {
     )
 
     Column(modifier = Modifier.fillMaxSize()) {
-        StatusBarsView("录音")
+        StatusBarsView(title = "录音")
         ListCardView(items)
 
         AnimatedContent(selectPage, label = "") {

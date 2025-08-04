@@ -16,7 +16,7 @@ object ShowToast {
         ToastUtils.make().setGravity(Gravity.TOP, 0, SizeUtils.dp2px(100F)).show(string)
     }
 
-    fun showToast(context: Context, type: ToastType, string: String) {
+    fun showToast(context: Context, type: ToastType, string: String, duration: Int) {
         val binding = CustomToastBinding.inflate(LayoutInflater.from(context))
         val icon = when(type) {
             ToastType.SUCCESS -> R.drawable.svg_icon_success
@@ -30,23 +30,23 @@ object ShowToast {
 
         // 创建并显示 Toast
         val toast = Toast(context)
-        toast.duration = Toast.LENGTH_SHORT
+        toast.duration = duration
         toast.setGravity(Gravity.TOP, 0, 100)
         toast.view = binding.root
         toast.show()
     }
 }
 
-fun String.showToast(context: Context, type: ToastType) {
+fun String.showToast(context: Context, type: ToastType, duration: Int = Toast.LENGTH_SHORT) {
     context.findBaseActivityVBind()?.runOnUiThread {
-        ShowToast.showToast(context, type, this)
+        ShowToast.showToast(context, type, this, duration)
     }
 }
 
-fun Int.showToast(context: Context, type: ToastType) {
+fun Int.showToast(context: Context, type: ToastType, duration: Int = Toast.LENGTH_SHORT) {
     context.findBaseActivityVBind()?.runOnUiThread {
         val content = context.getString(this)
-        ShowToast.showToast(context, type, content)
+        ShowToast.showToast(context, type, content, duration)
     }
 }
 

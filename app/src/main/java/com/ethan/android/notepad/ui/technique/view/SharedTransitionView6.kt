@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.technique.page
+package com.ethan.android.notepad.ui.technique.view
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalSharedTransitionApi
@@ -69,7 +69,7 @@ private val shapeForSharedElement = RoundedCornerShape(16.dp)
 
 @OptIn(ExperimentalSharedTransitionApi::class, ExperimentalWearMaterialApi::class)
 @Composable
-fun SharedTransitionPage6() {
+fun SharedTransitionView6() {
     var selectedSnack by remember { mutableStateOf<Snack?>(null) }
     val swipeableState = rememberSwipeableState(initialValue = 0)
 
