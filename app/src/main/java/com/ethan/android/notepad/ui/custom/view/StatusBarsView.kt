@@ -25,6 +25,7 @@ import com.ethan.android.notepad.R
 import com.ethan.android.notepad.extension.findBaseActivityVBind
 import com.ethan.android.notepad.theme.Black
 import com.ethan.android.notepad.theme.Black60
+import com.ethan.android.notepad.theme.White
 
 @Composable
 fun StatusBarsView(modifier: Modifier = Modifier, title: String, canBack: Boolean = true) {
@@ -43,6 +44,26 @@ fun StatusBarsView(modifier: Modifier = Modifier, title: String, canBack: Boolea
             Spacer(modifier = Modifier.width(8.dp))
         }
         Text(text = title, color = Black, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+    }
+}
+
+@Composable
+fun StatusBarsViewWhite(modifier: Modifier = Modifier, title: String, canBack: Boolean = true) {
+    val context = LocalContext.current
+
+    Row(modifier = modifier
+        .statusBarsPadding()
+        .fillMaxWidth()
+        .height(50.dp)
+        .padding(start = 18.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        if (canBack) {
+            Image(painter = painterResource(R.drawable.svg_back_with_bg), contentDescription = null, modifier = Modifier
+                .clickable { context.findBaseActivityVBind()?.finish() })
+            Spacer(modifier = Modifier.width(8.dp))
+        }
+        Text(text = title, color = White, fontSize = 20.sp, fontWeight = FontWeight.Bold)
     }
 }
 
