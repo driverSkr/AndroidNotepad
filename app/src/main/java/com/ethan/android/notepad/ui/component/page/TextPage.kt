@@ -34,11 +34,11 @@ import com.ethan.android.notepad.theme.Pink40
 import com.ethan.android.notepad.utils.LaunchUtils
 import com.ethan.android.notepad.utils.TextSpanUtils
 
-@Composable
-@Preview
 /**
  * Text 对应View中的 TextView
  */
+@Composable
+@Preview
 fun TextPage() {
     val brushColor = Brush.horizontalGradient(colorStops = arrayOf(0.5f to DarkOrange, 1f to Cyan))
 

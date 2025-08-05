@@ -15,7 +15,7 @@ import androidx.wear.compose.material.Text
 import com.ethan.android.notepad.ui.custom.view.StatusBarsView
 import com.ethan.android.notepad.ui.technique.TechniquePreviewActivity
 import com.ethan.android.notepad.ui.technique.model.PageType
-import com.ethan.android.notepad.widget.SaveV2CommonContrastView
+import com.ethan.android.notepad.ui.custom.widget.SaveV2CommonContrastView
 
 @Composable
 @Preview

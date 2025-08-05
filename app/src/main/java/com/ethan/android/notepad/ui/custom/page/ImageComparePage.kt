@@ -50,5 +50,8 @@ fun ImageComparePage() {
         Box(modifier = Modifier.width(200.dp).height(300.dp).clip(RoundedCornerShape(6.dp))) {
             ImageWithTextContrastView()
         }
+
+        Spacer(modifier = Modifier.height(20.dp))
+        Text("可拖拽的图片对比动画", color = Black)
     }
 }

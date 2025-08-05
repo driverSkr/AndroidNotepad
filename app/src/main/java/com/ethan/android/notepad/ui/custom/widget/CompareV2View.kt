@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.widget
+package com.ethan.android.notepad.ui.custom.widget
 
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
