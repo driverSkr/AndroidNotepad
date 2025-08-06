@@ -247,5 +247,9 @@ dependencies {
     implementation 'com.github.centerzx:ShapeBlurView:1.0.5'
     implementation "dev.chrisbanes.haze:haze-materials:0.9.0-rc03" //compose 使用的动态模糊库，性能开销小，仅支持33以上
 
+    //仿ios侧滑删除组件
+    implementation("com.github.linversion.swipe-like-ios:swipe-like-ios:1.0.1")
+    implementation("io.github.kevinnzou:compose-swipebox:1.4.0")
+
 //    compileOnly fileTree(dir: "libs", include: ["*.aar"])
 }

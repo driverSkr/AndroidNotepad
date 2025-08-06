@@ -22,17 +22,14 @@ import androidx.wear.compose.material.FractionalThreshold
 import androidx.wear.compose.material.rememberSwipeableState
 import androidx.wear.compose.material.swipeable
 import com.ethan.android.notepad.R
+import com.ethan.android.notepad.theme.Black
 import com.ethan.android.notepad.theme.RedFF5762
 import kotlin.math.roundToInt
 
 /** 滑动组件 */
 @OptIn(ExperimentalWearMaterialApi::class)
 @Composable
-fun SwipeableView2(
-    isSelected: Boolean,
-    onClick: () -> Unit = {}
-) {
-    val context = LocalContext.current
+fun SwipeableView2() {
     // 滑动状态控制
     val swipeableState = rememberSwipeableState(initialValue = 0)
     val swipeThreshold = (-80).dp  // 负值表示向左滑动
@@ -60,10 +57,12 @@ fun SwipeableView2(
         }
 
         // 主内容
-        VoiceItemView(
-            isSelected = isSelected,
-            onclick = onClick,
-            modifier = Modifier.offset { IntOffset(swipeableState.offset.value.roundToInt(), 0) }
+        Box(modifier = Modifier
+            .offset { IntOffset(swipeableState.offset.value.roundToInt(), 0) }
+            .fillMaxWidth()
+            .height(80.dp)
+            .background(color = Black)
+
         )
     }
 }
