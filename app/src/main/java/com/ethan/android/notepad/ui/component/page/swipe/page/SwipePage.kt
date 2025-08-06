@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -39,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import com.ethan.android.notepad.theme.Red
 import com.ethan.android.notepad.theme.White
 import com.ethan.android.notepad.ui.component.page.swipe.view.SwipeableView
+import com.ethan.android.notepad.ui.component.page.swipe.view.SwipeableView2
 import com.ethan.android.notepad.ui.custom.view.StatusBarsView
 import com.ethan.android.notepad.ui.custom.view.TitleCardView
 import com.ethan.android.notepad.utils.ToastType
@@ -66,8 +68,13 @@ fun SwipePage() {
             .fillMaxWidth()
             .verticalScroll(rememberScrollState())
         ) {
-            TitleCardView("swipeable修饰符", modifier = Modifier.height(150.dp)) {
-                SwipeableView(isSelected.value) { isSelected.value = !isSelected.value }
+            TitleCardView("swipeable修饰符", modifier = Modifier.wrapContentHeight()) {
+                Column(modifier = Modifier.padding(vertical = 12.dp)) {
+                    SwipeableView(isSelected.value) { isSelected.value = !isSelected.value }
+
+                    Spacer(modifier = Modifier.height(12.dp))
+                    SwipeableView2(isSelected.value) { isSelected.value = !isSelected.value }
+                }
             }
 
             Spacer(modifier = Modifier.height(20.dp))

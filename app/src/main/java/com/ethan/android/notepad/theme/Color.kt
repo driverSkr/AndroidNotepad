@@ -78,6 +78,7 @@ val Red = Color(0xFFFF0000) //纯红
 val RedFF0048 = Color(0xFFFF0048)
 val DarkRed = Color(0xFF8B0000) //深红色
 val RedFF5F2D = Color(0xFFFF5F2D)
+val RedFF5762 = Color(0xFFFF5762)
 
 val Orange = Color(0xFFFFA500) //橙色
 val DarkOrange = Color(0xFFFF8C00) //深橙色
