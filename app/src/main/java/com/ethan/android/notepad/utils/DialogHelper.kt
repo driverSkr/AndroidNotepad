@@ -23,7 +23,6 @@ import com.ethan.android.notepad.databinding.DialogPromptBinding
 import com.ethan.android.notepad.extension.antiShakeClick
 import com.ethan.android.notepad.theme.ComposeProjectTheme
 import com.ethan.android.notepad.theme.Green
-import com.ethan.android.notepad.ui.dialog.ComposeNativeDialog
 import com.ethan.base.dialog.BaseDialog
 import com.ethan.base.utils.AndroidBarUtils
 import com.ethan.company.NetConfig
@@ -85,8 +84,7 @@ object DialogHelper {
     }
 
     fun showTestDialog(activity: FragmentActivity) {
-        val (binding, dialog) = ComposeNativeDialog.composeBSDialog(activity)
-        val show = dialog.show()
+        val (binding, dialog) = ComposeNativeDialog.composeBottomDialog(activity)
         binding.composeView.apply {
             setContent {
                 ComposeProjectTheme {
@@ -94,6 +92,7 @@ object DialogHelper {
                 }
             }
         }
+        dialog.show()
     }
 
     /**
