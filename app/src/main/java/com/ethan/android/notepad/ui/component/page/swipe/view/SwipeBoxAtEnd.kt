@@ -16,8 +16,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.wear.compose.material.ExperimentalWearMaterialApi
-import androidx.wear.compose.material.rememberSwipeableState
 import com.kevinnzou.compose.swipebox.SwipeBox
 import com.kevinnzou.compose.swipebox.SwipeDirection
 import com.kevinnzou.compose.swipebox.widget.SwipeIcon

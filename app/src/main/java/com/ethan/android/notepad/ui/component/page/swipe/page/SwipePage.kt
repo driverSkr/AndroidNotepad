@@ -41,6 +41,7 @@ import com.ethan.android.notepad.theme.Red
 import com.ethan.android.notepad.theme.White
 import com.ethan.android.notepad.ui.component.page.swipe.view.SwipeBoxAtEnd
 import com.ethan.android.notepad.ui.component.page.swipe.view.SwipeLikeIOSView
+import com.ethan.android.notepad.ui.component.page.swipe.view.SwipeLikeIOSView2
 import com.ethan.android.notepad.ui.component.page.swipe.view.SwipeableView
 import com.ethan.android.notepad.ui.component.page.swipe.view.SwipeableView2
 import com.ethan.android.notepad.ui.custom.view.StatusBarsView
@@ -83,6 +84,13 @@ fun SwipePage() {
             TitleCardView("侧滑测试", modifier = Modifier.height(200.dp)) {
                 Box(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
                     SwipeLikeIOSView()
+                }
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+            TitleCardView("侧滑测试", modifier = Modifier.height(200.dp)) {
+                Box(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
+                    SwipeLikeIOSView2()
                 }
             }
 

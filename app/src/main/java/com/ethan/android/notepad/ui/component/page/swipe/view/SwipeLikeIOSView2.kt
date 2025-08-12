@@ -7,17 +7,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.unit.dp
-import com.linversion.swipe.SwipeAction
-import com.linversion.swipe.SwipeableActionsBox
-import com.linversion.swipe.rememberSwipeableActionsState
+import me.saket.swipe.SwipeAction
+import me.saket.swipe.SwipeableActionsBox
+import me.saket.swipe.rememberSwipeableActionsState
+
 
 @Composable
-fun SwipeLikeIOSView() {
-    val state = rememberSwipeableActionsState().apply { this.offset }
+fun SwipeLikeIOSView2() {
+
+    val state = rememberSwipeableActionsState()
     val archive = SwipeAction(
         icon = rememberVectorPainter(Icons.TwoTone.Delete),
-        background = Color.Green,
-        onClick = { }
+        background = Color.Red,
+        weight = 0.5,
+        onSwipe = {},
     )
 
     SwipeableActionsBox(
