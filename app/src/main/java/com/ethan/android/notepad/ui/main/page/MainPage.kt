@@ -4,9 +4,14 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import com.ethan.android.notepad.extension.findBaseActivityVBind
 import com.ethan.android.notepad.ui.component.ComponentActivity
 import com.ethan.android.notepad.ui.composite.CompositeActivity
 import com.ethan.android.notepad.ui.custom.CustomActivity
@@ -18,6 +23,7 @@ import com.ethan.android.notepad.ui.media.MediaActivity
 import com.ethan.android.notepad.ui.room.RoomActivity
 import com.ethan.android.notepad.ui.technique.TechniqueActivity
 import com.ethan.android.notepad.ui.test.TestActivity
+import com.ethan.android.notepad.utils.ShowToast.showToast
 
 /**
  * 首页
@@ -37,7 +43,16 @@ fun MainPage() {
         CardItem("Test", true) { TestActivity.launch(context) },
     )
 
-    BackHandler {  }
+    var lastTime by remember { mutableLongStateOf(0L) }
+    BackHandler {
+        val now = System.currentTimeMillis()
+        if (now - lastTime > 2000) {
+            showToast("再按一次退出程序")
+            lastTime = now
+            return@BackHandler
+        }
+        context.findBaseActivityVBind()?.finish()
+    }
     Column(modifier = Modifier.fillMaxSize()) {
         StatusBarsView(title = "主页", canBack = false)
         ListCardView(items)

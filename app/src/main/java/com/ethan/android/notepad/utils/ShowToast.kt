@@ -13,7 +13,7 @@ import com.ethan.android.notepad.extension.findBaseActivityVBind
 object ShowToast {
 
     fun showToast(string: String) {
-        ToastUtils.make().setGravity(Gravity.TOP, 0, SizeUtils.dp2px(100F)).show(string)
+        ToastUtils.make().setGravity(Gravity.BOTTOM, 0, SizeUtils.dp2px(100F)).show(string)
     }
 
     fun showToast(context: Context, type: ToastType, string: String, duration: Int) {
