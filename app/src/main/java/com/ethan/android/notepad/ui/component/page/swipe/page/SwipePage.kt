@@ -42,6 +42,7 @@ import com.ethan.android.notepad.theme.White
 import com.ethan.android.notepad.ui.component.page.swipe.view.SwipeBoxAtEnd
 import com.ethan.android.notepad.ui.component.page.swipe.view.SwipeLikeIOSView
 import com.ethan.android.notepad.ui.component.page.swipe.view.SwipeLikeIOSView2
+import com.ethan.android.notepad.ui.component.page.swipe.view.SwipeLikeIOSView3
 import com.ethan.android.notepad.ui.component.page.swipe.view.SwipeableView
 import com.ethan.android.notepad.ui.component.page.swipe.view.SwipeableView2
 import com.ethan.android.notepad.ui.custom.view.StatusBarsView
@@ -81,21 +82,28 @@ fun SwipePage() {
             }
 
             Spacer(modifier = Modifier.height(20.dp))
-            TitleCardView("侧滑测试", modifier = Modifier.height(200.dp)) {
+            TitleCardView("侧滑测试1", modifier = Modifier.height(200.dp)) {
                 Box(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
                     SwipeLikeIOSView()
                 }
             }
 
             Spacer(modifier = Modifier.height(20.dp))
-            TitleCardView("侧滑测试", modifier = Modifier.height(200.dp)) {
+            TitleCardView("侧滑测试2", modifier = Modifier.height(200.dp)) {
                 Box(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
                     SwipeLikeIOSView2()
                 }
             }
 
             Spacer(modifier = Modifier.height(20.dp))
-            TitleCardView("侧滑测试", modifier = Modifier.height(200.dp)) {
+            TitleCardView("自定义侧滑测试", modifier = Modifier.height(200.dp)) {
+                Box(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
+                    SwipeLikeIOSView3()
+                }
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+            TitleCardView("侧滑测试4", modifier = Modifier.height(200.dp)) {
                 Box(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
                     SwipeBoxAtEnd()
                 }
