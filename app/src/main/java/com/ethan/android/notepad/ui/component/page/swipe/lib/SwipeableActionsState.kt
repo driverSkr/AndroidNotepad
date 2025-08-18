@@ -93,7 +93,7 @@ class SwipeableActionsState internal constructor() {
     }
   }
 
-  internal suspend fun handleReset() = coroutineScope {
+  suspend fun handleReset() = coroutineScope {
     launch {
       draggableState.drag(MutatePriority.PreventUserInput) {
         isAnimating = true

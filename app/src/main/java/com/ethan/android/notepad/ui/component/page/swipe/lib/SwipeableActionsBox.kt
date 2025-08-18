@@ -53,6 +53,7 @@ fun SwipeableActionsBox(
   startActions: List<SwipeAction> = emptyList(),
   endActions: List<SwipeAction> = emptyList(),
   swipeThreshold: Dp = 40.dp,
+  enabled: Boolean = true, // 新增：控制是否允许滑动
   content: @Composable BoxScope.() -> Unit
 ) = BoxWithConstraints(modifier) {
   state.also {
@@ -75,7 +76,7 @@ fun SwipeableActionsBox(
       .absoluteOffset { IntOffset(x = offsetX, y = 0) }
       .draggable(
         orientation = Horizontal,
-        enabled = !state.isResettingOnRelease,
+        enabled = enabled && !state.isResettingOnRelease,
         onDragStopped = {
           scope.launch {
             state.handleOnDragStopped()
