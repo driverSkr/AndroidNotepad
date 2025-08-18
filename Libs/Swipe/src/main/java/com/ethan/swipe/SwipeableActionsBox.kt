@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.component.page.swipe.lib
+package com.ethan.swipe
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background

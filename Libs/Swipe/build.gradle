@@ -1,15 +1,27 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.plugin.compose'
 }
 apply from: "$rootDir$Android"
 
 android library()
 android {
     namespace = "com.ethan.swipe"
+
+    buildFeatures {
+        compose true
+    }
 }
 
 dependencies {
     implementation "androidx.appcompat:appcompat:${ANDROIDX_APPCOMPAT_VERSION}"
     implementation "androidx.core:core-ktx:${KTX_CORE_VERSION}"
+
+    def composeBom = platform('androidx.compose:compose-bom:2025.06.01')
+    implementation composeBom
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-graphics")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.wear.compose:compose-material:1.4.1")
 }

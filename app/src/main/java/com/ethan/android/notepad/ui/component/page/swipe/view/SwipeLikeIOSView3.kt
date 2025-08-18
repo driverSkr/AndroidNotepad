@@ -18,9 +18,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.Button
-import com.ethan.android.notepad.ui.component.page.swipe.lib.SwipeAction
-import com.ethan.android.notepad.ui.component.page.swipe.lib.SwipeableActionsBox
-import com.ethan.android.notepad.ui.component.page.swipe.lib.rememberSwipeableActionsState
+import com.ethan.swipe.SwipeAction
+import com.ethan.swipe.SwipeableActionsBox
+import com.ethan.swipe.rememberSwipeableActionsState
 import kotlinx.coroutines.launch
 
 @Composable

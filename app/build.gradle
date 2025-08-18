@@ -208,6 +208,7 @@ dependencies {
     implementation project(path: ':Libs:VideoEditing')
     implementation project(path: ':Libs:MaskLoading')
     implementation project(path: ':Libs:Utils:File')
+    implementation project(path: ':Libs:Swipe')
     implementation project(path: ':Libs:Utils:MediaPicker')
     implementation project(path: ':Libs:Utils:Permission')
     implementation project(path: ':Libs:NetWork:CompanyLibs')

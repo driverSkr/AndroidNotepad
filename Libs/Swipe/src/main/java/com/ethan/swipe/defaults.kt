@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.component.page.swipe.lib
+package com.ethan.swipe
 
 internal const val animationDurationMs = 4_00
 internal const val animationLimitMs = 2_00
