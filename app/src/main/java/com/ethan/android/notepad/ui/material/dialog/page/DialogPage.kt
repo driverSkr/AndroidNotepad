@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.dialog.page
+package com.ethan.android.notepad.ui.material.dialog.page
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize

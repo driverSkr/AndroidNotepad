@@ -7,9 +7,12 @@ import android.text.style.ClickableSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
+import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
@@ -23,6 +26,12 @@ import com.ethan.android.notepad.databinding.DialogPromptBinding
 import com.ethan.android.notepad.extension.antiShakeClick
 import com.ethan.android.notepad.theme.ComposeProjectTheme
 import com.ethan.android.notepad.theme.Green
+import com.ethan.android.notepad.theme.White
+import com.ethan.android.notepad.ui.component.page.ButtonPage
+import com.ethan.android.notepad.ui.component.page.ImagePage
+import com.ethan.android.notepad.ui.component.page.ProgressIndicatorPage
+import com.ethan.android.notepad.ui.component.page.TextFieldPage
+import com.ethan.android.notepad.ui.component.page.TextPage
 import com.ethan.base.dialog.BaseDialog
 import com.ethan.base.utils.AndroidBarUtils
 import com.ethan.company.NetConfig
@@ -89,6 +98,34 @@ object DialogHelper {
             setContent {
                 ComposeProjectTheme {
                     Box(modifier = Modifier.height(500.dp).background(color = Green))
+                }
+            }
+        }
+        dialog.show()
+    }
+
+    /**
+     * 基础组件展示底部弹窗
+     */
+    fun componentBottomDialog(activity: FragmentActivity, showView: Int) {
+        val (binding, dialog) = ComposeNativeDialog.composeBottomDialog(activity)
+        binding.composeView.apply {
+            setContent {
+                ComposeProjectTheme {
+                    Box(modifier = Modifier
+                        .fillMaxWidth()
+                        .background(color = White, shape = RoundedCornerShape(16.dp))
+                    ) {
+                        AnimatedContent(showView, label = "") {
+                            when (it) {
+                                0 -> TextPage()
+                                1 -> ButtonPage()
+                                2 -> ImagePage()
+                                3 -> ProgressIndicatorPage()
+                                4 -> TextFieldPage()
+                            }
+                        }
+                    }
                 }
             }
         }

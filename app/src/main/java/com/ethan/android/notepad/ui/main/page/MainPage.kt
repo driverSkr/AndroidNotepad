@@ -19,6 +19,7 @@ import com.ethan.android.notepad.ui.custom.model.CardItem
 import com.ethan.android.notepad.ui.custom.view.ListCardView
 import com.ethan.android.notepad.ui.custom.view.StatusBarsView
 import com.ethan.android.notepad.ui.dialog.DialogActivity
+import com.ethan.android.notepad.ui.material.MaterialActivity
 import com.ethan.android.notepad.ui.media.MediaActivity
 import com.ethan.android.notepad.ui.room.RoomActivity
 import com.ethan.android.notepad.ui.technique.TechniqueActivity
@@ -40,6 +41,7 @@ fun MainPage() {
         CardItem("多媒体组件", true) { MediaActivity.launch(context) },
         CardItem("Room数据库", true) { RoomActivity.launch(context) },
         CardItem("技术、技巧、知识", true) { TechniqueActivity.launch(context) },
+        CardItem("素材组件库", true) { MaterialActivity.launch(context) },
         CardItem("Test", true) { TestActivity.launch(context) },
     )
 

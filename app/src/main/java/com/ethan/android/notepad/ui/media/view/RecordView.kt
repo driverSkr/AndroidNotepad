@@ -40,7 +40,7 @@ import com.ethan.android.notepad.theme.NO_PADDING_TEXT_STYLE
 import com.ethan.android.notepad.theme.White
 import com.ethan.android.notepad.theme.White10
 import com.ethan.android.notepad.theme.White60
-import com.ethan.android.notepad.ui.dialog.view.rememberConfirmDialog
+import com.ethan.android.notepad.ui.material.dialog.view.rememberConfirmDialog
 import com.ethan.android.notepad.utils.AudioRecorder
 import com.ethan.android.notepad.utils.MyPermissionUtils
 import com.ethan.android.notepad.utils.ToastType

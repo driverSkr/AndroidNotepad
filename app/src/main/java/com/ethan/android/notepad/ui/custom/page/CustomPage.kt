@@ -13,7 +13,7 @@ import com.ethan.android.notepad.ui.custom.model.CardItem
 import com.ethan.android.notepad.ui.custom.model.PageType
 import com.ethan.android.notepad.ui.custom.view.ListCardView
 import com.ethan.android.notepad.ui.custom.view.StatusBarsView
-import com.ethan.android.notepad.ui.dialog.view.rememberLoginDialog
+import com.ethan.android.notepad.ui.material.dialog.view.rememberLoginDialog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

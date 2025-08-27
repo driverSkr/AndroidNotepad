@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.dialog.view
+package com.ethan.android.notepad.ui.material.dialog.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
