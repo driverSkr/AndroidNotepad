@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.blankj.utilcode.util.ScreenUtils
 import com.blankj.utilcode.util.SizeUtils
-import com.ethan.android.notepad.ui.custom.view.ScrollableTabRow
+import com.ethan.android.notepad.common.view.ScrollableTabRow
 import com.ethan.android.notepad.theme.NO_PADDING_TEXT_STYLE
 import com.ethan.android.notepad.theme.Purple291E3D
 import com.ethan.android.notepad.theme.PurpleBC97FF

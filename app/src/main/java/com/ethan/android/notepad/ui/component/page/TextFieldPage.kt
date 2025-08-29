@@ -28,7 +28,7 @@ import com.ethan.android.notepad.ui.component.view.MyTextField
 import com.ethan.android.notepad.ui.component.view.TelephoneInput
 import com.ethan.android.notepad.ui.component.view.TextInput
 import com.ethan.android.notepad.ui.component.view.VerificationCodeInput
-import com.ethan.android.notepad.ui.custom.view.StatusBarsViewWhite
+import com.ethan.android.notepad.common.view.StatusBarsViewWhite
 
 @Composable
 @Preview

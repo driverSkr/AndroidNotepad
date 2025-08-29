@@ -12,9 +12,9 @@ import androidx.fragment.app.FragmentActivity
 import com.ethan.android.notepad.ui.component.ComponentPreviewActivity
 import com.ethan.android.notepad.ui.component.context.PageType
 import com.ethan.android.notepad.ui.component.page.swipe.SwipeActivity
-import com.ethan.android.notepad.ui.custom.model.CardItem
-import com.ethan.android.notepad.ui.custom.view.ListCardView
-import com.ethan.android.notepad.ui.custom.view.StatusBarsView
+import com.ethan.android.notepad.common.model.CardItem
+import com.ethan.android.notepad.common.view.ListCardView
+import com.ethan.android.notepad.common.view.StatusBarsView
 import com.ethan.android.notepad.utils.DialogHelper
 
 /**

@@ -73,7 +73,7 @@ import com.ethan.android.notepad.theme.White60
 import com.ethan.android.notepad.theme.White8
 import com.ethan.android.notepad.data.VoiceItemDetail
 import com.ethan.android.notepad.data.voiceDataSource
-import com.ethan.android.notepad.ui.custom.view.ScrollableTabRow
+import com.ethan.android.notepad.common.view.ScrollableTabRow
 import com.ethan.android.notepad.utils.ToastType
 import com.ethan.android.notepad.utils.antiShakeClick
 import com.ethan.android.notepad.utils.rememberLifecycleEvent

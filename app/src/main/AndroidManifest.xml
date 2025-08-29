@@ -44,10 +44,6 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.custom.CustomPreviewActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.technique.TechniquePreviewActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
@@ -73,10 +69,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.media.AudioRecordActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.custom.CustomActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

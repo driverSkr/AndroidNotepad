@@ -23,9 +23,9 @@ import com.ethan.android.notepad.theme.NO_PADDING_TEXT_STYLE
 import com.ethan.android.notepad.theme.PurpleBE6DFF
 import com.ethan.android.notepad.theme.White
 import com.ethan.android.notepad.ui.component.ComponentActivity
-import com.ethan.android.notepad.ui.custom.model.CardItem
-import com.ethan.android.notepad.ui.custom.view.ListCardView
-import com.ethan.android.notepad.ui.custom.view.StatusBarsView
+import com.ethan.android.notepad.common.model.CardItem
+import com.ethan.android.notepad.common.view.ListCardView
+import com.ethan.android.notepad.common.view.StatusBarsView
 import com.ethan.android.notepad.utils.antiShakeClick
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

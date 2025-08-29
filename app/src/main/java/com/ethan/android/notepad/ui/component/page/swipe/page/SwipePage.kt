@@ -45,8 +45,8 @@ import com.ethan.android.notepad.ui.component.page.swipe.view.SwipeLikeIOSView2
 import com.ethan.android.notepad.ui.component.page.swipe.view.SwipeLikeIOSView3
 import com.ethan.android.notepad.ui.component.page.swipe.view.SwipeableView
 import com.ethan.android.notepad.ui.component.page.swipe.view.SwipeableView2
-import com.ethan.android.notepad.ui.custom.view.StatusBarsView
-import com.ethan.android.notepad.ui.custom.view.TitleCardView
+import com.ethan.android.notepad.common.view.StatusBarsView
+import com.ethan.android.notepad.common.view.TitleCardView
 import com.ethan.android.notepad.utils.ToastType
 import com.ethan.android.notepad.utils.showToast
 import kotlinx.coroutines.delay

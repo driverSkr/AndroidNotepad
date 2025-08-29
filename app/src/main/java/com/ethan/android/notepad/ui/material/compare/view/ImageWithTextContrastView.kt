@@ -31,7 +31,7 @@ import coil3.gif.AnimatedImageDecoder
 import coil3.gif.GifDecoder
 import coil3.request.ImageRequest
 import com.ethan.android.notepad.R
-import com.ethan.android.notepad.extension.dpF
+import com.ethan.android.notepad.common.extension.dpF
 import com.ethan.android.notepad.utils.dpI
 import com.ethan.android.notepad.utils.setAlpha
 

@@ -16,7 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.Button
-import com.ethan.android.notepad.ui.custom.view.StatusBarsWithExplainView
+import com.ethan.android.notepad.common.view.StatusBarsWithExplainView
 import com.ethan.android.notepad.ui.technique.view.SharedTransitionView1
 import com.ethan.android.notepad.ui.technique.view.SharedTransitionView2
 import com.ethan.android.notepad.ui.technique.view.SharedTransitionView3

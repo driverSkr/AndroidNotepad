@@ -14,7 +14,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
-import com.ethan.android.notepad.ui.custom.view.TabPosition
+import com.ethan.android.notepad.common.view.TabPosition
 import com.ethan.android.notepad.theme.White
 import kotlin.math.abs
 

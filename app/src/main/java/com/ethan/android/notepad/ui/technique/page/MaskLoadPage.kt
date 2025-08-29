@@ -29,11 +29,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import coil3.compose.AsyncImage
 import com.ethan.android.notepad.databinding.LayoutMaskLoadBinding
-import com.ethan.android.notepad.extension.findBaseActivityVBind
-import com.ethan.android.notepad.ui.custom.view.TitleCardView
+import com.ethan.android.notepad.common.extension.findBaseActivityVBind
+import com.ethan.android.notepad.common.view.TitleCardView
 import com.ethan.android.notepad.ui.technique.view.BlurHashActivity
 import com.ethan.maskload.BlurHashDecoder
-import com.ethan.android.notepad.extension.dp as dpInt
+import com.ethan.android.notepad.common.extension.dp as dpInt
 
 /**
  * 渐进式加载:由模糊到清晰

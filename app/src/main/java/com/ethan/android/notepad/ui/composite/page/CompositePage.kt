@@ -16,12 +16,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ethan.android.notepad.ui.custom.view.ListCardView
-import com.ethan.android.notepad.ui.custom.view.StatusBarsView
+import com.ethan.android.notepad.common.view.ListCardView
+import com.ethan.android.notepad.common.view.StatusBarsView
 import com.ethan.android.notepad.theme.Black_24252C
 import com.ethan.android.notepad.ui.composite.view.TabWithHorizontalPager
 import com.ethan.android.notepad.ui.composite.view.TabWithLazyRow
-import com.ethan.android.notepad.ui.custom.model.CardItem
+import com.ethan.android.notepad.common.model.CardItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

@@ -12,9 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ethan.android.notepad.ui.custom.model.CardItem
-import com.ethan.android.notepad.ui.custom.view.ListCardView
-import com.ethan.android.notepad.ui.custom.view.StatusBarsView
+import com.ethan.android.notepad.common.model.CardItem
+import com.ethan.android.notepad.common.view.ListCardView
+import com.ethan.android.notepad.common.view.StatusBarsView
 import com.ethan.android.notepad.ui.technique.TechniquePreviewActivity
 import com.ethan.android.notepad.ui.technique.model.PageType
 import com.ethan.android.notepad.ui.test.TestActivity1

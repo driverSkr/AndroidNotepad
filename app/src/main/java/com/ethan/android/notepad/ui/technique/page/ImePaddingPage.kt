@@ -48,7 +48,7 @@ import com.ethan.android.notepad.theme.Purple8A49FF
 import com.ethan.android.notepad.theme.Transparent
 import com.ethan.android.notepad.theme.White
 import com.ethan.android.notepad.theme.colorList
-import com.ethan.android.notepad.ui.custom.view.StatusBarsWithExplainView
+import com.ethan.android.notepad.common.view.StatusBarsWithExplainView
 import com.ethan.android.notepad.utils.ToastType
 import com.ethan.android.notepad.utils.antiShakeClick
 import com.ethan.android.notepad.utils.showToast

@@ -21,7 +21,7 @@
 //import com.ethan.android.notepad.R
 //import com.ethan.android.notepad.extension.dp
 //import com.ethan.android.notepad.model.FilterGenerator
-//import com.ethan.android.notepad.model.HandlerType
+//import com.ethan.android.notepad.common.model.HandlerType
 //import com.ethan.android.notepad.utils.DataHelper
 //import kotlin.math.max
 //import kotlin.math.min

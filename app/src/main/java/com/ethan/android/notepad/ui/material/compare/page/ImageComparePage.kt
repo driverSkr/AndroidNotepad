@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.Text
 import com.ethan.android.notepad.R
 import com.ethan.android.notepad.theme.Black
-import com.ethan.android.notepad.ui.custom.view.StatusBarsView
+import com.ethan.android.notepad.common.view.StatusBarsView
 import com.ethan.android.notepad.ui.material.compare.view.ImageContrastView
 import com.ethan.android.notepad.ui.material.compare.view.ImageWithTextContrastView
 import com.ethan.android.notepad.ui.material.compare.widget.SaveV2CommonContrastView

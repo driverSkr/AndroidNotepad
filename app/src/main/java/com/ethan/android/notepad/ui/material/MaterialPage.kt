@@ -5,9 +5,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import com.ethan.android.notepad.ui.custom.model.CardItem
-import com.ethan.android.notepad.ui.custom.view.ListCardView
-import com.ethan.android.notepad.ui.custom.view.StatusBarsView
+import com.ethan.android.notepad.common.model.CardItem
+import com.ethan.android.notepad.common.view.ListCardView
+import com.ethan.android.notepad.common.view.StatusBarsView
 
 @Composable
 fun MaterialPage() {
