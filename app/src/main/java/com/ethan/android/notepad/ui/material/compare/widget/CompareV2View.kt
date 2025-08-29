@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.custom.widget
+package com.ethan.android.notepad.ui.material.compare.widget
 
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint

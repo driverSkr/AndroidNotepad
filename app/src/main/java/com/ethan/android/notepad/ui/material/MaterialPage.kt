@@ -16,6 +16,9 @@ fun MaterialPage() {
         CardItem("弹窗", false) {
             MaterialPreviewActivity.launch(context, PageType.Dialog)
         },
+        CardItem("图片对比组件", false) {
+            MaterialPreviewActivity.launch(context, PageType.ImageCompare)
+        },
     )
 
     Column(modifier = Modifier.fillMaxSize()) {

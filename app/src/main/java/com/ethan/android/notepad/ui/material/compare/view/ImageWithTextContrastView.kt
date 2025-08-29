@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.custom.view
+package com.ethan.android.notepad.ui.material.compare.view
 
 import android.os.Build.VERSION.SDK_INT
 import androidx.compose.animation.core.Animatable

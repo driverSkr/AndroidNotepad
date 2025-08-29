@@ -11,7 +11,7 @@ import com.ethan.android.notepad.databinding.LayoutComposeContainerBinding
 import com.ethan.android.notepad.theme.ComposeProjectTheme
 import com.ethan.android.notepad.theme.Transparent
 import com.ethan.android.notepad.ui.custom.model.PageType
-import com.ethan.android.notepad.ui.custom.page.ImageComparePage
+import com.ethan.android.notepad.ui.material.compare.page.ImageComparePage
 import com.ethan.android.notepad.ui.technique.page.TechniquePage
 import com.skydoves.bundler.bundle
 import com.skydoves.bundler.intentOf

@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.custom.page
+package com.ethan.android.notepad.ui.material.compare.page
 
 import android.graphics.BitmapFactory
 import androidx.compose.foundation.layout.Box
@@ -9,7 +9,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -21,9 +23,10 @@ import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.Text
 import com.ethan.android.notepad.R
 import com.ethan.android.notepad.theme.Black
-import com.ethan.android.notepad.ui.custom.view.ImageContrastView
-import com.ethan.android.notepad.ui.custom.view.ImageWithTextContrastView
 import com.ethan.android.notepad.ui.custom.view.StatusBarsView
+import com.ethan.android.notepad.ui.material.compare.view.ImageContrastView
+import com.ethan.android.notepad.ui.material.compare.view.ImageWithTextContrastView
+import com.ethan.android.notepad.ui.material.compare.widget.SaveV2CommonContrastView
 
 /**
  * 图片对比动画
@@ -35,7 +38,7 @@ fun ImageComparePage() {
     val before = remember { BitmapFactory.decodeResource(context.resources, R.mipmap.img_breast_enlargement_auto_example_before).asImageBitmap() }
     val after = remember { BitmapFactory.decodeResource(context.resources, R.mipmap.img_breast_enlargement_auto_example_after).asImageBitmap() }
 
-    Column(modifier = Modifier.fillMaxSize().padding(horizontal = 8.dp)) {
+    Column(modifier = Modifier.fillMaxSize().padding(horizontal = 8.dp).verticalScroll(rememberScrollState())) {
         StatusBarsView(title = "图片对比动画")
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -53,5 +56,8 @@ fun ImageComparePage() {
 
         Spacer(modifier = Modifier.height(20.dp))
         Text("可拖拽的图片对比动画", color = Black)
+        Box(modifier = Modifier.height(800.dp).clip(RoundedCornerShape(6.dp))) {
+            SaveV2CommonContrastView()
+        }
     }
 }

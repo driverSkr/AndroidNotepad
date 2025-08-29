@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.custom.view
+package com.ethan.android.notepad.ui.material.compare.view
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.CubicBezierEasing

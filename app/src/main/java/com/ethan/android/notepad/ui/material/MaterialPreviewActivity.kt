@@ -10,6 +10,7 @@ import com.ethan.android.notepad.base.BaseActivityVBind
 import com.ethan.android.notepad.databinding.LayoutComposeContainerBinding
 import com.ethan.android.notepad.theme.ComposeProjectTheme
 import com.ethan.android.notepad.theme.Transparent
+import com.ethan.android.notepad.ui.material.compare.page.ImageComparePage
 import com.ethan.android.notepad.ui.material.dialog.page.DialogPage
 import com.skydoves.bundler.bundle
 import com.skydoves.bundler.intentOf
@@ -36,6 +37,7 @@ class MaterialPreviewActivity : BaseActivityVBind<LayoutComposeContainerBinding>
                         Surface(modifier = Modifier.fillMaxSize(), color = Transparent) {
                             when(pageType) {
                                 PageType.Dialog -> DialogPage()
+                                PageType.ImageCompare -> ImageComparePage()
                                 null -> TODO()
                             }
                         }
