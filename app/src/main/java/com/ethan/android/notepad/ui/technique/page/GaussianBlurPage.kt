@@ -20,6 +20,7 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInParent
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.Text
+import com.ethan.android.notepad.common.utils.setAlpha
 import com.ethan.android.notepad.theme.Black
 import com.ethan.android.notepad.theme.Cyan
 import com.ethan.android.notepad.theme.DarkCyan
@@ -29,7 +30,6 @@ import com.ethan.android.notepad.theme.LightPink
 import com.ethan.android.notepad.theme.RedFF5F2D
 import com.ethan.android.notepad.theme.Transparent
 import com.ethan.android.notepad.theme.White
-import com.ethan.android.notepad.utils.setAlpha
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.HazeStyle
 import dev.chrisbanes.haze.haze

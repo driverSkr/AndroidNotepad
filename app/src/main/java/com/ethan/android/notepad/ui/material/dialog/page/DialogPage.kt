@@ -11,6 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.fragment.app.FragmentActivity
 import com.ethan.android.notepad.common.extension.findBaseActivityVBind
 import com.ethan.android.notepad.common.model.CardItem
+import com.ethan.android.notepad.common.utils.DialogHelper
 import com.ethan.android.notepad.common.view.ListCardView
 import com.ethan.android.notepad.common.view.StatusBarsView
 import com.ethan.android.notepad.ui.material.dialog.view.rememberConfirmDialog
@@ -18,7 +19,6 @@ import com.ethan.android.notepad.ui.material.dialog.view.rememberGiftBagDialog
 import com.ethan.android.notepad.ui.material.dialog.view.rememberLoadingDialog
 import com.ethan.android.notepad.ui.material.dialog.view.rememberLoadingWithTitleDialog
 import com.ethan.android.notepad.ui.material.dialog.view.rememberLoginDialog
-import com.ethan.android.notepad.utils.DialogHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

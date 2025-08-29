@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.ethan.android.notepad.R
-import com.ethan.android.notepad.utils.setAlpha
+import com.ethan.android.notepad.common.utils.setAlpha
 
 @Composable
 fun SaveV2CommonContrastView() {

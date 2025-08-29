@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.ethan.android.notepad.BuildConfig
+import com.ethan.android.notepad.common.utils.NetWorkUtils
 import com.ethan.company.NetConfig
 import com.ethan.company.callback.SimpleCallback
 import com.ethan.company.core.HttpExecutor
@@ -11,7 +12,6 @@ import com.ethan.company.gson.BaseResult
 import com.ethan.android.notepad.ui.technique.model.SubInfoModel
 import com.ethan.android.notepad.ui.technique.model.TokenModel
 import com.ethan.android.notepad.ui.technique.model.UserModel
-import com.ethan.android.notepad.utils.NetWorkUtils
 import com.ethan.sunny.BaseViewModel
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers

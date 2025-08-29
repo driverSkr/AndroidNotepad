@@ -30,9 +30,9 @@ import androidx.wear.compose.material.ExperimentalWearMaterialApi
 import androidx.wear.compose.material.FractionalThreshold
 import androidx.wear.compose.material.rememberSwipeableState
 import com.ethan.android.notepad.R
-import com.ethan.android.notepad.utils.ToastType
-import com.ethan.android.notepad.utils.antiShakeClick
-import com.ethan.android.notepad.utils.showToast
+import com.ethan.android.notepad.common.utils.ToastType
+import com.ethan.android.notepad.common.utils.antiShakeClick
+import com.ethan.android.notepad.common.utils.showToast
 import kotlin.math.roundToInt
 
 /** 滑动组件 */

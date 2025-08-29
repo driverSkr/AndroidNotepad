@@ -17,8 +17,8 @@ import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import coil3.request.transformations
 import com.ethan.android.notepad.R
-import com.ethan.android.notepad.utils.AsyncImageUtils
-import com.ethan.android.notepad.utils.invisible
+import com.ethan.android.notepad.common.utils.AsyncImageUtils
+import com.ethan.android.notepad.common.utils.invisible
 import com.ethan.maskload.BlurHashDecoder
 
 /**

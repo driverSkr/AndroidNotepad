@@ -37,6 +37,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.ethan.android.notepad.common.utils.ToastType
+import com.ethan.android.notepad.common.utils.showToast
 import com.ethan.android.notepad.theme.Red
 import com.ethan.android.notepad.theme.White
 import com.ethan.android.notepad.ui.component.page.swipe.view.SwipeBoxAtEnd
@@ -47,8 +49,6 @@ import com.ethan.android.notepad.ui.component.page.swipe.view.SwipeableView
 import com.ethan.android.notepad.ui.component.page.swipe.view.SwipeableView2
 import com.ethan.android.notepad.common.view.StatusBarsView
 import com.ethan.android.notepad.common.view.TitleCardView
-import com.ethan.android.notepad.utils.ToastType
-import com.ethan.android.notepad.utils.showToast
 import kotlinx.coroutines.delay
 
 /**

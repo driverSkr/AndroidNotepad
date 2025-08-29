@@ -13,9 +13,9 @@ import com.ethan.android.notepad.ui.component.ComponentPreviewActivity
 import com.ethan.android.notepad.ui.component.context.PageType
 import com.ethan.android.notepad.ui.component.page.swipe.SwipeActivity
 import com.ethan.android.notepad.common.model.CardItem
+import com.ethan.android.notepad.common.utils.DialogHelper
 import com.ethan.android.notepad.common.view.ListCardView
 import com.ethan.android.notepad.common.view.StatusBarsView
-import com.ethan.android.notepad.utils.DialogHelper
 
 /**
  * 基础组件：Android官方提供的组件的使用示例

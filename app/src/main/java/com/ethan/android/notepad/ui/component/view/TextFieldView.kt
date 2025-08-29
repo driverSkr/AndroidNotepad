@@ -49,6 +49,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ethan.android.notepad.R
+import com.ethan.android.notepad.common.utils.VerificationUtils
 import com.ethan.android.notepad.theme.Black0C0C0F
 import com.ethan.android.notepad.theme.Black242427
 import com.ethan.android.notepad.theme.NO_PADDING_TEXT_STYLE
@@ -58,7 +59,6 @@ import com.ethan.android.notepad.theme.White10
 import com.ethan.android.notepad.theme.White20
 import com.ethan.android.notepad.theme.White30
 import com.ethan.android.notepad.theme.White40
-import com.ethan.android.notepad.utils.VerificationUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.ethan.android.notepad.R
+import com.ethan.android.notepad.common.utils.antiShakeClick
 import com.ethan.android.notepad.theme.Black
 import com.ethan.android.notepad.theme.Color0XFF37255B
 import com.ethan.android.notepad.theme.Color412D5C_20
@@ -41,7 +42,6 @@ import com.ethan.android.notepad.theme.NO_PADDING_TEXT_STYLE
 import com.ethan.android.notepad.theme.White
 import com.ethan.android.notepad.theme.White20
 import com.ethan.android.notepad.theme.White70
-import com.ethan.android.notepad.utils.antiShakeClick
 
 @Composable
 @Preview

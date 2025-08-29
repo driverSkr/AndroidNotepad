@@ -22,9 +22,9 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.ethan.android.notepad.common.utils.setAlpha
 import com.ethan.android.notepad.theme.Gray
 import com.ethan.android.notepad.theme.White
-import com.ethan.android.notepad.utils.setAlpha
 
 @Composable
 fun rememberLoadingWithTitleDialog(title: String): MutableState<Boolean> {

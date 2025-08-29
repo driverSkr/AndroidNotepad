@@ -32,8 +32,8 @@ import coil3.gif.GifDecoder
 import coil3.request.ImageRequest
 import com.ethan.android.notepad.R
 import com.ethan.android.notepad.common.extension.dpF
-import com.ethan.android.notepad.utils.dpI
-import com.ethan.android.notepad.utils.setAlpha
+import com.ethan.android.notepad.common.utils.dpI
+import com.ethan.android.notepad.common.utils.setAlpha
 
 /**
  * 图片对比动画（带文字）

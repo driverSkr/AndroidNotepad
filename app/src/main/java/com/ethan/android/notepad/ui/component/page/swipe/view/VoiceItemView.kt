@@ -28,6 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ethan.android.notepad.R
+import com.ethan.android.notepad.common.utils.antiShakeClick
 import com.ethan.android.notepad.theme.Black40
 import com.ethan.android.notepad.theme.Black60
 import com.ethan.android.notepad.theme.NO_PADDING_TEXT_STYLE
@@ -36,7 +37,6 @@ import com.ethan.android.notepad.theme.Transparent
 import com.ethan.android.notepad.theme.White
 import com.ethan.android.notepad.theme.White50
 import com.ethan.android.notepad.theme.White8
-import com.ethan.android.notepad.utils.antiShakeClick
 
 /** 音频项 */
 @Composable

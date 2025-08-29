@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.data
+package com.ethan.android.notepad.common.data
 
 data class RemoveItemData(
     val category: List<RemoveCategoryData>

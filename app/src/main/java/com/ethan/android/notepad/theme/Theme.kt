@@ -19,7 +19,7 @@ import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Density
 import androidx.core.view.WindowCompat
-import com.ethan.android.notepad.utils.rememberLifecycleState
+import com.ethan.android.notepad.common.utils.rememberLifecycleState
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,

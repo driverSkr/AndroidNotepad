@@ -24,11 +24,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.ethan.android.notepad.R
+import com.ethan.android.notepad.common.data.RemoveDetail
+import com.ethan.android.notepad.common.utils.antiShakeClick
+import com.ethan.android.notepad.common.utils.setAlpha
 import com.ethan.android.notepad.theme.Purple1F1B26
 import com.ethan.android.notepad.theme.White
-import com.ethan.android.notepad.data.RemoveDetail
-import com.ethan.android.notepad.utils.antiShakeClick
-import com.ethan.android.notepad.utils.setAlpha
 
 @Composable
 fun VideoSelectView(isSelected: Boolean, modifier: Modifier = Modifier, clickable: () -> Unit) {

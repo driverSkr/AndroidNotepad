@@ -34,8 +34,8 @@ import com.ethan.android.notepad.theme.NO_PADDING_TEXT_STYLE
 import com.ethan.android.notepad.theme.Red
 import com.ethan.android.notepad.theme.White
 import com.ethan.android.notepad.common.model.CardItem
-import com.ethan.android.notepad.utils.antiShakeClick
-import com.ethan.android.notepad.utils.invisible
+import com.ethan.android.notepad.common.utils.antiShakeClick
+import com.ethan.android.notepad.common.utils.invisible
 
 /**
  * 包含列表项的卡片视图

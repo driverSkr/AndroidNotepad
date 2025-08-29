@@ -71,13 +71,13 @@ import com.ethan.android.notepad.theme.White
 import com.ethan.android.notepad.theme.White50
 import com.ethan.android.notepad.theme.White60
 import com.ethan.android.notepad.theme.White8
-import com.ethan.android.notepad.data.VoiceItemDetail
-import com.ethan.android.notepad.data.voiceDataSource
+import com.ethan.android.notepad.common.data.VoiceItemDetail
+import com.ethan.android.notepad.common.data.voiceDataSource
+import com.ethan.android.notepad.common.utils.ToastType
+import com.ethan.android.notepad.common.utils.antiShakeClick
+import com.ethan.android.notepad.common.utils.rememberLifecycleEvent
+import com.ethan.android.notepad.common.utils.showToast
 import com.ethan.android.notepad.common.view.ScrollableTabRow
-import com.ethan.android.notepad.utils.ToastType
-import com.ethan.android.notepad.utils.antiShakeClick
-import com.ethan.android.notepad.utils.rememberLifecycleEvent
-import com.ethan.android.notepad.utils.showToast
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

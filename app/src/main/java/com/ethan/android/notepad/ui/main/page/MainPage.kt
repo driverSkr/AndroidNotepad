@@ -15,6 +15,7 @@ import com.ethan.android.notepad.common.extension.findBaseActivityVBind
 import com.ethan.android.notepad.ui.component.ComponentActivity
 import com.ethan.android.notepad.ui.composite.CompositeActivity
 import com.ethan.android.notepad.common.model.CardItem
+import com.ethan.android.notepad.common.utils.ShowToast.showToast
 import com.ethan.android.notepad.common.view.ListCardView
 import com.ethan.android.notepad.common.view.StatusBarsView
 import com.ethan.android.notepad.ui.dialog.DialogActivity
@@ -23,7 +24,6 @@ import com.ethan.android.notepad.ui.media.MediaActivity
 import com.ethan.android.notepad.ui.room.RoomActivity
 import com.ethan.android.notepad.ui.technique.TechniqueActivity
 import com.ethan.android.notepad.ui.test.TestActivity
-import com.ethan.android.notepad.utils.ShowToast.showToast
 
 /**
  * 首页

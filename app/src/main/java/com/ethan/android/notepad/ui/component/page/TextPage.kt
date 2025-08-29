@@ -17,7 +17,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -29,7 +28,6 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.text.substring
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -37,6 +35,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.ethan.android.notepad.R
 import com.ethan.android.notepad.base.Constants
+import com.ethan.android.notepad.common.utils.LaunchUtils
+import com.ethan.android.notepad.common.utils.TextSpanUtils
 import com.ethan.android.notepad.theme.Black
 import com.ethan.android.notepad.theme.Black60
 import com.ethan.android.notepad.theme.Blue
@@ -45,9 +45,6 @@ import com.ethan.android.notepad.theme.DarkOrange
 import com.ethan.android.notepad.theme.NO_PADDING_TEXT_STYLE
 import com.ethan.android.notepad.theme.Pink40
 import com.ethan.android.notepad.theme.Purple
-import com.ethan.android.notepad.theme.White60
-import com.ethan.android.notepad.utils.LaunchUtils
-import com.ethan.android.notepad.utils.TextSpanUtils
 import kotlinx.coroutines.delay
 
 /**

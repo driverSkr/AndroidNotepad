@@ -26,7 +26,7 @@ import com.ethan.android.notepad.R
 import com.ethan.android.notepad.common.extension.dpF
 import com.ethan.android.notepad.common.extension.invertSelf
 import com.ethan.android.notepad.common.model.ScaleGestureDetector
-import com.ethan.android.notepad.utils.scale2target
+import com.ethan.android.notepad.common.utils.scale2target
 import com.google.android.material.animation.MatrixEvaluator
 
 private const val TAG = "CompareV2View"

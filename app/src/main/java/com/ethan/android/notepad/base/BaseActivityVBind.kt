@@ -10,9 +10,9 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.BarUtils
-import com.blankj.utilcode.util.LanguageUtils
+import com.ethan.android.notepad.common.utils.DataHelper
+import com.ethan.android.notepad.common.utils.LanguageUtils
 import com.ethan.base.component.BaseActivityVB
-import com.ethan.android.notepad.utils.DataHelper
 import com.ethan.permission.PermissionUtils
 import java.util.Locale
 
@@ -67,7 +67,7 @@ open class BaseActivityVBind<T: ViewBinding>: BaseActivityVB<T>() {
         super.attachBaseContext(newBase)
         val localLanguage = DataHelper.getLanguage(this)
         localLanguage?.let {
-            if (localLanguage != com.ethan.android.notepad.utils.LanguageUtils.getLocaleLanguage(this)) {
+            if (localLanguage != LanguageUtils.getLocaleLanguage(this)) {
                 setLocale(localLanguage)
             }
             currLanguage = if (it == "tw") {
@@ -79,7 +79,7 @@ open class BaseActivityVBind<T: ViewBinding>: BaseActivityVB<T>() {
     }
 
     companion object {
-        var currLanguage: Locale = LanguageUtils.getSystemLanguage()
+        var currLanguage: Locale = com.blankj.utilcode.util.LanguageUtils.getSystemLanguage()
     }
 
     fun <T> getIntent(name: String, classF: Class<T>): T? {

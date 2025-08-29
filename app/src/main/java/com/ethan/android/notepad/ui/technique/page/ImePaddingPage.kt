@@ -40,6 +40,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
+import com.ethan.android.notepad.common.utils.ToastType
+import com.ethan.android.notepad.common.utils.antiShakeClick
+import com.ethan.android.notepad.common.utils.showToast
 import com.ethan.android.notepad.theme.Black
 import com.ethan.android.notepad.theme.Black10
 import com.ethan.android.notepad.theme.Black40
@@ -49,9 +52,6 @@ import com.ethan.android.notepad.theme.Transparent
 import com.ethan.android.notepad.theme.White
 import com.ethan.android.notepad.theme.colorList
 import com.ethan.android.notepad.common.view.StatusBarsWithExplainView
-import com.ethan.android.notepad.utils.ToastType
-import com.ethan.android.notepad.utils.antiShakeClick
-import com.ethan.android.notepad.utils.showToast
 
 @Composable
 @Preview

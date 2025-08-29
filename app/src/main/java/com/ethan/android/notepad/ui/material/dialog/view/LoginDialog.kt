@@ -51,6 +51,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ethan.android.notepad.R
+import com.ethan.android.notepad.common.utils.NetWorkUtils
+import com.ethan.android.notepad.common.utils.ToastType
+import com.ethan.android.notepad.common.utils.antiShakeClick
+import com.ethan.android.notepad.common.utils.showToast
 import com.ethan.android.notepad.theme.Black
 import com.ethan.android.notepad.theme.Black0C0C0F
 import com.ethan.android.notepad.theme.Black0C0C0F_20
@@ -63,10 +67,6 @@ import com.ethan.android.notepad.theme.Red
 import com.ethan.android.notepad.theme.Transparent
 import com.ethan.android.notepad.theme.White
 import com.ethan.android.notepad.ui.component.page.ClickableText
-import com.ethan.android.notepad.utils.NetWorkUtils
-import com.ethan.android.notepad.utils.ToastType
-import com.ethan.android.notepad.utils.antiShakeClick
-import com.ethan.android.notepad.utils.showToast
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

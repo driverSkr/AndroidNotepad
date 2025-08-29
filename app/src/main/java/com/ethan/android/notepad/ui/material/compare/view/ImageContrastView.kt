@@ -22,7 +22,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import com.ethan.android.notepad.common.extension.dpF
-import com.ethan.android.notepad.utils.setAlpha
+import com.ethan.android.notepad.common.utils.setAlpha
 
 /**
  * 图片对比动画

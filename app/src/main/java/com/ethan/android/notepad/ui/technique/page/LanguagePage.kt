@@ -35,6 +35,8 @@ import androidx.compose.ui.unit.sp
 import com.blankj.utilcode.util.LanguageUtils
 import com.ethan.android.notepad.R
 import com.ethan.android.notepad.common.extension.findBaseActivityVBind
+import com.ethan.android.notepad.common.utils.DataHelper
+import com.ethan.android.notepad.common.utils.antiShakeClick
 import com.ethan.android.notepad.theme.Black
 import com.ethan.android.notepad.theme.Black40
 import com.ethan.android.notepad.theme.Black80
@@ -44,8 +46,6 @@ import com.ethan.android.notepad.theme.White
 import com.ethan.android.notepad.theme.White444447
 import com.ethan.android.notepad.common.view.StatusBarsView
 import com.ethan.android.notepad.common.view.TitleCardView
-import com.ethan.android.notepad.utils.DataHelper
-import com.ethan.android.notepad.utils.antiShakeClick
 import java.util.Locale
 import kotlin.random.Random
 
