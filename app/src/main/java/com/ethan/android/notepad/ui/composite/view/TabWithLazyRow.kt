@@ -39,7 +39,7 @@ import com.ethan.android.notepad.theme.Purple291E3D
 import com.ethan.android.notepad.theme.PurpleBC97FF
 import com.ethan.android.notepad.theme.Transparent
 import com.ethan.android.notepad.theme.White
-import com.ethan.android.notepad.common.data.removeDataSource
+import com.ethan.android.notepad.repository.data.removeDataSource
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 

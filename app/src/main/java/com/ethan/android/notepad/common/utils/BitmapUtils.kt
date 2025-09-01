@@ -14,7 +14,7 @@ import android.util.TypedValue
 import android.view.WindowManager
 import androidx.exifinterface.media.ExifInterface
 import com.blankj.utilcode.util.ImageUtils
-import com.ethan.android.notepad.base.Constants
+import com.ethan.android.notepad.common.config.Constants
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException

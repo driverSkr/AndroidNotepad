@@ -1,11 +1,11 @@
-package com.ethan.android.notepad.room
+package com.ethan.android.notepad.repository.room
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.ethan.android.notepad.room.entity.User
-import com.ethan.android.notepad.room.dao.UserDao
+import com.ethan.android.notepad.repository.room.entity.User
+import com.ethan.android.notepad.repository.room.dao.UserDao
 
 @Database(entities = [User::class], version = 1)
 abstract class AppDataBase: RoomDatabase() {

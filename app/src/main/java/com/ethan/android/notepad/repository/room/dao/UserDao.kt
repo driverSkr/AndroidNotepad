@@ -1,9 +1,9 @@
-package com.ethan.android.notepad.room.dao
+package com.ethan.android.notepad.repository.room.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
-import com.ethan.android.notepad.room.entity.User
+import com.ethan.android.notepad.repository.room.entity.User
 
 @Dao
 interface UserDao {

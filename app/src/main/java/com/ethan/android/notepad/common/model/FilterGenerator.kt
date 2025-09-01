@@ -9,7 +9,7 @@
 //import android.util.Log
 //import androidx.core.graphics.values
 //import com.blankj.utilcode.util.ImageUtils
-//import com.ethan.android.notepad.base.Constants
+//import com.ethan.android.notepad.common.config.Constants
 //import kotlin.coroutines.resume
 //import kotlin.coroutines.suspendCoroutine
 //

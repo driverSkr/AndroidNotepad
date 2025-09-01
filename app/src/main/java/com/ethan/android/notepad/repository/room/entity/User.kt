@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.room.entity
+package com.ethan.android.notepad.repository.room.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

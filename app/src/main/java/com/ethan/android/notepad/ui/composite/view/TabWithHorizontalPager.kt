@@ -71,8 +71,8 @@ import com.ethan.android.notepad.theme.White
 import com.ethan.android.notepad.theme.White50
 import com.ethan.android.notepad.theme.White60
 import com.ethan.android.notepad.theme.White8
-import com.ethan.android.notepad.common.data.VoiceItemDetail
-import com.ethan.android.notepad.common.data.voiceDataSource
+import com.ethan.android.notepad.repository.data.VoiceItemDetail
+import com.ethan.android.notepad.repository.data.voiceDataSource
 import com.ethan.android.notepad.common.utils.ToastType
 import com.ethan.android.notepad.common.utils.antiShakeClick
 import com.ethan.android.notepad.common.utils.rememberLifecycleEvent

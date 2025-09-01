@@ -1,10 +1,10 @@
-package com.ethan.android.notepad.base
+package com.ethan.android.notepad.common.config
 
 import com.ethan.android.notepad.NotepadApp
 
 object Constants {
 
-    private val DATA_PATH = NotepadApp.INSTANCE?.getExternalFilesDir(null)?.absolutePath
+    private val DATA_PATH = NotepadApp.Companion.INSTANCE?.getExternalFilesDir(null)?.absolutePath
     val PATH_IMAGE = "$DATA_PATH/Image/"
     val PATH_LOG = "$DATA_PATH/LOG/"
     val PATH_CACHE = "$DATA_PATH/Cache/"

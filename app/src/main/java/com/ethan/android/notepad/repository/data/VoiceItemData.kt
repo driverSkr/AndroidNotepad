@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.common.data
+package com.ethan.android.notepad.repository.data
 
 data class VoiceItemDetail(
     val name: String,

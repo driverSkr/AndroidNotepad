@@ -17,8 +17,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.wear.compose.material.Text
-import com.ethan.android.notepad.room.AppDataBase
-import com.ethan.android.notepad.room.entity.User
+import com.ethan.android.notepad.repository.room.AppDataBase
+import com.ethan.android.notepad.repository.room.entity.User
 import com.ethan.android.notepad.theme.NO_PADDING_TEXT_STYLE
 import com.ethan.android.notepad.theme.PurpleBE6DFF
 import com.ethan.android.notepad.theme.White

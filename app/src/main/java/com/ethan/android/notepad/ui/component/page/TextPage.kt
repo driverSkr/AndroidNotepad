@@ -34,7 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.ethan.android.notepad.R
-import com.ethan.android.notepad.base.Constants
+import com.ethan.android.notepad.common.config.Constants
 import com.ethan.android.notepad.common.utils.LaunchUtils
 import com.ethan.android.notepad.common.utils.TextSpanUtils
 import com.ethan.android.notepad.theme.Black
