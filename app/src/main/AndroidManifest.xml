@@ -68,7 +68,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.media.AudioRecordActivity"
+            android:name=".ui.media.audio.AudioRecordActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

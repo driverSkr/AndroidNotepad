@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.media.page
+package com.ethan.android.notepad.ui.media
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,7 +9,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.ethan.android.notepad.common.model.CardItem
 import com.ethan.android.notepad.common.view.ListCardView
 import com.ethan.android.notepad.common.view.StatusBarsView
-import com.ethan.android.notepad.ui.media.AudioRecordActivity
+import com.ethan.android.notepad.ui.media.audio.AudioRecordActivity
 
 /**
  * 多媒体组件：音视频播放、录制、裁剪

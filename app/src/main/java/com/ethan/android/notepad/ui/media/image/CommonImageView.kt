@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.media.view
+package com.ethan.android.notepad.ui.media.image
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box

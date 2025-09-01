@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.media
+package com.ethan.android.notepad.ui.media.audio
 
 import android.content.Context
 import android.os.Bundle
@@ -10,7 +10,7 @@ import com.ethan.android.notepad.base.BaseActivityVBind
 import com.ethan.android.notepad.databinding.LayoutComposeContainerBinding
 import com.ethan.android.notepad.theme.ComposeProjectTheme
 import com.ethan.android.notepad.theme.Transparent
-import com.ethan.android.notepad.ui.media.page.AudioRecordPage
+import com.ethan.android.notepad.ui.media.audio.page.AudioRecordPage
 import com.skydoves.bundler.intentOf
 
 class AudioRecordActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
@@ -29,7 +29,7 @@ class AudioRecordActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
             setContent {
                 CompositionLocalProvider {
                     ComposeProjectTheme {
-                        Surface(modifier = Modifier.fillMaxSize(), color = Transparent) {
+                        Surface(modifier = Modifier.Companion.fillMaxSize(), color = Transparent) {
                             AudioRecordPage()
                         }
                     }

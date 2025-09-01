@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.media.view
+package com.ethan.android.notepad.ui.media.audio.page
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,7 +11,7 @@ import com.ethan.android.notepad.theme.White
 
 @Composable
 @Preview
-fun MediaRecorderExoPlayerView() {
+fun MediaRecorderExoPlayerPage() {
     Box(modifier = Modifier.fillMaxSize()) {
         Text(
             text = "MediaRecorder 录音 + ExoPlayer  播放",

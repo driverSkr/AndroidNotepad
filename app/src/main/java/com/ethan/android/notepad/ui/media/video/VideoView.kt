@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.media.view
+package com.ethan.android.notepad.ui.media.video
 
 import android.view.LayoutInflater
 import androidx.compose.foundation.layout.Box

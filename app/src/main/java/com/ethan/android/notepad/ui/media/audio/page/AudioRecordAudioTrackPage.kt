@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.media.view
+package com.ethan.android.notepad.ui.media.audio.page
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -7,11 +7,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.ethan.android.notepad.theme.White
+import com.ethan.android.notepad.theme.Black
+import com.ethan.android.notepad.ui.media.audio.view.AudioRecordView
 
 @Composable
 @Preview
-fun AudioRecordAudioTrackView() {
+fun AudioRecordAudioTrackPage() {
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -19,7 +20,7 @@ fun AudioRecordAudioTrackView() {
     ) {
         Text(
             text = "AudioRecord 录音 + AudioTrack  播放",
-            color = White,
+            color = Black,
         )
 
         AudioRecordView()

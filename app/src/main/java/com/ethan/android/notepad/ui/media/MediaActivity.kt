@@ -10,7 +10,6 @@ import com.ethan.android.notepad.base.BaseActivityVBind
 import com.ethan.android.notepad.databinding.LayoutComposeContainerBinding
 import com.ethan.android.notepad.theme.ComposeProjectTheme
 import com.ethan.android.notepad.theme.Transparent
-import com.ethan.android.notepad.ui.media.page.MediaPage
 import com.skydoves.bundler.intentOf
 
 class MediaActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {

@@ -7,28 +7,76 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
+import kotlin.coroutines.Continuation
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 object AudioCutting {
 
-    fun cropAudio(inputPath: String, outputPath: String, startTime: String, endTime: String) {
-        CoroutineScope(Dispatchers.Default).launch {
-            try {
-                // 确保输出目录存在
-                File(outputPath).parentFile?.mkdirs()
+    suspend fun cropAudio(inputPath: String, outputPath: String, startTime: String, endTime: String) = suspendCoroutine { cont ->
+        try {
+            // 确保输出目录存在
+            File(outputPath).parentFile?.mkdirs()
 
-                val command = "-y -i \"$inputPath\" -ss $startTime -to $endTime -c:a libmp3lame \"$outputPath\""
+            // 自动保持原始格式
+            val outputExt = inputPath.substringAfterLast('.', "").lowercase()
+            val actualOutputPath = if (outputPath.endsWith(outputExt, true)) {
+                outputPath
+            } else {
+                outputPath.substringBeforeLast('.') + ".$outputExt"
+            }
 
-                FFmpegKit.executeAsync(command) { executeResponse ->
-                    if (ReturnCode.isSuccess(executeResponse.returnCode)) {
-                        Log.d("ethan", "音频裁剪成功！")
-                    } else {
-                        Log.e("ethan", "失败原因: ${executeResponse.allLogsAsString}")
-                    }
+            val command = "-y " +
+                    "-i \"${inputPath}\" " +
+                    "-ss $startTime " +
+                    "-to $endTime " +
+                    "-c copy " +
+                    "-map 0:a " +
+                    "\"${actualOutputPath}\""
+
+            FFmpegKit.executeAsync(command) { session ->
+                if (ReturnCode.isSuccess(session.returnCode)) {
+                    cont.resume(outputPath)
+                    Log.d("ethan", "音频裁剪成功！")
+                } else {
+                    // 如果直接复制失败，尝试重新编码
+                    fallbackReencoding(inputPath, actualOutputPath, startTime, endTime, cont)
                 }
-            } catch (e: Exception) {
-                Log.e("ethan", "执行异常: ${e.message}")
+            }
+        } catch (e: Exception) {
+            cont.resume("")
+            Log.e("ethan", "执行异常: ${e.message}")
+        }
+    }
+
+    /**
+     * 对于无法裁剪的格式，统一转成mp3格式
+     */
+    private fun fallbackReencoding(
+        inputPath: String,
+        outputPath: String,
+        startTime: String,
+        endTime: String,
+        cont: Continuation<String>
+    ) {
+        val commonPath = outputPath.substringBeforeLast('.') + ".mp3"
+        val command =
+            "-y " +
+                    "-i \"${inputPath}\" " +
+                    "-ss $startTime " +
+                    "-to $endTime " +
+                    "-c:a libmp3lame " +  // 使用 MP3 编码回退
+                    "-q:a 2 " +            // 质量参数（0-9，0 最高）
+                    "-map 0:a " +
+                    "\"${commonPath}\""
+
+        FFmpegKit.executeAsync(command) { session ->
+            if (ReturnCode.isSuccess(session.returnCode)) {
+                cont.resume(commonPath)
+                Log.d("ethan", "音频重新编码裁剪成功！")
+            } else {
+                cont.resume("")
+                Log.e("ethan", "最终失败原因: ${session.allLogsAsString}")
             }
         }
     }

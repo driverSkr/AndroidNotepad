@@ -38,6 +38,7 @@ object MyPermissionUtils {
                 suspendCoroutine.resume(false)
                 return@suspendCoroutine
             }
+//            R.string.denied_permission.showToast(context, ToastType.ERROR)
             PermissionUtils.permission(*photoPermission)
                 .callback { isAllGranted, _, deniedForever, _ ->
                     suspendCoroutine.resume(isAllGranted)
@@ -47,6 +48,7 @@ object MyPermissionUtils {
                 }.request()
         }
     }
+
 
     suspend fun checkRecordPermission(
         onlyCheck: Boolean = true,
@@ -70,4 +72,34 @@ object MyPermissionUtils {
         }
     }
 
+
+
+    suspend fun checkpostNotificationsPermission(
+        onlyCheck: Boolean = true,
+        jump2Setting: Boolean = false,
+    ) = suspendCoroutine { suspendCoroutine ->
+        val notificationPermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            listOf(Manifest.permission.POST_NOTIFICATIONS).toTypedArray()
+        } else {
+            return@suspendCoroutine
+        }
+        val granted = PermissionUtils.isGranted(*notificationPermission)
+        if (granted) {
+            suspendCoroutine.resume(true)
+        } else {
+            if (onlyCheck) {
+                suspendCoroutine.resume(false)
+                return@suspendCoroutine
+            }
+
+            PermissionUtils.permission(*notificationPermission)
+                .callback { isAllGranted, _, deniedForever, _ ->
+                    suspendCoroutine.resume(isAllGranted)
+                    //永久被拒绝权限时弹出
+                    if (jump2Setting) {
+                        if (deniedForever.isNotEmpty()) PermissionUtils.launchAppDetailsSettings()
+                    }
+                }.request()
+        }
+    }
 }

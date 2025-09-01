@@ -45,6 +45,8 @@ fun Long.formatMSCTime(): String {
     return String.format("%02d:%02d:%02d", minutes, seconds, centiSeconds)
 }
 
+fun Long.formatSecondTime(): Long = round(this / 1000.0).toLong()
+
 fun getAudioName(): String {
     val dateFormat = SimpleDateFormat("HHmmss_dd_MM_yyyy", Locale.getDefault())
     return "Audio_${dateFormat.format(Date())}.m4a"

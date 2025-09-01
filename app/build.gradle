@@ -221,6 +221,11 @@ dependencies {
 
     //=========================================library=========================================
     //图片加载库，基于协程开发
+    /*coil加载库*/
+    implementation("io.coil-kt:coil-compose:2.7.0")
+    implementation("io.coil-kt:coil-gif:2.7.0")
+    implementation("io.coil-kt:coil-video:2.7.0")
+    /*coil3加载库*/
     implementation("io.coil-kt.coil3:coil-compose:3.0.4")
     implementation("io.coil-kt.coil3:coil-gif:3.0.4")
     implementation("io.coil-kt.coil3:coil-video:3.0.4")

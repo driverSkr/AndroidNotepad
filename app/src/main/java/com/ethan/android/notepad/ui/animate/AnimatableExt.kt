@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.media.view
+package com.ethan.android.notepad.ui.animate
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing
@@ -16,13 +16,14 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
-import com.ethan.android.notepad.theme.RedFF0048
 import kotlinx.coroutines.launch
+import com.ethan.android.notepad.theme.RedFF0048
 
-//红点呼吸灯
+/**
+ * 红点呼吸灯
+ */
 @Composable
 fun BreathingLight() {
-
     val animation = remember { Animatable(0.8f) }
     val scope = rememberCoroutineScope()
 

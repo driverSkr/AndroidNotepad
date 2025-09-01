@@ -30,4 +30,7 @@
     <color name="orange">#FF7A00</color>
     <color name="orange_red">#F04438</color>
     <color name="pink">#EE2FFF</color>
+    <color name="_990066FF">#990066FF</color>
+    <color name="_80000000">#80000000</color>
+    <color name="_B3000000">#B3000000</color>
 </resources>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="74dp">
+
+
+        <com.ethan.android.notepad.ui.media.audio.view.AudioTumbScorllView
+            android:id="@+id/tumb_list_view"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="74dp">
+
+            <View
+                android:id="@+id/temp_space"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:background="@color/_80000000" />
+
+            <FrameLayout
+                android:layout_width="320dp"
+                android:layout_height="74dp">
+                
+                <FrameLayout
+                    android:id="@+id/timeline_layout"
+                    android:layout_width="320dp"
+                    android:layout_height="44dp"
+                    android:background="@drawable/time_line_bg"/>
+
+                <ImageView
+                    android:id="@+id/video_edit_frame_layout"
+                    android:layout_width="320dp"
+                    android:layout_height="44dp" />
+
+
+                <ImageView
+                    android:id="@+id/time_line"
+                    android:layout_width="10dp"
+                    android:layout_height="63dp"
+                    android:background="@mipmap/mark_time_line"
+                    tools:ignore="ImageContrastCheck" />
+
+                <FrameLayout
+                    android:id="@+id/layout_bomm"
+                    android:layout_gravity="bottom"
+                    android:layout_width="320dp"
+                    android:layout_height="30dp" />
+            </FrameLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:background="@color/_80000000" />
+
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>
