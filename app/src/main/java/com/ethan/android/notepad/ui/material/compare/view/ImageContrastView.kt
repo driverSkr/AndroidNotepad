@@ -45,6 +45,7 @@ fun ImageContrastView(before: ImageBitmap, after: ImageBitmap, startFrom: Float 
             }
         } else {
             alpha.animateTo(0F, animationSpec = tween(durationMillis = 500, easing = LinearEasing))
+            slidingAnim.snapTo(startFrom)
         }
     }
 

@@ -41,7 +41,7 @@ import com.ethan.android.notepad.theme.White60
 
 /** 音频裁剪 */
 @Composable
-fun AudioCuttingView(originPath: MutableState<String>, finalPath: MutableState<String>, toCuttingPage: MutableState<Boolean> = mutableStateOf(false), needCropPath: MutableState<String> = mutableStateOf(""), source: String = "") {
+fun AudioCuttingView(originPath: MutableState<String>, finalPath: MutableState<String>) {
     val context = LocalContext.current
     val audioPath = remember { mutableStateOf(originPath.value) }
     var audioName by remember { mutableStateOf("") }
@@ -129,12 +129,6 @@ fun AudioCuttingView(originPath: MutableState<String>, finalPath: MutableState<S
                     exoPlayer.playWhenReady = false
                     FileUtils.delete(audioPath.value)
                     originPath.value = ""
-                    if (source == "record") {
-                        needCropPath.value = ""
-                        toCuttingPage.value = false
-                    } else {
-                        toCuttingPage.value = false
-                    }
                 })
         }
     }

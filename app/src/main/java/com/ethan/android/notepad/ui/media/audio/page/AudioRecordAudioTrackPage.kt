@@ -1,5 +1,6 @@
 package com.ethan.android.notepad.ui.media.audio.page
 
+import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
@@ -23,6 +24,7 @@ fun AudioRecordAudioTrackPage() {
             color = Black,
         )
 
+        //AnimatedContent() { }
         AudioRecordView()
     }
 }
