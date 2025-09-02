@@ -6,7 +6,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 
 class AudioContextEntity {
-    var currentView by mutableStateOf("")
+    var currentView by mutableStateOf(ViewType.Record)
+    val originPath = mutableStateOf("")
+    val finalPath = mutableStateOf("")
 }
 
 val LocalAudioContextEntity = compositionLocalOf {

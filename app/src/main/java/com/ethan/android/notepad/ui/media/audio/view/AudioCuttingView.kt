@@ -1,12 +1,14 @@
 package com.ethan.android.notepad.ui.media.audio.view
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Text
@@ -84,7 +86,7 @@ fun AudioCuttingView(originPath: MutableState<String>, finalPath: MutableState<S
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
-        Column(modifier = Modifier.wrapContentSize().align(Alignment.Center).offset(y = (-50).dp), horizontalAlignment = Alignment.CenterHorizontally) {
+        Column(modifier = Modifier.wrapContentSize().align(Alignment.Center)/*.offset(y = (-30).dp)*/, horizontalAlignment = Alignment.CenterHorizontally) {
             Image(painter = painterResource(playBtn), contentDescription = null, modifier = Modifier
                 .size(48.dp)
                 .antiShakeClick {
@@ -122,14 +124,22 @@ fun AudioCuttingView(originPath: MutableState<String>, finalPath: MutableState<S
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            Image(painter = painterResource(R.drawable.svg_icon_voice_delete), contentDescription = null, modifier = Modifier
-                .size(48.dp)
-                .antiShakeClick {
-                    exoPlayer.clearMediaItems()
-                    exoPlayer.playWhenReady = false
-                    FileUtils.delete(audioPath.value)
-                    originPath.value = ""
-                })
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+                Image(painter = painterResource(R.drawable.svg_icon_voice_delete), contentDescription = null, modifier = Modifier
+                    .size(48.dp)
+                    .antiShakeClick {
+                        exoPlayer.clearMediaItems()
+                        exoPlayer.playWhenReady = false
+                        FileUtils.delete(audioPath.value)
+                        originPath.value = ""
+                    })
+
+                Image(painter = painterResource(R.drawable.svg_icon_voice_save), contentDescription = null, modifier = Modifier
+                    .size(48.dp)
+                    .antiShakeClick {
+                        // todo 裁剪方法待实现
+                    })
+            }
         }
     }
 }

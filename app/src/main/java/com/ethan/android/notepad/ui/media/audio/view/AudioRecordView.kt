@@ -19,7 +19,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -45,14 +44,16 @@ import com.ethan.android.notepad.common.utils.formatMSCTime
 import com.ethan.android.notepad.common.utils.getAudioName
 import com.ethan.android.notepad.common.utils.invisible
 import com.ethan.android.notepad.common.utils.showToast
-import com.ethan.android.notepad.theme.Black
-import com.ethan.android.notepad.theme.Black10
-import com.ethan.android.notepad.theme.Black60
 import com.ethan.android.notepad.theme.Grey20
 import com.ethan.android.notepad.theme.NO_PADDING_TEXT_STYLE
+import com.ethan.android.notepad.theme.White
+import com.ethan.android.notepad.theme.White10
+import com.ethan.android.notepad.theme.White60
 import com.ethan.android.notepad.ui.animate.BreathingLight
 import com.ethan.android.notepad.ui.material.dialog.view.rememberConfirmDialog
 import com.ethan.android.notepad.ui.material.dialog.view.rememberLoadingDialog
+import com.ethan.android.notepad.ui.media.audio.context.LocalAudioContextEntity
+import com.ethan.android.notepad.ui.media.audio.context.ViewType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
@@ -63,11 +64,10 @@ import java.io.File
 fun AudioRecordView(modifier: Modifier = Modifier) {
 
     val context = LocalContext.current
+    val localAudio = LocalAudioContextEntity.current
     val scope = rememberCoroutineScope()
     val loading = rememberLoadingDialog()
     val audioRecorder = remember { AudioRecorder(60 * 1000L) }
-    val outputPath = remember { mutableStateOf("") }
-    val finalPath = remember { mutableStateOf("") }
     val audioPlayBtn = if (audioRecorder.playState == AudioRecorder.PlayState.PLAYING) R.drawable.svg_icon_record_play else R.drawable.svg_icon_record_pause
 
     val recordGif = remember {
@@ -115,13 +115,13 @@ fun AudioRecordView(modifier: Modifier = Modifier) {
             Row(modifier = Modifier
                 .invisible(it == AudioRecorder.RecordState.RECORDING)
                 .wrapContentSize()
-                .background(color = Black10, shape = RoundedCornerShape(24.dp))
+                .background(color = White10, shape = RoundedCornerShape(24.dp))
                 .padding(horizontal = 8.dp, vertical = 4.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 BreathingLight()
                 Spacer(modifier = Modifier.width(5.dp))
-                Text("记录中",color = Black, fontSize = 12.sp, style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W400))
+                Text("记录中",color = White, fontSize = 12.sp, style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W400))
             }
 
             Box(modifier = Modifier.weight(1f).fillMaxWidth().padding(horizontal = 40.dp), contentAlignment = Alignment.Center) {
@@ -172,14 +172,14 @@ fun AudioRecordView(modifier: Modifier = Modifier) {
 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 if (it == AudioRecorder.RecordState.PAUSED && audioRecorder.playState == AudioRecorder.PlayState.PLAYING) {
-                    Text(audioRecorder.currentPlayPositionMs.formatMSCTime(),color = Black60, fontSize = 14.sp, style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W400))
+                    Text(audioRecorder.currentPlayPositionMs.formatMSCTime(),color = White60, fontSize = 14.sp, style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W400))
                 }
                 if (audioRecorder.playState != AudioRecorder.PlayState.PLAYING) {
-                    Text(audioRecorder.currentDurationMs.formatMSCTime(),color = Black60, fontSize = 14.sp, style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W400))
+                    Text(audioRecorder.currentDurationMs.formatMSCTime(),color = White60, fontSize = 14.sp, style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W400))
                 }
                 if (it != AudioRecorder.RecordState.IDLE && audioRecorder.playState != AudioRecorder.PlayState.PLAYING) {
                     Box(modifier = Modifier.padding(horizontal = 7.dp).width(1.dp).height(12.dp).background(color = Grey20, shape = RoundedCornerShape(2.dp)))
-                    Text("01:00:00",color = Black60, fontSize = 14.sp, style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W400))
+                    Text("01:00:00",color = White60, fontSize = 14.sp, style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W400))
                 }
             }
 
@@ -221,11 +221,12 @@ fun AudioRecordView(modifier: Modifier = Modifier) {
                             loading.value = true
                             val audioDir = File(context.externalCacheDir, "temporary_audio").apply { mkdirs() }
                             val outputFile = File(audioDir, getAudioName()).apply { createNewFile() }
-                            outputPath.value = outputFile.path
+                            localAudio.originPath.value = outputFile.path
                             val result = audioRecorder.stopRecording(outputFile){}
                             loading.value = false
                             if (result) {
                                 "保存成功,后续操作需补充！".showToast(context, ToastType.SUCCESS)
+                                localAudio.currentView = ViewType.Cutting
                             } else {
                                 "保存失败".showToast(context, ToastType.ERROR)
                             }
@@ -237,11 +238,11 @@ fun AudioRecordView(modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.height(12.dp))
 
             when (it) {
-                AudioRecorder.RecordState.IDLE -> Text("点击开始录音",color = Black, fontSize = 14.sp, style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W400))
+                AudioRecorder.RecordState.IDLE -> Text("点击开始录音",color = White, fontSize = 14.sp, style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W400))
                 AudioRecorder.RecordState.RECORDING -> Text("", fontSize = 14.sp, style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W400))
                 AudioRecorder.RecordState.PAUSED -> {
                     if (audioRecorder.currentDurationMs <= 10000) {
-                        Text("需要至少10s，请继续录制",color = Black, fontSize = 14.sp, style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W400))
+                        Text("需要至少10s，请继续录制",color = White, fontSize = 14.sp, style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W400))
                     }
                 }
             }
