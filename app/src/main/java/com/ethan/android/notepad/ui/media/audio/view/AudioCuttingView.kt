@@ -15,12 +15,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,16 +36,31 @@ import androidx.media3.common.VideoSize
 import androidx.media3.exoplayer.ExoPlayer
 import com.blankj.utilcode.util.FileUtils
 import com.ethan.android.notepad.R
+import com.ethan.android.notepad.common.utils.ToastType
+import com.ethan.android.notepad.common.utils.VideoHelper
 import com.ethan.android.notepad.common.utils.antiShakeClick
+import com.ethan.android.notepad.common.utils.formatHMSCTime
+import com.ethan.android.notepad.common.utils.getAudioName
+import com.ethan.android.notepad.common.utils.showToast
 import com.ethan.android.notepad.theme.NO_PADDING_TEXT_STYLE
 import com.ethan.android.notepad.theme.White
 import com.ethan.android.notepad.theme.White60
+import com.ethan.android.notepad.ui.material.dialog.view.rememberLoadingDialog
+import com.ethan.android.notepad.ui.media.audio.context.LocalAudioContextEntity
+import com.ethan.android.notepad.ui.media.audio.context.ViewType
+import com.ethan.videoediting.AudioCutting
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.io.File
 
 /** 音频裁剪 */
 @Composable
-fun AudioCuttingView(originPath: MutableState<String>, finalPath: MutableState<String>) {
+fun AudioCuttingView() {
     val context = LocalContext.current
-    val audioPath = remember { mutableStateOf(originPath.value) }
+    val scope = rememberCoroutineScope()
+    val dialog = rememberLoadingDialog()
+    val localAudio = LocalAudioContextEntity.current
+    val tempPath = remember { mutableStateOf(localAudio.originPath) }
     var audioName by remember { mutableStateOf("") }
     val playState = remember { mutableStateOf(true) }
     val selectTime = remember { mutableIntStateOf(0) }
@@ -59,7 +74,7 @@ fun AudioCuttingView(originPath: MutableState<String>, finalPath: MutableState<S
         ExoPlayer.Builder(context)
             .setHandleAudioBecomingNoisy(true) // 自动处理耳机断开
             .build().apply {
-                addMediaItem(MediaItem.fromUri(audioPath.value))
+                addMediaItem(MediaItem.fromUri(tempPath.value))
 
                 addListener(object : Player.Listener {
                     override fun onVideoSizeChanged(size: VideoSize) {
@@ -80,22 +95,20 @@ fun AudioCuttingView(originPath: MutableState<String>, finalPath: MutableState<S
         }
     }
 
-    LaunchedEffect(audioPath.value) {
-        finalPath.value = audioPath.value
-        audioName = FileUtils.getFileName(audioPath.value)
+    LaunchedEffect(tempPath.value) {
+        localAudio.finalPath = tempPath.value
+        audioName = FileUtils.getFileName(tempPath.value)
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
-        Column(modifier = Modifier.wrapContentSize().align(Alignment.Center)/*.offset(y = (-30).dp)*/, horizontalAlignment = Alignment.CenterHorizontally) {
+        Column(modifier = Modifier.wrapContentSize().align(Alignment.Center), horizontalAlignment = Alignment.CenterHorizontally) {
             Image(painter = painterResource(playBtn), contentDescription = null, modifier = Modifier
                 .size(48.dp)
                 .antiShakeClick {
                     if (playState.value) {
-                        // exoPlayer.playWhenReady = false
                         exoPlayer.pause()
                         playState.value = false
                     } else {
-                        // exoPlayer.playWhenReady = true
                         exoPlayer.play()
                         playState.value = true
                     }
@@ -116,7 +129,7 @@ fun AudioCuttingView(originPath: MutableState<String>, finalPath: MutableState<S
 
             Spacer(modifier = Modifier.height(26.dp))
 
-            AudioTimeLine(audioPath.value, exoPlayer, playState, startTime, endTime, selectTime, currentTime)
+            AudioTimeLine(tempPath.value, exoPlayer, playState, startTime, endTime, selectTime, currentTime)
 
             Spacer(modifier = Modifier.height(33.dp))
 
@@ -130,14 +143,29 @@ fun AudioCuttingView(originPath: MutableState<String>, finalPath: MutableState<S
                     .antiShakeClick {
                         exoPlayer.clearMediaItems()
                         exoPlayer.playWhenReady = false
-                        FileUtils.delete(audioPath.value)
-                        originPath.value = ""
+                        if (tempPath.value != localAudio.originPath) {
+                            FileUtils.delete(tempPath.value)
+                        }
+                        localAudio.currentView = ViewType.Record
                     })
 
                 Image(painter = painterResource(R.drawable.svg_icon_voice_save), contentDescription = null, modifier = Modifier
                     .size(48.dp)
                     .antiShakeClick {
-                        // todo 裁剪方法待实现
+                        scope.launch(Dispatchers.Default) {
+                            dialog.value = true
+                            val audioDir = File(context.externalCacheDir, "temporary_audio/cutting").apply { mkdirs() }
+                            val outputPath = File(audioDir, getAudioName()).absolutePath
+                            val result = AudioCutting.cropAudio(tempPath.value, outputPath, startTime.longValue.formatHMSCTime(), endTime.longValue.formatHMSCTime())
+                            dialog.value = false
+                            if (result.isNotBlank() && VideoHelper.getVideoInfo(result) != null) {
+                                tempPath.value = result
+                                // todo 裁剪完以后，需要重新更新播放器和裁剪框
+                            } else {
+                                println("裁剪失败：${result}")
+                                "音频裁剪失败".showToast(context, ToastType.ERROR)
+                            }
+                        }
                     })
             }
         }

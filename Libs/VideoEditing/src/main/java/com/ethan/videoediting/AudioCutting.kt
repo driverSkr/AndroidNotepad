@@ -36,7 +36,7 @@ object AudioCutting {
 
             FFmpegKit.executeAsync(command) { session ->
                 if (ReturnCode.isSuccess(session.returnCode)) {
-                    cont.resume(outputPath)
+                    cont.resume(actualOutputPath)
                     Log.d("ethan", "音频裁剪成功！")
                 } else {
                     // 如果直接复制失败，尝试重新编码
@@ -62,13 +62,13 @@ object AudioCutting {
         val commonPath = outputPath.substringBeforeLast('.') + ".mp3"
         val command =
             "-y " +
-                    "-i \"${inputPath}\" " +
-                    "-ss $startTime " +
-                    "-to $endTime " +
-                    "-c:a libmp3lame " +  // 使用 MP3 编码回退
-                    "-q:a 2 " +            // 质量参数（0-9，0 最高）
-                    "-map 0:a " +
-                    "\"${commonPath}\""
+            "-i \"${inputPath}\" " +
+            "-ss $startTime " +
+            "-to $endTime " +
+            "-c:a libmp3lame " +  // 使用 MP3 编码回退
+            "-q:a 2 " +            // 质量参数（0-9，0 最高）
+            "-map 0:a " +
+            "\"${commonPath}\""
 
         FFmpegKit.executeAsync(command) { session ->
             if (ReturnCode.isSuccess(session.returnCode)) {

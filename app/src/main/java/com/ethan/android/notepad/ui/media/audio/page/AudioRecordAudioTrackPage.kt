@@ -28,7 +28,7 @@ fun AudioRecordAudioTrackPage() {
         ) {
             when(it) {
                 ViewType.Record -> AudioRecordView()
-                ViewType.Cutting -> AudioCuttingView(localAudio.originPath, localAudio.finalPath)
+                ViewType.Cutting -> AudioCuttingView()
             }
         }
     }

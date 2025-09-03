@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
@@ -47,7 +46,7 @@ import com.ethan.android.notepad.common.utils.showToast
 import com.ethan.android.notepad.theme.Grey20
 import com.ethan.android.notepad.theme.NO_PADDING_TEXT_STYLE
 import com.ethan.android.notepad.theme.White
-import com.ethan.android.notepad.theme.White10
+import com.ethan.android.notepad.theme.White20
 import com.ethan.android.notepad.theme.White60
 import com.ethan.android.notepad.ui.animate.BreathingLight
 import com.ethan.android.notepad.ui.material.dialog.view.rememberConfirmDialog
@@ -62,7 +61,6 @@ import java.io.File
 @Preview
 /** 音频录制、预览 */
 fun AudioRecordView(modifier: Modifier = Modifier) {
-
     val context = LocalContext.current
     val localAudio = LocalAudioContextEntity.current
     val scope = rememberCoroutineScope()
@@ -110,12 +108,12 @@ fun AudioRecordView(modifier: Modifier = Modifier) {
                 }
             }
         }
-        Column(modifier = modifier.fillMaxSize().navigationBarsPadding(), horizontalAlignment = Alignment.CenterHorizontally) {
-
+        Column(modifier = modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+            Spacer(modifier = Modifier.height(12.dp))
             Row(modifier = Modifier
                 .invisible(it == AudioRecorder.RecordState.RECORDING)
                 .wrapContentSize()
-                .background(color = White10, shape = RoundedCornerShape(24.dp))
+                .background(color = White20, shape = RoundedCornerShape(24.dp))
                 .padding(horizontal = 8.dp, vertical = 4.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -127,6 +125,7 @@ fun AudioRecordView(modifier: Modifier = Modifier) {
             Box(modifier = Modifier.weight(1f).fillMaxWidth().padding(horizontal = 40.dp), contentAlignment = Alignment.Center) {
 
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Spacer(modifier = Modifier.height(12.dp))
                     Box(modifier = Modifier.invisible(audioRecorder.playState == AudioRecorder.PlayState.PLAYING || it == AudioRecorder.RecordState.RECORDING)) {
                         SubcomposeAsyncImage(
                             model = playGif,
@@ -219,13 +218,13 @@ fun AudioRecordView(modifier: Modifier = Modifier) {
                     .clickable(enabled = audioRecorder.currentDurationMs > 10000) {
                         scope.launch(Dispatchers.Default) {
                             loading.value = true
-                            val audioDir = File(context.externalCacheDir, "temporary_audio").apply { mkdirs() }
+                            val audioDir = File(context.externalCacheDir, "temporary_audio/record").apply { mkdirs() }
                             val outputFile = File(audioDir, getAudioName()).apply { createNewFile() }
-                            localAudio.originPath.value = outputFile.path
                             val result = audioRecorder.stopRecording(outputFile){}
                             loading.value = false
                             if (result) {
                                 "保存成功,后续操作需补充！".showToast(context, ToastType.SUCCESS)
+                                localAudio.originPath = outputFile.path
                                 localAudio.currentView = ViewType.Cutting
                             } else {
                                 "保存失败".showToast(context, ToastType.ERROR)
@@ -246,6 +245,8 @@ fun AudioRecordView(modifier: Modifier = Modifier) {
                     }
                 }
             }
+
+            Spacer(modifier = Modifier.height(12.dp))
         }
     }
 }

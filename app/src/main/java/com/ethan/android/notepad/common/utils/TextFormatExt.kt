@@ -33,6 +33,20 @@ fun Long.formatHMSTime2(): String {
     }
 }
 
+/** 时分秒毫秒 00:00:00:000 */
+fun Long.formatHMSCTime(): String {
+    return if (this > 0) {
+        val totalSeconds = this / 1000
+        val hours = totalSeconds / 3600
+        val minutes = (totalSeconds % 3600) / 60
+        val seconds = totalSeconds % 60
+        val millis = this % 1000
+        "$hours:$minutes:$seconds.$millis"
+    } else {
+        "00:00:00.000"
+    }
+}
+
 /** 分秒毫秒 00:00:00 */
 @SuppressLint("DefaultLocale")
 fun Long.formatMSCTime(): String {
@@ -47,9 +61,9 @@ fun Long.formatMSCTime(): String {
 
 fun Long.formatSecondTime(): Long = round(this / 1000.0).toLong()
 
-fun getAudioName(): String {
+fun getAudioName(ext: String = "m4a"): String {
     val dateFormat = SimpleDateFormat("HHmmss_dd_MM_yyyy", Locale.getDefault())
-    return "Audio_${dateFormat.format(Date())}.m4a"
+    return "Audio_${dateFormat.format(Date())}.$ext"
 }
 
 /**
