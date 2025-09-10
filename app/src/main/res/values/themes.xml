@@ -32,4 +32,9 @@
         <!-- 返回时新 Activity 退出：从下往上滑出 -->
         <item name="android:activityCloseExitAnimation">@anim/slide_up_exit</item>
     </style>
+
+    <style name="BottomSheetAnimation">
+        <item name="android:windowEnterAnimation">@anim/bottom_sheet_enter</item>
+        <item name="android:windowExitAnimation">@anim/bottom_sheet_exit</item>
+    </style>
 </resources>

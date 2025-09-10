@@ -24,7 +24,7 @@ fun AudioRecordAudioTrackPage() {
     AnimatedContent(localAudio.currentView, modifier = Modifier.fillMaxSize().padding(vertical = 30.dp)) {
         TitleCardView(
             title = if (it == ViewType.Record) "录音" else "裁剪",
-            modifier = Modifier.background(color = Black).padding(horizontal = 10.dp, vertical = 15.dp)
+            contentModifier = Modifier.background(color = Black).padding(horizontal = 10.dp, vertical = 15.dp)
         ) {
             when(it) {
                 ViewType.Record -> AudioRecordView()

@@ -27,6 +27,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -148,6 +149,15 @@ fun TextPage() {
             },
             fontSize = 13.sp,
             style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W400)
+        )
+
+        Spacer(modifier = Modifier.height(20.dp))
+        Text(
+            text = "带删除线的文本",
+            color = Black,
+            fontWeight = FontWeight.W400,
+            fontSize = 18.sp,
+            textDecoration = TextDecoration.LineThrough
         )
     }
 }

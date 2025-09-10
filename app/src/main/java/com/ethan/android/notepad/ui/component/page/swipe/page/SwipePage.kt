@@ -72,7 +72,7 @@ fun SwipePage() {
             .fillMaxWidth()
             .verticalScroll(rememberScrollState())
         ) {
-            TitleCardView("swipeable修饰符", modifier = Modifier.wrapContentHeight()) {
+            TitleCardView("swipeable修饰符", contentModifier = Modifier.wrapContentHeight()) {
                 Column(modifier = Modifier.padding(vertical = 12.dp)) {
                     SwipeableView(isSelected.value) { isSelected.value = !isSelected.value }
 
@@ -82,45 +82,45 @@ fun SwipePage() {
             }
 
             Spacer(modifier = Modifier.height(20.dp))
-            TitleCardView("侧滑测试1", modifier = Modifier.height(200.dp)) {
+            TitleCardView("侧滑测试1", contentModifier = Modifier.height(200.dp)) {
                 Box(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
                     SwipeLikeIOSView()
                 }
             }
 
             Spacer(modifier = Modifier.height(20.dp))
-            TitleCardView("侧滑测试2", modifier = Modifier.height(200.dp)) {
+            TitleCardView("侧滑测试2", contentModifier = Modifier.height(200.dp)) {
                 Box(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
                     SwipeLikeIOSView2()
                 }
             }
 
             Spacer(modifier = Modifier.height(20.dp))
-            TitleCardView("自定义侧滑测试", modifier = Modifier.height(200.dp)) {
+            TitleCardView("自定义侧滑测试", contentModifier = Modifier.height(200.dp)) {
                 Box(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
                     SwipeLikeIOSView3()
                 }
             }
 
             Spacer(modifier = Modifier.height(20.dp))
-            TitleCardView("侧滑测试4", modifier = Modifier.height(200.dp)) {
+            TitleCardView("侧滑测试4", contentModifier = Modifier.height(200.dp)) {
                 Box(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
                     SwipeBoxAtEnd()
                 }
             }
 
             Spacer(modifier = Modifier.height(20.dp))
-            TitleCardView("SwipeToDismissBox基本使用", modifier = Modifier.height(200.dp)) {
+            TitleCardView("SwipeToDismissBox基本使用", contentModifier = Modifier.height(200.dp)) {
                 SwipeToDeleteList()
             }
 
             Spacer(modifier = Modifier.height(20.dp))
-            TitleCardView("SwipeToDismissBox动画效果", modifier = Modifier.height(200.dp)) {
+            TitleCardView("SwipeToDismissBox动画效果", contentModifier = Modifier.height(200.dp)) {
                 SwipeToDeleteListWithAnimation()
             }
 
             Spacer(modifier = Modifier.height(20.dp))
-            TitleCardView("带撤销功能的滑动删除", modifier = Modifier.height(100.dp)) {}
+            TitleCardView("带撤销功能的滑动删除", contentModifier = Modifier.height(100.dp)) {}
         }
     }
 }

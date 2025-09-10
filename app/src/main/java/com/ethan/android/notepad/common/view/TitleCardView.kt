@@ -31,9 +31,10 @@ fun TitleCardView(
     title: String = "示例",
     isShowTitle: Boolean = true,
     modifier: Modifier = Modifier,
+    contentModifier: Modifier = Modifier,
     content: @Composable BoxScope.() -> Unit = {},
 ) {
-    Column(modifier = Modifier
+    Column(modifier = modifier
         .fillMaxWidth()
         .wrapContentHeight()
         .padding(horizontal = 12.dp)
@@ -56,7 +57,7 @@ fun TitleCardView(
                 .fillMaxWidth()
                 .wrapContentHeight()
         ) {
-            Box(content = content, modifier = modifier, contentAlignment = Alignment.Center)
+            Box(content = content, modifier = contentModifier, contentAlignment = Alignment.Center)
         }
     }
 }

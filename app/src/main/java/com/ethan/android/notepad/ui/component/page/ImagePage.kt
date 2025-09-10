@@ -57,27 +57,27 @@ fun ImagePage() {
         .verticalScroll(rememberScrollState())
     ) {
         Spacer(modifier = Modifier.height(10.dp))
-        TitleCardView("基本使用", modifier = Modifier.height(100.dp)) {
+        TitleCardView("基本使用", contentModifier = Modifier.height(100.dp)) {
             Image(painter = painterResource(id = R.mipmap.banner_01), contentDescription = "A woman", modifier = Modifier.size(64.dp))
         }
 
         val bitmap: ImageBitmap = ImageBitmap.imageResource(id = R.mipmap.banner_01)
-        TitleCardView("Compose中专有的bitmap形式图片", modifier = Modifier.height(100.dp)) {
+        TitleCardView("Compose中专有的bitmap形式图片", contentModifier = Modifier.height(100.dp)) {
             Image(bitmap = bitmap, contentDescription = "A woman", modifier = Modifier.size(64.dp))
         }
 
         Spacer(modifier = Modifier.height(10.dp))
-        TitleCardView("传统的bitmap对象图片", modifier = Modifier.height(100.dp)) {
+        TitleCardView("传统的bitmap对象图片", contentModifier = Modifier.height(100.dp)) {
             Image(bitmap = bitmap1.asImageBitmap(), contentDescription = "A woman", modifier = Modifier.size(64.dp))
         }
 
         Spacer(modifier = Modifier.height(10.dp))
-        TitleCardView("使用网络图片", modifier = Modifier.height(100.dp)) {
+        TitleCardView("使用网络图片", contentModifier = Modifier.height(100.dp)) {
             AsyncImage(model = "https://img-blog.csdnimg.cn/20200401094829557.jpg", contentDescription = null, modifier = Modifier.size(64.dp))
         }
 
         Spacer(modifier = Modifier.height(10.dp))
-        TitleCardView("播放Gif动图", modifier = Modifier.height(100.dp)) {
+        TitleCardView("播放Gif动图", contentModifier = Modifier.height(100.dp)) {
             SubcomposeAsyncImage(
                 model = imageRequest,
                 contentDescription = null,

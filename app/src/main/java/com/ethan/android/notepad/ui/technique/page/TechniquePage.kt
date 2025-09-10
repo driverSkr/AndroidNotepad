@@ -32,9 +32,10 @@ fun TechniquePage() {
     val items1 = listOf(
         CardItem("共享元素转场动画", true) { TechniquePreviewActivity.launch(context, PageType.SharedTransition) },
         CardItem("图片加载动画", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.LoadAnimation) },
-        CardItem("蒙层加载", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.MaskLoad) },
+        CardItem("蒙层加载", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.BlurLoad) },
         CardItem("分组横向列表", true) { TechniquePreviewActivity.launch(context, PageType.GroupRow) },
         CardItem("按钮随banner主色调切换", true) { TechniquePreviewActivity.launch(context, PageType.SwitchBtnColorWithBannerBg) },
+        CardItem("横向列表添加左右遮罩动画", true) { TechniquePreviewActivity.launch(context, PageType.SlideAnimateRow) },
         CardItem("Modifier实用方法", true) { TechniquePreviewActivity.launch(context, PageType.Modifier) },
         CardItem("Activity打开与关闭动画", true) { TestActivity1.launch(context) },
     )
@@ -51,7 +52,7 @@ fun TechniquePage() {
         CardItem("相册选择页", true, isCompleted = false),
         CardItem("腾讯缓存组件MMKV的使用", true, isCompleted = false),
         CardItem("腾讯pag动画组件libpag的使用", true, isCompleted = false),
-        CardItem("高斯模糊组件haze的使用", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.GaussianBlur) },
+        CardItem("高斯模糊组件haze的使用", true) { TechniquePreviewActivity.launch(context, PageType.GaussianBlur) },
         CardItem("谷歌登录组件", true, isCompleted = false),
         CardItem("阿里云融合认证", true, isCompleted = false),
         CardItem("支付宝、微信支付组件", true, isCompleted = false),

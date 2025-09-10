@@ -78,7 +78,7 @@ fun LanguagePage() {
         StatusBarsView(title = "多语言自动切换", canBack = true)
         //强制刷新键（key）
         key(refreshKey) {
-            TitleCardView(isShowTitle = false, modifier = Modifier
+            TitleCardView(isShowTitle = false, contentModifier = Modifier
                 .height(160.dp)
                 .padding(horizontal = 8.dp, vertical = 12.dp)) {
                 Box(modifier = Modifier
@@ -122,7 +122,7 @@ fun LanguagePage() {
         }
 
         Spacer(modifier = Modifier.height(20.dp))
-        TitleCardView("切换多语言", modifier = Modifier.height(36.dp)) {
+        TitleCardView("切换多语言", contentModifier = Modifier.height(36.dp)) {
 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text("简中",

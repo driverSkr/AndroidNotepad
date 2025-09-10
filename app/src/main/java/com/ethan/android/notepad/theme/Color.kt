@@ -32,10 +32,15 @@ val Color0XFF37255B = Color(0XFF37255B)
 val Purple8A49FF = Color(0xFF8A49FF)
 val Purple8A49FF_20 = Color(0x338A49FF)
 
-val Black = Color(0xFF000000) //纯黑
+val Black = Color(0xFF000000)
+val Black90 = Color(0xE6000000)
 val Black80 = Color(0xCC000000)
+val Black70 = Color(0xB3000000)
 val Black60 = Color(0x99000000)
+val Black50 = Color(0x80000000)
 val Black40 = Color(0x66000000)
+val Black30 = Color(0x4D000000)
+val Black24 = Color(0x3D000000)
 val Black20 = Color(0x33000000)
 val Black10 = Color(0x1A000000)
 val Black8 = Color(0x14000000)
@@ -116,3 +121,6 @@ val color8 = Color(0xFF87A7C5)
 val color9 = Color(0xFF679CAC)
 
 val colorList = listOf("#8D7D90", "#D39F81", "#9CAEC9", "#959D88", "#757E6D", "#BCA163", "#D4B7A8", "#675F54", "#336279", "#5E3F2C")
+
+val brushColor = arrayOf(0f to Black, 0.1f to Black90, 0.2f to Black80, 0.3f to Black70, 0.4f to Black60, 0.5f to Black50, 0.6f to Black40, 0.7f to Black30, 0.8f to Black20, 0.9f to Black10, 1f to Transparent)
+val brushColorReverse = arrayOf(0f to Transparent, 0.1f to Black10, 0.2f to Black20, 0.3f to Black30, 0.4f to Black40, 0.5f to Black50, 0.6f to Black60, 0.7f to Black70, 0.8f to Black80, 0.9f to Black90, 1f to Black)
