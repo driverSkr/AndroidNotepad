@@ -10,6 +10,7 @@ import com.ethan.android.notepad.common.model.CardItem
 import com.ethan.android.notepad.common.view.ListCardView
 import com.ethan.android.notepad.common.view.StatusBarsView
 import com.ethan.android.notepad.ui.media.audio.AudioRecordActivity
+import com.ethan.android.notepad.ui.media.picker.MediaPickerActivity
 
 /**
  * 多媒体组件：音视频播放、录制、裁剪
@@ -19,8 +20,9 @@ import com.ethan.android.notepad.ui.media.audio.AudioRecordActivity
 fun MediaPage() {
     val context = LocalContext.current
     val items = listOf(
-        CardItem("音频录制、裁剪、播放", true, isCompleted = false) { AudioRecordActivity.launch(context) },
-        CardItem("视频录制、裁剪、播放", true, isCompleted = false) {  }
+        CardItem("音频相关", true, isCompleted = false) { AudioRecordActivity.launch(context) },
+        CardItem("视频相关", true, isCompleted = false) {  },
+        CardItem("本地媒体选择", true, isCompleted = false) { MediaPickerActivity.launch(context) }
     )
 
     Column(modifier = Modifier.fillMaxSize()) {

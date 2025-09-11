@@ -1,6 +1,8 @@
 package com.ethan.android.notepad.ui.technique.page
 
 import android.os.SystemClock
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -9,6 +11,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -22,7 +25,9 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,12 +39,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.wear.compose.material.Button
 import androidx.wear.compose.material.Text
+import coil3.compose.AsyncImage
+import com.ethan.android.notepad.common.utils.MediaUtils
+import com.ethan.android.notepad.common.utils.ToastType
+import com.ethan.android.notepad.common.utils.showToast
 import com.ethan.android.notepad.common.view.TitleCardView
 import com.ethan.android.notepad.repository.data.blurDataSource
 import com.ethan.android.notepad.theme.Black
 import com.ethan.android.notepad.theme.White16
+import com.ethan.android.notepad.ui.material.dialog.view.rememberLoadingDialog
 import com.ethan.android.notepad.ui.media.image.CommonMaskLoadImageView
 import com.ethan.maskload.BlurHashDecoder
+import com.ethan.videoediting.FfmpegVE
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 /**
  * 渐进式加载:由模糊到清晰
@@ -49,7 +62,26 @@ import com.ethan.maskload.BlurHashDecoder
 @Composable
 fun BlurLoadPage() {
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    val loading = rememberLoadingDialog()
     val page = remember { mutableIntStateOf(0) }
+    val selectedPath = remember { mutableStateOf("") }
+
+    val launcher = rememberLauncherForActivityResult(contract = ActivityResultContracts.GetContent()) { uri ->
+        scope.launch(Dispatchers.Default) {
+            if (uri != null) {
+                loading.value = true
+                val path = MediaUtils.getRealPathFromUri(context, uri)
+                val videoInfo = path?.let { FfmpegVE.getVideoInfo(it) }
+                loading.value = false
+                if (videoInfo != null) {
+                    selectedPath.value = path
+                } else {
+                    "选择失败!".showToast(context, ToastType.ERROR)
+                }
+            }
+        }
+    }
 
     LazyColumn(modifier = Modifier
         .fillMaxSize()
@@ -89,7 +121,7 @@ fun BlurLoadPage() {
 //                    }
 //                    binding.root
 //                })
-                Column(modifier = Modifier.fillMaxSize()) {
+                Column(modifier = Modifier.fillMaxSize().padding(top = 12.dp)) {
                     Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.padding(horizontal = 12.dp)) {
                         Button(modifier = Modifier.weight(1f).height(40.dp), onClick = { page.intValue = 0 }) {
                             Text("编码", color = Black, fontSize = 12.sp)
@@ -101,7 +133,19 @@ fun BlurLoadPage() {
                     AnimatedContent(page.intValue, modifier = Modifier.fillMaxWidth().weight(1f)) {
                         Box(modifier = Modifier.fillMaxSize()) {
                             if (it == 0) { // 编码
-                                Text("编码后显示的mask code将会显示在此", color = Black, fontSize = 12.sp, modifier = Modifier.align(Alignment.Center))
+                                if (selectedPath.value.isNotEmpty()) {
+                                    AsyncImage(model = selectedPath.value, contentDescription = null)
+                                } else {
+                                    Column(modifier = Modifier.fillMaxSize().align(Alignment.Center)) {
+                                        Button(onClick = {
+                                            launcher.launch("image/*")
+                                        }) {
+                                            Text("选择图片", color = Black, fontSize = 12.sp)
+                                        }
+                                        Spacer(modifier = Modifier.height(10.dp))
+                                        Text("编码后显示的mask code将会显示在此", color = Black, fontSize = 12.sp)
+                                    }
+                                }
                             } else {  // 解码
                                 Text("你输入的mask code将会编码后显示在此处", color = Black, fontSize = 12.sp, modifier = Modifier.align(Alignment.Center))
                             }
