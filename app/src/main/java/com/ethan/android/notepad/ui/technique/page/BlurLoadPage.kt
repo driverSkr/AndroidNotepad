@@ -1,22 +1,29 @@
 package com.ethan.android.notepad.ui.technique.page
 
-import android.content.Intent
-import android.graphics.Bitmap
 import android.os.SystemClock
-import android.view.LayoutInflater
-import android.widget.LinearLayout
+import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.asImageBitmap
@@ -24,14 +31,15 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.viewinterop.AndroidView
-import com.ethan.android.notepad.common.extension.findBaseActivityVBind
+import androidx.compose.ui.unit.sp
+import androidx.wear.compose.material.Button
+import androidx.wear.compose.material.Text
 import com.ethan.android.notepad.common.view.TitleCardView
-import com.ethan.android.notepad.databinding.LayoutMaskLoadBinding
+import com.ethan.android.notepad.repository.data.blurDataSource
+import com.ethan.android.notepad.theme.Black
+import com.ethan.android.notepad.theme.White16
 import com.ethan.android.notepad.ui.media.image.CommonMaskLoadImageView
-import com.ethan.android.notepad.ui.technique.view.BlurHashActivity
 import com.ethan.maskload.BlurHashDecoder
-import com.ethan.android.notepad.common.extension.dp as dpInt
 
 /**
  * 渐进式加载:由模糊到清晰
@@ -41,46 +49,65 @@ import com.ethan.android.notepad.common.extension.dp as dpInt
 @Composable
 fun BlurLoadPage() {
     val context = LocalContext.current
+    val page = remember { mutableIntStateOf(0) }
 
     LazyColumn(modifier = Modifier
         .fillMaxSize()
         .statusBarsPadding()
         .navigationBarsPadding()
-        .padding(bottom = 20.dp)
     ) {
         item {
             TitleCardView("BlurMask图像展示", contentModifier = Modifier.height(250.dp)) {
-                MaskImageView()
+                BlurImageShowRowView()
             }
         }
 
         item {
             TitleCardView("多媒体模糊加载展示", modifier = Modifier.padding(top = 20.dp), contentModifier = Modifier.height(250.dp)) {
-                MaskLoadImageView()
+                BlurLoadShowRowView()
             }
         }
 
         item {
             // todo 需要改成更专业的编解码功能，最好支持图片选择
-            TitleCardView("BlurMask编码与解码", modifier = Modifier.padding(top = 20.dp), contentModifier = Modifier.height(250.dp)) {
-                AndroidView(factory = { c ->
-                    val binding = LayoutMaskLoadBinding.inflate(LayoutInflater.from(c))
-                    binding.tvEncode.setOnClickListener {
-                        context.findBaseActivityVBind()?.let {
-                            context.startActivity(Intent(it, BlurHashActivity::class.java))
+            TitleCardView("BlurMask编码与解码", modifier = Modifier.padding(vertical = 20.dp), contentModifier = Modifier.height(300.dp)) {
+//                AndroidView(factory = { c ->
+//                    val binding = LayoutMaskLoadBinding.inflate(LayoutInflater.from(c))
+//                    binding.tvEncode.setOnClickListener {
+//                        context.findBaseActivityVBind()?.let {
+//                            context.startActivity(Intent(it, BlurHashActivity::class.java))
+//                        }
+//                    }
+//                    binding.tvDecode.setOnClickListener {
+//                        var bitmap: Bitmap? = null
+//                        val time = timed {
+//                            bitmap = BlurHashDecoder.decode(binding.etInput.text.toString(), 24, 48)
+//                        }
+//                        binding.ivResult.layoutParams = LinearLayout.LayoutParams(240.dpInt, 480.dpInt)
+//                        binding.ivResult.setImageBitmap(bitmap)
+//                        binding.ivResultTime.text = "Time: $time ms"
+//                    }
+//                    binding.root
+//                })
+                Column(modifier = Modifier.fillMaxSize()) {
+                    Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.padding(horizontal = 12.dp)) {
+                        Button(modifier = Modifier.weight(1f).height(40.dp), onClick = { page.intValue = 0 }) {
+                            Text("编码", color = Black, fontSize = 12.sp)
+                        }
+                        Button(modifier = Modifier.weight(1f).height(40.dp), onClick = { page.intValue = 1 }) {
+                            Text("解码", color = Black, fontSize = 12.sp)
                         }
                     }
-                    binding.tvDecode.setOnClickListener {
-                        var bitmap: Bitmap? = null
-                        val time = timed {
-                            bitmap = BlurHashDecoder.decode(binding.etInput.text.toString(), 24, 48)
+                    AnimatedContent(page.intValue, modifier = Modifier.fillMaxWidth().weight(1f)) {
+                        Box(modifier = Modifier.fillMaxSize()) {
+                            if (it == 0) { // 编码
+                                Text("编码后显示的mask code将会显示在此", color = Black, fontSize = 12.sp, modifier = Modifier.align(Alignment.Center))
+                            } else {  // 解码
+                                Text("你输入的mask code将会编码后显示在此处", color = Black, fontSize = 12.sp, modifier = Modifier.align(Alignment.Center))
+                            }
                         }
-                        binding.ivResult.layoutParams = LinearLayout.LayoutParams(240.dpInt, 480.dpInt)
-                        binding.ivResult.setImageBitmap(bitmap)
-                        binding.ivResultTime.text = "Time: $time ms"
                     }
-                    binding.root
-                })
+                }
             }
         }
     }
@@ -88,24 +115,44 @@ fun BlurLoadPage() {
 
 @Composable
 @Preview
-fun MaskImageView() {
-    val maskBitmap = BlurHashDecoder.decode("URKJoW-;nS=cqFx[%fNv%#odNwNHEOVs\$*xG", 18, 32)
-
-    Box(modifier = Modifier.width(120.dp).aspectRatio(0.5625f).clip(RoundedCornerShape(12.dp))) {
-        //模糊加载图
-        maskBitmap?.let { Image(bitmap = it.asImageBitmap(), contentDescription = null, modifier = Modifier.fillMaxSize(), contentScale = ContentScale.Crop) }
+fun BlurImageShowRowView() {
+    LazyRow(modifier = Modifier.fillMaxWidth().height(156.div(0.75f).dp), contentPadding = PaddingValues(horizontal = 16.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+        itemsIndexed(blurDataSource) { index, data ->
+            Box(modifier = Modifier
+                .width(156.dp)
+                .height(156.div(0.75f).dp)
+                .clip(shape = RoundedCornerShape(12.dp))
+                .border(width = 1.dp, color = White16, shape = RoundedCornerShape(12.dp))
+            ) {
+                val maskBitmap = BlurHashDecoder.decode(data.mask, 18, 32)
+                //模糊加载图
+                maskBitmap?.let {
+                    Image(
+                        bitmap = it.asImageBitmap(),
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+            }
+        }
     }
 }
 
 @Composable
 @Preview
-fun MaskLoadImageView() {
-
-    Box(modifier = Modifier.width(120.dp).aspectRatio(0.5625f).clip(RoundedCornerShape(12.dp))) {
-        CommonMaskLoadImageView(
-            url = "https://material.hitpaw.com/static/c8dcdb02426dea4fd90a303bf3fde30b/upload/475af39b9672e4fce58153cc2de26a3eFin-tasticMermaid.webp",
-            maskCode = "URKJoW-;nS=cqFx[%fNv%#odNwNHEOVs\$*xG"
-        )
+fun BlurLoadShowRowView() {
+    LazyRow(modifier = Modifier.fillMaxWidth().height(156.div(0.75f).dp), contentPadding = PaddingValues(horizontal = 16.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+        itemsIndexed(blurDataSource) { index, data ->
+            Box(modifier = Modifier
+                .width(156.dp)
+                .height(156.div(0.75f).dp)
+                .clip(shape = RoundedCornerShape(12.dp))
+                .border(width = 1.dp, color = White16, shape = RoundedCornerShape(12.dp))
+            ) {
+                CommonMaskLoadImageView(url = data.url, maskCode = data.mask)
+            }
+        }
     }
 }
 
