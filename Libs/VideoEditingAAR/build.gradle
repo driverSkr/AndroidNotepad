@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('ffmpeg-kit_gpl_6_dav1d_lame.aar'))

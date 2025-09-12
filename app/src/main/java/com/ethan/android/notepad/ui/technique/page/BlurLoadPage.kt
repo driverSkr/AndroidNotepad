@@ -48,7 +48,7 @@ import com.ethan.android.notepad.repository.data.blurDataSource
 import com.ethan.android.notepad.theme.Black
 import com.ethan.android.notepad.theme.White16
 import com.ethan.android.notepad.ui.material.dialog.view.rememberLoadingDialog
-import com.ethan.android.notepad.ui.media.image.CommonMaskLoadImageView
+import com.ethan.android.notepad.ui.media.image.view.CommonMaskLoadImageView
 import com.ethan.maskload.BlurHashDecoder
 import com.ethan.videoediting.FfmpegVE
 import kotlinx.coroutines.Dispatchers

@@ -38,6 +38,8 @@ fun TechniquePage() {
         CardItem("横向列表添加左右遮罩动画", true) { TechniquePreviewActivity.launch(context, PageType.SlideAnimateRow) },
         CardItem("Modifier实用方法", true) { TechniquePreviewActivity.launch(context, PageType.Modifier) },
         CardItem("Activity打开与关闭动画", true) { TestActivity1.launch(context) },
+        CardItem("加载骨架萍", true) {  },
+        CardItem("权限请求带弹窗", true) {  },
     )
 
     val items2 = listOf(
