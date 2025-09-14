@@ -27,6 +27,7 @@ import com.ethan.android.notepad.common.model.MediaType
 import com.ethan.android.notepad.common.utils.BitmapUtils
 import com.ethan.android.notepad.common.utils.MediaUtils
 import com.ethan.android.notepad.common.utils.ToastType
+import com.ethan.android.notepad.common.utils.WaterMarkHelper
 import com.ethan.android.notepad.common.utils.showToast
 import com.ethan.android.notepad.common.view.ListCardView
 import com.ethan.android.notepad.common.view.StatusBarsView
@@ -65,12 +66,12 @@ fun VideoPage() {
                     }
                     val watermark = ImageUtils.getBitmap(R.mipmap.ai_generate)
                     val waterPath = BitmapUtils.saveBitmapAndReturnPath(context, watermark)
-//                    val result = WaterMarkHelper.addVideoWaterMark(path, exportPath, waterPath ?: "", WatermarkPosition.TOP_LEFT)
-//                    if (result) {
-//                        selectedPath.value = exportPath
-//                    } else {
-//                        "保存失败".showToast(context, ToastType.ERROR)
-//                    }
+                    val result = WaterMarkHelper.addVideoWatermark(path, waterPath ?: "", exportPath)
+                    if (result) {
+                        selectedPath.value = exportPath
+                    } else {
+                        "保存失败".showToast(context, ToastType.ERROR)
+                    }
                 } else {
                     "选择失败!".showToast(context, ToastType.ERROR)
                 }

@@ -8,14 +8,48 @@ import android.graphics.Rect
 import android.util.Log
 import com.arthenica.ffmpegkit.FFmpegKit
 import com.arthenica.ffmpegkit.ReturnCode
+import com.ethan.android.notepad.common.model.StampPadding
 import com.ethan.android.notepad.common.utils.BitmapUtils.dp2px
 import com.ethan.android.notepad.common.utils.BitmapUtils.getScreenHeight
 import com.ethan.android.notepad.common.utils.BitmapUtils.getScreenWidth
 import com.ethan.android.notepad.common.model.WatermarkPosition
+import com.ethan.file.LogWriter
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 object WaterMarkHelper {
+
+    /**
+     * 绘制文字水印
+     */
+    fun addTextWatermark(masterBitmap: Bitmap, label: String, labelSize: Int, labelColor: Int, padding: StampPadding): Bitmap? {
+        val paint = Paint().apply {
+            isFilterBitmap = true
+            isDither = true
+            color = labelColor
+            textSize = labelSize.toFloat()
+        }
+
+        var newBitmap: Bitmap?
+        var canvas: Canvas?
+
+        try {
+            var config = masterBitmap.config
+            if (config == null) {
+                config = Bitmap.Config.ARGB_8888
+            }
+            newBitmap = masterBitmap.copy(config, true)
+            canvas = Canvas(newBitmap)
+            canvas.drawText(label, padding.left, padding.top, paint)
+            canvas.save()
+            canvas.restore()
+            return newBitmap
+
+        } catch (e: Exception) {
+            LogWriter.append("图片加文字水印失败：${e.message}")
+            return null
+        }
+    }
 
     /**
      * 图片加水印 - Canvas绘制方式
@@ -76,6 +110,30 @@ object WaterMarkHelper {
             }
         } catch (e: Exception) {
             cont.resume(false)
+            Log.e("ethan", "图片加水印执行异常: ${e.message}")
+        }
+    }
+
+    /**
+     * 视频加水印 - ffmpeg
+     */
+    suspend fun addVideoWatermark(inputVideoPath: String, watermarkImagePath: String, outputVideoPath: String) = suspendCoroutine { suspendCoroutine ->
+        try {
+//            val command = "ffmpeg -y -i $inputVideoPath -i $watermarkImagePath -filter_complex [0:v]scale=iw:ih[outv0];[1:0]scale=0.0:0.0[outv1];[outv0][outv1]overlay=0:200 -preset superfast $outputVideoPath"
+            val command = "ffmpeg -y -i $inputVideoPath -i $watermarkImagePath " +
+                    "-filter_complex \"[0:v]scale=iw:ih[outv0];[1:v]scale=200:-1[outv1];[outv0][outv1]overlay=0:200\" " +
+                    "-preset superfast -map \"[outv0]\" -map 0:a? $outputVideoPath"
+            FFmpegKit.executeAsync(command) { session ->
+                if (ReturnCode.isSuccess(session.returnCode)) {
+                    suspendCoroutine.resume(true)
+                    Log.d("ethan", "音频裁剪成功！")
+                } else {
+                    // 如果直接复制失败，尝试重新编码
+                    suspendCoroutine.resume(false)
+                }
+            }
+        } catch (e: Exception) {
+            suspendCoroutine.resume(false)
             Log.e("ethan", "图片加水印执行异常: ${e.message}")
         }
     }

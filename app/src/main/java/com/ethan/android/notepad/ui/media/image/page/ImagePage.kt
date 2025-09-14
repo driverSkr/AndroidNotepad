@@ -25,6 +25,7 @@ import com.blankj.utilcode.util.PathUtils
 import com.ethan.android.notepad.R
 import com.ethan.android.notepad.common.model.CardItem
 import com.ethan.android.notepad.common.model.MediaType
+import com.ethan.android.notepad.common.model.StampPadding
 import com.ethan.android.notepad.common.utils.BitmapUtils
 import com.ethan.android.notepad.common.utils.MediaUtils
 import com.ethan.android.notepad.common.utils.ToastType
@@ -70,7 +71,7 @@ fun ImagePage() {
                         } else {
                             "保存失败".showToast(context, ToastType.ERROR)
                         }
-                    } else {    // ffmpeg版
+                    } else if (doWatermarkStyle.intValue == 1) {    // ffmpeg版
                         // 生成唯一的文件名
                         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
                         val fileName = "watermarked_$timeStamp.jpg"
@@ -82,6 +83,14 @@ fun ImagePage() {
                         val result = WaterMarkHelper.addImageWaterMark(path, exportPath, waterPath ?: "", WatermarkPosition.TOP_LEFT)
                         if (result) {
                             selectedPath.value = exportPath
+                        } else {
+                            "保存失败".showToast(context, ToastType.ERROR)
+                        }
+                    } else {
+                        val bmp = BitmapUtils.loadBitmap2Bmp(path)
+                        val finalBmp = bmp?.let { WaterMarkHelper.addTextWatermark(bmp, "这是文字水印", 15, R.color.White4, StampPadding(20f, 20f)) }
+                        if (finalBmp != null) {
+                            selectedPath.value = BitmapUtils.saveBitmapAndReturnPath(context, finalBmp) ?: ""
                         } else {
                             "保存失败".showToast(context, ToastType.ERROR)
                         }
@@ -101,6 +110,10 @@ fun ImagePage() {
         },
         CardItem("图片加水印-ffmpeg版", true, isCompleted = false) {
             doWatermarkStyle.intValue = 1
+            launcher.launch("image/*")
+        },
+        CardItem("图片加文字水印", true, isCompleted = false) {
+            doWatermarkStyle.intValue = 2
             launcher.launch("image/*")
         },
     )
