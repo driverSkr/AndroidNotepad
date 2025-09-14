@@ -1,4 +1,4 @@
-package com.ethan.videoediting.model
+package com.ethan.android.notepad.common.model
 
 enum class WatermarkPosition {
     TOP_LEFT,

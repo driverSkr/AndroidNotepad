@@ -19,9 +19,12 @@ import androidx.compose.ui.unit.sp
 import androidx.wear.compose.material.Text
 import coil3.compose.AsyncImage
 import com.blankj.utilcode.util.FileUtils
+import com.blankj.utilcode.util.ImageUtils
 import com.blankj.utilcode.util.PathUtils
+import com.ethan.android.notepad.R
 import com.ethan.android.notepad.common.model.CardItem
 import com.ethan.android.notepad.common.model.MediaType
+import com.ethan.android.notepad.common.utils.BitmapUtils
 import com.ethan.android.notepad.common.utils.MediaUtils
 import com.ethan.android.notepad.common.utils.ToastType
 import com.ethan.android.notepad.common.utils.showToast
@@ -32,11 +35,12 @@ import com.ethan.android.notepad.theme.Black
 import com.ethan.android.notepad.ui.material.dialog.view.rememberLoadingDialog
 import com.ethan.android.notepad.ui.media.video.view.VideoView
 import com.ethan.videoediting.FfmpegVE
-import com.ethan.videoediting.WaterMarkHelper
-import com.ethan.videoediting.model.WatermarkPosition
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @Composable
 fun VideoPage() {
@@ -54,16 +58,19 @@ fun VideoPage() {
                 val path = MediaUtils.getRealPathFromUri(context, uri)
                 val videoInfo = path?.let { FfmpegVE.getVideoInfo(it) }
                 if (videoInfo != null) {
-//                    selectedPath.value = path /storage/emulated/0/Android/data/com.ethan.android.notepad/water_mark/_4k_amplify_icon.png
-                    val exportPath = "${PathUtils.getExternalAppCachePath()}/water_mark/test1.mp4".apply {
+                    val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+                    val fileName = "watermarked_$timeStamp.mp4"
+                    val exportPath = "${PathUtils.getExternalAppCachePath()}/water_mark/$fileName".apply {
                         FileUtils.createOrExistsDir(File(this).parentFile)
                     }
-                    val waterPath = "/storage/emulated/0/Android/data/com.ethan.android.notepad/water_mark/_4k_amplify_icon.png"
-                    val result = WaterMarkHelper.addVideoWaterMark(path, exportPath, waterPath, WatermarkPosition.TOP_LEFT)
-                    if (result) {
-                        selectedPath.value = exportPath
-                    }
-//                    selectedPath.value = path
+                    val watermark = ImageUtils.getBitmap(R.mipmap.ai_generate)
+                    val waterPath = BitmapUtils.saveBitmapAndReturnPath(context, watermark)
+//                    val result = WaterMarkHelper.addVideoWaterMark(path, exportPath, waterPath ?: "", WatermarkPosition.TOP_LEFT)
+//                    if (result) {
+//                        selectedPath.value = exportPath
+//                    } else {
+//                        "保存失败".showToast(context, ToastType.ERROR)
+//                    }
                 } else {
                     "选择失败!".showToast(context, ToastType.ERROR)
                 }

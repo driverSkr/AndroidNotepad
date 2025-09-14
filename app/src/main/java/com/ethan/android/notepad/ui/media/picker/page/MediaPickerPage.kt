@@ -28,6 +28,7 @@ import com.ethan.android.notepad.common.view.StatusBarsView
 import com.ethan.android.notepad.common.view.TitleCardView
 import com.ethan.android.notepad.theme.Black
 import com.ethan.android.notepad.ui.material.dialog.view.rememberLoadingDialog
+import com.ethan.android.notepad.ui.media.video.view.VideoView
 import com.ethan.videoediting.FfmpegVE
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -66,8 +67,6 @@ fun MediaPickerPage() {
         CardItem("自定义相册选择器", true, isCompleted = false) {  },
     )
 
-
-
     Column(modifier = Modifier.fillMaxSize()) {
         StatusBarsView(title = "本地媒体选择")
 
@@ -81,7 +80,7 @@ fun MediaPickerPage() {
                     } else {
                         when (selectedMediaType.value) {
                             MediaType.IMAGE -> AsyncImage(model = it, contentDescription = null)
-                            MediaType.VIDEO -> {}
+                            MediaType.VIDEO -> VideoView(it)
                             MediaType.AUDIO -> {}
                             else -> {}
                         }

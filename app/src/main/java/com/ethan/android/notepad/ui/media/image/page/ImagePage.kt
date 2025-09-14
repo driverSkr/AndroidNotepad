@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -19,11 +20,15 @@ import androidx.compose.ui.unit.sp
 import androidx.wear.compose.material.Text
 import coil3.compose.AsyncImage
 import com.blankj.utilcode.util.FileUtils
+import com.blankj.utilcode.util.ImageUtils
 import com.blankj.utilcode.util.PathUtils
+import com.ethan.android.notepad.R
 import com.ethan.android.notepad.common.model.CardItem
 import com.ethan.android.notepad.common.model.MediaType
+import com.ethan.android.notepad.common.utils.BitmapUtils
 import com.ethan.android.notepad.common.utils.MediaUtils
 import com.ethan.android.notepad.common.utils.ToastType
+import com.ethan.android.notepad.common.utils.WaterMarkHelper
 import com.ethan.android.notepad.common.utils.showToast
 import com.ethan.android.notepad.common.view.ListCardView
 import com.ethan.android.notepad.common.view.StatusBarsView
@@ -31,11 +36,13 @@ import com.ethan.android.notepad.common.view.TitleCardView
 import com.ethan.android.notepad.theme.Black
 import com.ethan.android.notepad.ui.material.dialog.view.rememberLoadingDialog
 import com.ethan.videoediting.FfmpegVE
-import com.ethan.videoediting.WaterMarkHelper
-import com.ethan.videoediting.model.WatermarkPosition
+import com.ethan.android.notepad.common.model.WatermarkPosition
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @Composable
 fun ImagePage() {
@@ -44,6 +51,7 @@ fun ImagePage() {
     val loading = rememberLoadingDialog()
     val selectedPath = remember { mutableStateOf("") }
     val selectedMediaType = remember { mutableStateOf(MediaType.UNKNOWN) }
+    val doWatermarkStyle = remember { mutableIntStateOf(0) }
 
     val launcher = rememberLauncherForActivityResult(contract = ActivityResultContracts.GetContent()) { uri ->
         scope.launch(Dispatchers.Default) {
@@ -53,14 +61,30 @@ fun ImagePage() {
                 val path = MediaUtils.getRealPathFromUri(context, uri)
                 val videoInfo = path?.let { FfmpegVE.getVideoInfo(it) }
                 if (videoInfo != null) {
-//                    selectedPath.value = path /storage/emulated/0/Android/data/com.ethan.android.notepad/water_mark/_4k_amplify_icon.png
-                    val exportPath = "${PathUtils.getExternalAppCachePath()}/water_mark/test.png".apply {
-                        FileUtils.createOrExistsDir(File(this).parentFile)
-                    }
-                    val waterPath = "/storage/emulated/0/Android/data/com.ethan.android.notepad/water_mark/_4k_amplify_icon.png"
-                    val result = WaterMarkHelper.addImageWaterMark(path, exportPath, waterPath, WatermarkPosition.TOP_LEFT)
-                    if (result) {
-                        selectedPath.value = exportPath
+                    val watermark = ImageUtils.getBitmap(R.mipmap.ai_generate)
+                    if (doWatermarkStyle.intValue == 0) {
+                        val bmp = BitmapUtils.loadBitmap2Bmp(path)
+                        val finalBmp = bmp?.let { WaterMarkHelper.addImageWatermark(context, it, watermark) }
+                        if (finalBmp != null) {
+                            selectedPath.value = BitmapUtils.saveBitmapAndReturnPath(context, finalBmp) ?: ""
+                        } else {
+                            "保存失败".showToast(context, ToastType.ERROR)
+                        }
+                    } else {    // ffmpeg版
+                        // 生成唯一的文件名
+                        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+                        val fileName = "watermarked_$timeStamp.jpg"
+                        val exportPath = "${PathUtils.getExternalAppCachePath()}/water_mark/$fileName".apply {
+                            FileUtils.createOrExistsDir(File(this).parentFile)
+                        }
+                        val waterPath = BitmapUtils.saveBitmapAndReturnPath(context, watermark)
+
+                        val result = WaterMarkHelper.addImageWaterMark(path, exportPath, waterPath ?: "", WatermarkPosition.TOP_LEFT)
+                        if (result) {
+                            selectedPath.value = exportPath
+                        } else {
+                            "保存失败".showToast(context, ToastType.ERROR)
+                        }
                     }
                 } else {
                     "选择失败!".showToast(context, ToastType.ERROR)
@@ -71,7 +95,14 @@ fun ImagePage() {
     }
 
     val items = listOf(
-        CardItem("图片加水印", true, isCompleted = false) { launcher.launch("image/*") },
+        CardItem("图片加水印", true, isCompleted = false) {
+            doWatermarkStyle.intValue = 0
+            launcher.launch("image/*")
+        },
+        CardItem("图片加水印-ffmpeg版", true, isCompleted = false) {
+            doWatermarkStyle.intValue = 1
+            launcher.launch("image/*")
+        },
     )
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -87,8 +118,6 @@ fun ImagePage() {
                     } else {
                         when (selectedMediaType.value) {
                             MediaType.IMAGE -> AsyncImage(model = it, contentDescription = null)
-                            MediaType.VIDEO -> {}
-                            MediaType.AUDIO -> {}
                             else -> {}
                         }
                     }

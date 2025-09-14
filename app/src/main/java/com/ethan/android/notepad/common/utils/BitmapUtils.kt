@@ -18,6 +18,9 @@ import com.ethan.android.notepad.common.config.Constants
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import java.util.UUID
 import java.util.regex.Pattern
 import kotlin.coroutines.resume
@@ -369,34 +372,6 @@ object BitmapUtils {
         }
     }
 
-    fun addImageWatermark(context: Context, src: Bitmap, watermark: Bitmap): Bitmap? {
-        val width = dp2px(context, 130f)
-        val height = dp2px(context, 41f)
-        val right = dp2px(context, 17f)
-        val bottom = dp2px(context, 12f)
-        val viewMaxWidth = getScreenWidth(context)
-        val viewMaxHeight = getScreenHeight(context) - dp2px(context, 162f)
-        val ret = src.config?.let { src.copy(it, true) }
-        val paint = Paint(Paint.ANTI_ALIAS_FLAG)
-        paint.alpha = 255
-        val rectSrc = Rect(0, 0, watermark.width, watermark.height)
-        val drawWidth: Int
-        val drawHeight: Int
-        val drawRight: Int
-        val drawBottom: Int
-        val scale = if (src.width >= src.height) viewMaxWidth.toFloat() / src.width.toFloat() else viewMaxHeight.toFloat() / src.height.toFloat()
-        drawWidth = (width.toFloat() / scale).toInt()
-        drawHeight = (height.toFloat() / scale).toInt()
-        drawRight = (right.toFloat() / scale).toInt()
-        drawBottom = (bottom.toFloat() / scale).toInt()
-
-        val x = Integer.max(0, src.width - drawWidth - drawRight)
-        val y = Integer.max(0, src.height - drawHeight - drawBottom)
-        val rectDest = Rect(x, y, x + drawWidth, y + drawHeight)
-        ret?.let { Canvas(it) }?.drawBitmap(watermark, rectSrc, rectDest, paint)
-        return ret
-    }
-
     fun dp2px(context: Context?, dpVal: Float): Int {
         return TypedValue
             .applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpVal, context?.resources?.displayMetrics)
@@ -451,4 +426,41 @@ object BitmapUtils {
         }
     }
 
+    // 保存Bitmap并返回文件路径
+    fun saveBitmapAndReturnPath(context: Context, bitmap: Bitmap, folderName: String = "water_mark"): String? {
+        var fileOutputStream: FileOutputStream? = null
+        try {
+            // 创建或获取文件夹
+            val folder = if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
+                File(context.getExternalFilesDir(null), folderName)
+            } else {
+                File(context.filesDir, folderName)
+            }
+
+            if (!folder.exists()) {
+                folder.mkdirs()
+            }
+
+            // 生成唯一的文件名
+            val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+            val fileName = "watermarked_$timeStamp.jpg"
+            val imageFile = File(folder, fileName)
+
+            // 保存Bitmap
+            fileOutputStream = FileOutputStream(imageFile)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream)
+            fileOutputStream.flush()
+
+            return imageFile.absolutePath
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return null
+        } finally {
+            try {
+                fileOutputStream?.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+    }
 }
