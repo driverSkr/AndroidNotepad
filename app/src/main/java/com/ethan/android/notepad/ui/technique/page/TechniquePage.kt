@@ -32,7 +32,7 @@ fun TechniquePage() {
     val items1 = listOf(
         CardItem("共享元素转场动画", true) { TechniquePreviewActivity.launch(context, PageType.SharedTransition) },
         CardItem("图片加载动画", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.LoadAnimation) },
-        CardItem("蒙层加载", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.BlurLoad) },
+        CardItem("蒙层加载", true) { TechniquePreviewActivity.launch(context, PageType.BlurLoad) },
         CardItem("分组横向列表", true) { TechniquePreviewActivity.launch(context, PageType.GroupRow) },
         CardItem("按钮随banner主色调切换", true) { TechniquePreviewActivity.launch(context, PageType.SwitchBtnColorWithBannerBg) },
         CardItem("横向列表添加左右遮罩动画", true) { TechniquePreviewActivity.launch(context, PageType.SlideAnimateRow) },

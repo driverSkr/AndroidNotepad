@@ -4,6 +4,7 @@ import android.text.TextPaint
 import android.text.style.ClickableSpan
 import android.view.LayoutInflater
 import android.view.View
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -12,11 +13,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -54,6 +57,7 @@ import kotlinx.coroutines.delay
 @Composable
 @Preview
 fun TextPage() {
+    var showSelection by remember { mutableStateOf(true) }
     var countdown by remember { mutableIntStateOf(60) }
     val brushColor = Brush.horizontalGradient(colorStops = arrayOf(0.5f to DarkOrange, 1f to Cyan))
 
@@ -69,6 +73,7 @@ fun TextPage() {
             .fillMaxWidth()
             .fillMaxHeight(0.7f)
             .padding(all = 10.dp)
+            .clickable { showSelection = false }
     ) {
         Text(
             text = "一个简单的文本",
@@ -159,6 +164,16 @@ fun TextPage() {
             fontSize = 18.sp,
             textDecoration = TextDecoration.LineThrough
         )
+
+        // todo 有空优化一下这个可复制文本
+        Spacer(modifier = Modifier.height(20.dp))
+        if (showSelection) {
+            SelectionContainer{
+                Text("这是一段可复制文本", color = Black, fontSize = 18.sp, modifier = Modifier.clickable { })
+            }
+        } else {
+            Text("这是一段可复制文本", color = Black, fontSize = 18.sp, modifier = Modifier.clickable { showSelection = true })
+        }
     }
 }
 
