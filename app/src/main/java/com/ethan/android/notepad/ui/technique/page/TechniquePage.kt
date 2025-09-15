@@ -38,7 +38,7 @@ fun TechniquePage() {
         CardItem("横向列表添加左右遮罩动画", true) { TechniquePreviewActivity.launch(context, PageType.SlideAnimateRow) },
         CardItem("Modifier实用方法", true) { TechniquePreviewActivity.launch(context, PageType.Modifier) },
         CardItem("Activity打开与关闭动画", true) { TestActivity1.launch(context) },
-        CardItem("加载骨架萍", true) {  },
+        CardItem("加载骨架屏", true) { TechniquePreviewActivity.launch(context, PageType.Shimmer) },
         CardItem("权限请求带弹窗", true) {  },
     )
 
@@ -51,7 +51,6 @@ fun TechniquePage() {
     )
 
     val items3 = listOf(
-        CardItem("相册选择页", true, isCompleted = false),
         CardItem("腾讯缓存组件MMKV的使用", true, isCompleted = false),
         CardItem("腾讯pag动画组件libpag的使用", true, isCompleted = false),
         CardItem("高斯模糊组件haze的使用", true) { TechniquePreviewActivity.launch(context, PageType.GaussianBlur) },

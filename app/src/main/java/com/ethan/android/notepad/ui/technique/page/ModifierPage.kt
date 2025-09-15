@@ -22,7 +22,7 @@ fun ModifierPage() {
     val context = LocalContext.current
     val items = listOf(
         CardItem("Pair和Triple的使用", true, isCompleted = false),
-        CardItem("aspectRatio设置宽高比", true, isCompleted = false),
+        CardItem("aspectRatio设置宽高比", true) { TechniquePreviewActivity.launch(context, PageType.AspectRatio) },
         CardItem("imePadding自动增加底部内边距", true) { TechniquePreviewActivity.launch(context, PageType.ImePadding) },
     )
 

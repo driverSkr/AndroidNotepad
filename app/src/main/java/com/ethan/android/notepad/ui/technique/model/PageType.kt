@@ -10,7 +10,9 @@ enum class PageType {
     GaussianBlur,    //高斯模糊
     SharedTransition,   //共享元素转场动画
     Modifier,
+    Shimmer,        // 骨架屏闪
 
     //Modifier 功能类型
     ImePadding,
+    AspectRatio,
 }

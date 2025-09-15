@@ -62,7 +62,7 @@ fun MediaPickerPage() {
         CardItem("系统相册选择视频") { launcher.launch("video/*") },
         CardItem("系统相册选择图片") { launcher.launch("image/*") },
         CardItem("系统相册选择音频", isCompleted = false) { },
-        CardItem("系统相册选择视频+图片+音频", isCompleted = false) {  },
+        CardItem("系统相册选择所有类型") { launcher.launch("*/*") },
         CardItem("Vikpea相册选择器", true, isCompleted = false) {  },
         CardItem("自定义相册选择器", true, isCompleted = false) {  },
     )
