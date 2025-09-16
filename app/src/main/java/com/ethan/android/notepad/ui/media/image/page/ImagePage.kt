@@ -86,7 +86,7 @@ fun ImagePage() {
                         } else {
                             "保存失败".showToast(context, ToastType.ERROR)
                         }
-                    } else {
+                    } else {    // 文字加水印
                         val bmp = BitmapUtils.loadBitmap2Bmp(path)
                         val finalBmp = bmp?.let { WaterMarkHelper.addTextWatermark(bmp, "这是文字水印", 15, R.color.White4, StampPadding(20f, 20f)) }
                         if (finalBmp != null) {

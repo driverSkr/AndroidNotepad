@@ -43,6 +43,7 @@ fun TechniquePage() {
     )
 
     val items2 = listOf(
+        CardItem("资源下载", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.Download) },
         CardItem("状态同步的几种实现方式", true, isCompleted = false),
         CardItem("分页请求的实现", true, isCompleted = false),
         CardItem("权限请求方式", true, isCompleted = false),

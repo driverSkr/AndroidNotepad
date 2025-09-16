@@ -117,24 +117,74 @@ object WaterMarkHelper {
     /**
      * 视频加水印 - ffmpeg
      */
-    suspend fun addVideoWatermark(inputVideoPath: String, watermarkImagePath: String, outputVideoPath: String) = suspendCoroutine { suspendCoroutine ->
+    suspend fun addVideoWatermark(inputVideoPath: String, watermarkImagePath: String, outputVideoPath: String, position: WatermarkPosition) = suspendCoroutine { cont ->
         try {
-//            val command = "ffmpeg -y -i $inputVideoPath -i $watermarkImagePath -filter_complex [0:v]scale=iw:ih[outv0];[1:0]scale=0.0:0.0[outv1];[outv0][outv1]overlay=0:200 -preset superfast $outputVideoPath"
-            val command = "ffmpeg -y -i $inputVideoPath -i $watermarkImagePath " +
-                    "-filter_complex \"[0:v]scale=iw:ih[outv0];[1:v]scale=200:-1[outv1];[outv0][outv1]overlay=0:200\" " +
-                    "-preset superfast -map \"[outv0]\" -map 0:a? $outputVideoPath"
+            val positionCommand = when (position) {
+                WatermarkPosition.TOP_LEFT -> "10:10" // x:y坐标
+                WatermarkPosition.TOP_RIGHT -> "main_w-overlay_w-10:10"
+                WatermarkPosition.BOTTOM_LEFT -> "10:main_h-overlay_h-10"
+                WatermarkPosition.BOTTOM_RIGHT -> "main_w-overlay_w-10:main_h-overlay_h-10"
+                WatermarkPosition.CENTER -> "(main_w-overlay_w)/2:(main_h-overlay_h)/2"
+            }
+
+            val command = "-i $inputVideoPath -i $watermarkImagePath " +
+                    "-filter_complex \"[1]format=rgba,colorchannelmixer=aa=0.7[logo];[0][logo]overlay=$positionCommand\" " +
+                    "-c:v libx264 -crf 18 -preset medium -profile:v high -level 4.1 -pix_fmt yuv420p " + // 输出的视频画质将非常接近原视频，肉眼几乎看不出差异
+                    "-c:a copy -movflags +faststart -y $outputVideoPath"
+
             FFmpegKit.executeAsync(command) { session ->
                 if (ReturnCode.isSuccess(session.returnCode)) {
-                    suspendCoroutine.resume(true)
-                    Log.d("ethan", "音频裁剪成功！")
+                    cont.resume(true)
+                    Log.d("ethan", "视频加水印成功！")
                 } else {
-                    // 如果直接复制失败，尝试重新编码
-                    suspendCoroutine.resume(false)
+                    Log.e("ethan", "加水印失败: ${session.failStackTrace}")
+                    cont.resume(false)
                 }
             }
         } catch (e: Exception) {
-            suspendCoroutine.resume(false)
             Log.e("ethan", "图片加水印执行异常: ${e.message}")
+            cont.resume(false)
+        }
+    }
+
+    /**
+     * 视频加文字水印 - ffmpeg
+     */
+    suspend fun addTextWatermarkToVideo(inputVideoPath: String, outputVideoPath: String) = suspendCoroutine { cont ->
+        try {
+            val command = "-i \"$inputVideoPath\" " +
+                    "-vf \"drawtext=" +
+                    "text='你的水印文字':" +
+                    "fontcolor=white:" +
+                    "fontsize=36:" +
+                    "x=10:" +
+                    "y=H-th-10:" +
+                    "shadowcolor=black:" +
+                    "shadowx=2:" +
+                    "shadowy=2\" " +
+                    "-c:v libx264 " +
+                    "-crf 18 " +
+                    "-preset medium " +
+                    "-profile:v high " +
+                    "-level 4.1 " +
+                    "-pix_fmt yuv420p " +
+                    "-c:a copy " +
+                    "-movflags +faststart " +
+                    "-y \"$outputVideoPath\""
+
+            FFmpegKit.executeAsync(command) { session ->
+                if (ReturnCode.isSuccess(session.returnCode)) {
+                    cont.resume(true)
+                    Log.d("ethan", "文字水印添加成功！")
+                } else {
+                    Log.e("ethan", "添加文字水印失败，返回码: ${session.returnCode}")
+                    Log.e("ethan", "错误信息: ${session.failStackTrace}")
+                    cont.resume(false)
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("ethan", "文字水印添加异常: ${e.message}")
+            cont.resume(false)
         }
     }
 }

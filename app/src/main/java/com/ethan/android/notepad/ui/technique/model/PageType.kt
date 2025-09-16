@@ -11,6 +11,7 @@ enum class PageType {
     SharedTransition,   //共享元素转场动画
     Modifier,
     Shimmer,        // 骨架屏闪
+    Download,       // 资源下载
 
     //Modifier 功能类型
     ImePadding,

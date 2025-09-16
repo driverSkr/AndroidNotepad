@@ -18,6 +18,7 @@ import com.ethan.android.notepad.ui.technique.page.ImePaddingPage
 import com.ethan.android.notepad.ui.technique.page.LanguagePage
 import com.ethan.android.notepad.ui.technique.page.LoadAnimationPage
 import com.ethan.android.notepad.ui.technique.page.BlurLoadPage
+import com.ethan.android.notepad.ui.technique.page.DownloadPage
 import com.ethan.android.notepad.ui.technique.page.ModifierPage
 import com.ethan.android.notepad.ui.technique.page.SharedTransitionPage
 import com.ethan.android.notepad.ui.technique.page.ShimmerPage
@@ -59,6 +60,7 @@ class TechniquePreviewActivity : BaseActivityVBind<LayoutComposeContainerBinding
                                 PageType.Modifier -> ModifierPage()
                                 PageType.AspectRatio -> AspectRatioPage()
                                 PageType.Shimmer -> ShimmerPage()
+                                PageType.Download -> DownloadPage()
                                 else -> LanguagePage()
                             }
                         }

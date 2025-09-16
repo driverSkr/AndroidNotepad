@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -24,6 +25,7 @@ import com.blankj.utilcode.util.PathUtils
 import com.ethan.android.notepad.R
 import com.ethan.android.notepad.common.model.CardItem
 import com.ethan.android.notepad.common.model.MediaType
+import com.ethan.android.notepad.common.model.WatermarkPosition
 import com.ethan.android.notepad.common.utils.BitmapUtils
 import com.ethan.android.notepad.common.utils.MediaUtils
 import com.ethan.android.notepad.common.utils.ToastType
@@ -50,6 +52,7 @@ fun VideoPage() {
     val loading = rememberLoadingDialog()
     val selectedPath = remember { mutableStateOf("") }
     val selectedMediaType = remember { mutableStateOf(MediaType.UNKNOWN) }
+    val doWatermarkStyle = remember { mutableIntStateOf(0) }
 
     val launcher = rememberLauncherForActivityResult(contract = ActivityResultContracts.GetContent()) { uri ->
         scope.launch(Dispatchers.Default) {
@@ -64,14 +67,24 @@ fun VideoPage() {
                     val exportPath = "${PathUtils.getExternalAppCachePath()}/water_mark/$fileName".apply {
                         FileUtils.createOrExistsDir(File(this).parentFile)
                     }
-                    val watermark = ImageUtils.getBitmap(R.mipmap.ai_generate)
-                    val waterPath = BitmapUtils.saveBitmapAndReturnPath(context, watermark)
-                    val result = WaterMarkHelper.addVideoWatermark(path, waterPath ?: "", exportPath)
-                    if (result) {
-                        selectedPath.value = exportPath
-                    } else {
-                        "保存失败".showToast(context, ToastType.ERROR)
+                    if (doWatermarkStyle.intValue == 0) {   // 视频加图片水印
+                        val watermark = ImageUtils.getBitmap(R.mipmap.ai_generate)
+                        val waterPath = BitmapUtils.saveBitmapAndReturnPath(context, watermark)
+                        val result = WaterMarkHelper.addVideoWatermark(path, waterPath ?: "", exportPath, WatermarkPosition.TOP_LEFT)
+                        if (result) {
+                            selectedPath.value = exportPath
+                        } else {
+                            "保存失败".showToast(context, ToastType.ERROR)
+                        }
+                    } else if (doWatermarkStyle.intValue == 1) {    // 视频加文字水印
+                        val result = WaterMarkHelper.addTextWatermarkToVideo(path, exportPath)
+                        if (result) {
+                            selectedPath.value = exportPath
+                        } else {
+                            "保存失败".showToast(context, ToastType.ERROR)
+                        }
                     }
+
                 } else {
                     "选择失败!".showToast(context, ToastType.ERROR)
                 }
@@ -81,7 +94,14 @@ fun VideoPage() {
     }
 
     val items = listOf(
-        CardItem("图片加水印", true, isCompleted = false) { launcher.launch("video/*") },
+        CardItem("视频加图片水印", true) {
+            doWatermarkStyle.intValue = 0
+            launcher.launch("video/*")
+        },
+        CardItem("视频加文字水印", true, isCompleted = false) {
+            doWatermarkStyle.intValue = 1
+            launcher.launch("video/*")
+        },
     )
 
     Column(modifier = Modifier.fillMaxSize()) {
