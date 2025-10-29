@@ -14,6 +14,7 @@ fun DownloadPage() {
         CardItem("普通下载", true, isCompleted = false),
         CardItem("下载带进度值", true, isCompleted = false) { },
         CardItem("下载队列", true, isCompleted = false) {  },
+        CardItem("支持断点续传的资源下载", true, isCompleted = false) {  },
     )
 
     Column(modifier = Modifier.fillMaxSize()) {
