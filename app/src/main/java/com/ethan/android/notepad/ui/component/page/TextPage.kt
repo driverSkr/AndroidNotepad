@@ -100,8 +100,7 @@ fun TextPage() {
             style = TextStyle(
                 brush = brushColor,
                 fontWeight = FontWeight.W700,
-                fontSize = 24.sp,
-                fontStyle = FontStyle.Italic
+                fontSize = 24.sp
             ),
             softWrap = false,
             maxLines = 1
