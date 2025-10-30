@@ -7,14 +7,18 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
+import okhttp3.ResponseBody
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.io.FileOutputStream
 import java.util.concurrent.TimeUnit
+import kotlin.coroutines.coroutineContext
 
 class DownloadManager private constructor(){
     private val okHttpClient: OkHttpClient by lazy {
@@ -105,7 +109,7 @@ class DownloadManager private constructor(){
         val downloadedSize = if (outputFile.exists()) outputFile.length() else 0L
 
         // 发送下载请求
-        val rangeHeader = if (downloadedSize > 0) "byte=$downloadedSize-" else null
+        val rangeHeader = if (downloadedSize > 0) "bytes=$downloadedSize-" else null
         val response = downloadService.downloadFile(url, rangeHeader)
 
         if (!response.isSuccessful) {
@@ -139,8 +143,10 @@ class DownloadManager private constructor(){
                     var bytesRead: Int
 
                     while (inputStream.read(buffer).also { bytesRead = it } != -1) {
-                        // 检查是否被取消
-                        ensureActive()
+                        // 检查协程是否被取消
+                        if (!coroutineContext.isActive) {
+                            throw CancellationException("Download cancelled")
+                        }
 
                         outputStream.write(buffer, 0, bytesRead)
                         currentBytes += bytesRead
@@ -187,14 +193,17 @@ class DownloadManager private constructor(){
      */
     suspend fun checkResumeSupport(url: String): Boolean {
         return withContext(Dispatchers.IO) {
+            var response: Response<ResponseBody>? = null
             try {
-                val response = downloadService.downloadFile(url)
+                response = downloadService.downloadFile(url)
                 val acceptRanges = response.headers()["Accept-Ranges"]
                 val contentLength = response.headers()["Content-Length"]
 
-                response.close()
+                response.body()?.close()
                 acceptRanges == "bytes" && contentLength != null
             } catch (e: Exception) {
+                // 确保在异常时也关闭相应
+                response?.body()?.close()
                 false
             }
         }
