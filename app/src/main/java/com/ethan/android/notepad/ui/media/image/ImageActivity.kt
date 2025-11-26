@@ -11,6 +11,7 @@ import com.ethan.android.notepad.databinding.LayoutComposeContainerBinding
 import com.ethan.android.notepad.theme.ComposeProjectTheme
 import com.ethan.android.notepad.theme.Transparent
 import com.ethan.android.notepad.ui.media.image.page.ImagePage
+import com.ethan.android.notepad.ui.media.image.view.ImageZoomExample
 import com.skydoves.bundler.intentOf
 
 class ImageActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
@@ -30,7 +31,8 @@ class ImageActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
                 CompositionLocalProvider {
                     ComposeProjectTheme {
                         Surface(modifier = Modifier.Companion.fillMaxSize(), color = Transparent) {
-                            ImagePage()
+//                            ImagePage() // todo
+                            ImageZoomExample()
                         }
                     }
                 }
