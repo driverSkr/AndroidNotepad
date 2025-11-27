@@ -31,8 +31,8 @@ class ImageActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
                 CompositionLocalProvider {
                     ComposeProjectTheme {
                         Surface(modifier = Modifier.Companion.fillMaxSize(), color = Transparent) {
-//                            ImagePage() // todo
-                            ImageZoomExample()
+                            ImagePage() // todo
+//                            ImageZoomExample()
                         }
                     }
                 }

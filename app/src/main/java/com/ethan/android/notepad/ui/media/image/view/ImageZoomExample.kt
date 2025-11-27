@@ -40,8 +40,9 @@ fun ImageZoomExample() {
             modifier = Modifier
                 .fillMaxSize()
                 .weight(1f),
-            minScale = 0.3f,
-            maxScale = 10f,
+            minScale = 0.5f,
+            maxScale = 3.5f,
+            boundaryLimitPercentage = 1f,
             onScaleChange = { scale ->
                 currentScale = scale
             }

@@ -23,6 +23,10 @@
         android:usesCleartextTraffic="${useHttp}"
         tools:targetApi="31">
         <activity
+            android:name=".ui.media.image.PhotoViewActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.media.video.VideoActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

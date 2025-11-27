@@ -1,5 +1,6 @@
 package com.ethan.android.notepad.ui.media.image.page
 
+import android.content.Intent
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedContent
@@ -23,6 +24,7 @@ import com.blankj.utilcode.util.FileUtils
 import com.blankj.utilcode.util.ImageUtils
 import com.blankj.utilcode.util.PathUtils
 import com.ethan.android.notepad.R
+import com.ethan.android.notepad.common.extension.findBaseActivityVBind
 import com.ethan.android.notepad.common.model.CardItem
 import com.ethan.android.notepad.common.model.MediaType
 import com.ethan.android.notepad.common.model.StampPadding
@@ -38,6 +40,7 @@ import com.ethan.android.notepad.theme.Black
 import com.ethan.android.notepad.ui.material.dialog.view.rememberLoadingDialog
 import com.ethan.videoediting.FfmpegVE
 import com.ethan.android.notepad.common.model.WatermarkPosition
+import com.ethan.android.notepad.ui.media.image.PhotoViewActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
@@ -115,6 +118,11 @@ fun ImagePage() {
         CardItem("图片加文字水印", true, isCompleted = false) {
             doWatermarkStyle.intValue = 2
             launcher.launch("image/*")
+        },
+        CardItem("图片查看组件", true, isCompleted = false) {
+            context.findBaseActivityVBind()?.let {
+                it.startActivity(Intent(it, PhotoViewActivity::class.java))
+            }
         },
     )
 
