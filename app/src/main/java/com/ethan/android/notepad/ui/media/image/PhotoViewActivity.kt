@@ -101,7 +101,7 @@ class PhotoViewActivity : BaseActivityVBind<ActivityPhotoViewBinding>() {
         // 确保两个 PhotoView 有相同的缩放配置
         val minScale = 0.5f
         val midScale = 1.0f
-        val maxScale = 3.0f
+        val maxScale = 3.5f
 
         binding.topPhotoView.setScaleLevels(minScale, midScale, maxScale)
         binding.bottomPhotoView.setScaleLevels(minScale, midScale, maxScale)
