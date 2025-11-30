@@ -10,18 +10,24 @@ import com.ethan.android.notepad.base.BaseActivityVBind
 import com.ethan.android.notepad.databinding.LayoutComposeContainerBinding
 import com.ethan.android.notepad.theme.ComposeProjectTheme
 import com.ethan.android.notepad.theme.Transparent
-import com.ethan.android.notepad.ui.media.image.page.ImagePage
+import com.ethan.android.notepad.ui.media.image.context.ImagePageType
+import com.ethan.android.notepad.ui.media.image.page.ImageZoomPage
+import com.ethan.android.notepad.ui.media.image.page.WatermarkImagePage
+import com.skydoves.bundler.bundle
 import com.skydoves.bundler.intentOf
 
-class ImageActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
+class ImagePreviewActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
 
     companion object {
-        fun launch(context: Context) {
-            context.intentOf<ImageActivity> {
+        fun launch(context: Context, pageType: ImagePageType) {
+            context.intentOf<ImagePreviewActivity> {
+                +("pageType" to pageType)
                 startActivity(context)
             }
         }
     }
+
+    private val pageType by bundle<ImagePageType>("pageType")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +35,12 @@ class ImageActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
             setContent {
                 CompositionLocalProvider {
                     ComposeProjectTheme {
-                        Surface(modifier = Modifier.Companion.fillMaxSize(), color = Transparent) {
-                            ImagePage()
+                        Surface(modifier = Modifier.fillMaxSize(), color = Transparent) {
+                            when(pageType) {
+                                ImagePageType.Watermark -> WatermarkImagePage()
+                                ImagePageType.ImageZoom -> ImageZoomPage()
+                                else -> WatermarkImagePage()
+                            }
                         }
                     }
                 }
