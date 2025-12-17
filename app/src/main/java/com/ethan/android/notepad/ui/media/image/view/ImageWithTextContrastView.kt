@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.material.compare.view
+package com.ethan.android.notepad.ui.media.image.view
 
 import android.os.Build.VERSION.SDK_INT
 import androidx.compose.animation.core.Animatable
@@ -7,6 +7,7 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableIntStateOf
@@ -90,7 +91,7 @@ fun ImageWithTextContrastView() {
             }, contentScale = ContentScale.Crop)
 
         val textBoxSize = remember { mutableStateOf(IntSize.Zero) }
-        androidx.compose.material.Text("处理后",
+        Text("处理后",
             modifier = Modifier
                 .onGloballyPositioned { textBoxSize.value = it.size }
                 .graphicsLayer {
@@ -98,7 +99,7 @@ fun ImageWithTextContrastView() {
                     translationY = maxHeight.toPx() * 0.8F
                     alpha = (anim.value) * endAnimValue.value
                 }, fontSize = 12.sp, color = Color.White, fontWeight = FontWeight.Bold)
-        androidx.compose.material.Text("处理前", modifier = Modifier.graphicsLayer {
+        Text("处理前", modifier = Modifier.graphicsLayer {
             translationX = clipWidth + 6.dpF
             translationY = maxHeight.toPx() * 0.8F
             alpha = (1 - anim.value) * endAnimValue.value

@@ -1,9 +1,15 @@
 package com.ethan.android.notepad.ui.media.image.view
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.SpringSpec
 import androidx.compose.animation.core.VectorConverter
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.foundation.layout.Box
@@ -19,19 +25,18 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
-import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.withTransform
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlin.math.abs
+import java.net.HttpURLConnection
+import java.net.URL
 import kotlin.math.max
 import kotlin.math.min
 
@@ -102,7 +107,7 @@ fun ZoomableImage(
             imageState.isLoading -> {
                 // 加载中显示占位图
                 placeholder?.let {
-                    androidx.compose.foundation.Image(
+                    Image(
                         painter = it,
                         contentDescription = "Loading",
                         modifier = Modifier
@@ -163,14 +168,14 @@ class ImageState {
     var isLoading: Boolean by mutableStateOf(false)
     var error: Throwable? by mutableStateOf(null)
 
-    suspend fun loadImage(context: android.content.Context, imagePath: String) {
+    suspend fun loadImage(context: Context, imagePath: String) {
         isLoading = true
         error = null
 
         try {
             // 使用Android原生方式加载图片
-            val options = android.graphics.BitmapFactory.Options().apply {
-                inPreferredConfig = android.graphics.Bitmap.Config.ARGB_8888
+            val options = BitmapFactory.Options().apply {
+                inPreferredConfig = Bitmap.Config.ARGB_8888
             }
 
             val androidBitmap = when {
@@ -180,7 +185,7 @@ class ImageState {
                 }
                 imagePath.startsWith("/") || imagePath.startsWith("file://") -> {
                     // 本地文件
-                    android.graphics.BitmapFactory.decodeFile(imagePath, options)
+                    BitmapFactory.decodeFile(imagePath, options)
                 }
                 else -> {
                     // 资源文件
@@ -188,7 +193,7 @@ class ImageState {
                         imagePath, "drawable", context.packageName
                     )
                     if (resourceId != 0) {
-                        android.graphics.BitmapFactory.decodeResource(context.resources, resourceId, options)
+                        BitmapFactory.decodeResource(context.resources, resourceId, options)
                     } else {
                         null
                     }
@@ -204,14 +209,14 @@ class ImageState {
         }
     }
 
-    private fun loadNetworkImage(context: android.content.Context, url: String): android.graphics.Bitmap? {
+    private fun loadNetworkImage(context: Context, url: String): Bitmap? {
         // 简化的网络图片加载，实际项目中建议使用Coil或Glide
         return try {
-            val connection = java.net.URL(url).openConnection() as java.net.HttpURLConnection
+            val connection = URL(url).openConnection() as HttpURLConnection
             connection.doInput = true
             connection.connect()
             val input = connection.inputStream
-            android.graphics.BitmapFactory.decodeStream(input)
+            BitmapFactory.decodeStream(input)
         } catch (e: Exception) {
             null
         }
@@ -247,6 +252,7 @@ class TransformState(
 
     // 状态标志
     var isInitialized by mutableStateOf(false)
+    var isAnimating by mutableStateOf(false) // 新增：动画状态
 
     // 图片和视图尺寸
     private var imageSize: Size = Size.Zero
@@ -282,6 +288,9 @@ class TransformState(
         panChange: Offset,
         gestureCenter: Offset
     ) {
+        // 如果正在动画中，不处理手势
+        if (isAnimating) return
+
         // 应用缩放
         val newScale = (scale * scaleChange).coerceIn(minScale, maxScale)
 
@@ -296,6 +305,9 @@ class TransformState(
         // 更新状态
         scale = newScale
         offset = boundedOffset
+
+        // 检查是否需要回弹（手势结束后）
+        checkForRebound(newScale)
     }
 
     /**
@@ -307,11 +319,47 @@ class TransformState(
 
         // 使用动画过渡
         CoroutineScope(Dispatchers.Default).launch {
+            isAnimating = true
             animatableScale.animateTo(fitScale, tween(300))
             animatableOffset.animateTo(centeredOffset, tween(300))
 
             scale = animatableScale.value
             offset = animatableOffset.value
+            isAnimating = false
+        }
+    }
+
+    /**
+     * 检查是否需要回弹并启动动画
+     */
+    private fun checkForRebound(currentScale: Float) {
+        val currentOffset = offset
+        val boundedOffset = applyBoundaryLimit(currentOffset, currentScale)
+
+        // 如果当前位置与边界限制后的位置不同，说明需要回弹
+        if (currentOffset != boundedOffset && !isAnimating) {
+            launchReboundAnimation(boundedOffset)
+        }
+    }
+
+    /**
+     * 启动回弹动画
+     */
+    private fun launchReboundAnimation(targetOffset: Offset) {
+        CoroutineScope(Dispatchers.Default).launch {
+            isAnimating = true
+
+            // 使用弹性动画回弹到边界内
+            animatableOffset.animateTo(
+                targetOffset,
+                SpringSpec(
+                    dampingRatio = Spring.DampingRatioMediumBouncy,
+                    stiffness = Spring.StiffnessLow
+                )
+            )
+
+            offset = animatableOffset.value
+            isAnimating = false
         }
     }
 
@@ -345,6 +393,9 @@ class TransformState(
     /**
      * 应用边界限制
      */
+    /**
+     * 应用边界限制
+     */
     private fun applyBoundaryLimit(proposedOffset: Offset, currentScale: Float): Offset {
         if (imageSize == Size.Zero || viewSize == Size.Zero) return proposedOffset
 
@@ -359,9 +410,15 @@ class TransformState(
         val minY = -scaledHeight + padding
         val maxY = viewSize.height - padding
 
+        // 确保边界有效（min <= max）
+        val actualMinX = min(minX, maxX)
+        val actualMaxX = max(minX, maxX)
+        val actualMinY = min(minY, maxY)
+        val actualMaxY = max(minY, maxY)
+
         // 限制偏移量在边界内
-        val boundedX = proposedOffset.x.coerceIn(minX, maxX)
-        val boundedY = proposedOffset.y.coerceIn(minY, maxY)
+        val boundedX = proposedOffset.x.coerceIn(actualMinX, actualMaxX)
+        val boundedY = proposedOffset.y.coerceIn(actualMinY, actualMaxY)
 
         return Offset(boundedX, boundedY)
     }
@@ -430,15 +487,16 @@ private fun DebugOverlay(transformState: TransformState) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-//            .align(Alignment.TopStart)
     ) {
         Text(
             text = "缩放: ${"%.2f".format(transformState.scale)}x\n" +
-                    "偏移: (${"%.1f".format(transformState.offset.x)}, ${"%.1f".format(transformState.offset.y)})",
+                    "偏移: (${"%.1f".format(transformState.offset.x)}, ${"%.1f".format(transformState.offset.y)})\n" +
+                    "动画中: ${transformState.isAnimating}",
             color = Color.White,
             modifier = Modifier
                 .background(Color.Black.copy(alpha = 0.7f))
                 .padding(8.dp)
+                .align(Alignment.TopStart)
         )
     }
 }

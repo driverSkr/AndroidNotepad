@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.material.compare.page
+package com.ethan.android.notepad.ui.media.image.page
 
 import android.graphics.BitmapFactory
 import androidx.compose.foundation.layout.Box
@@ -24,9 +24,9 @@ import androidx.wear.compose.material.Text
 import com.ethan.android.notepad.R
 import com.ethan.android.notepad.theme.Black
 import com.ethan.android.notepad.common.view.StatusBarsView
-import com.ethan.android.notepad.ui.material.compare.view.ImageContrastView
-import com.ethan.android.notepad.ui.material.compare.view.ImageWithTextContrastView
-import com.ethan.android.notepad.ui.material.compare.widget.SaveV2CommonContrastView
+import com.ethan.android.notepad.ui.media.image.view.ImageContrastView
+import com.ethan.android.notepad.ui.media.image.view.ImageWithTextContrastView
+import com.ethan.android.notepad.ui.media.image.widget.SaveV2CommonContrastView
 
 /**
  * 图片对比动画

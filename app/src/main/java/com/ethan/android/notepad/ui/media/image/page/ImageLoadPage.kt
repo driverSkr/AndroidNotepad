@@ -1,4 +1,4 @@
-package com.ethan.android.notepad.ui.technique.page
+package com.ethan.android.notepad.ui.media.image.page
 
 import android.view.LayoutInflater
 import androidx.compose.foundation.layout.Box
@@ -12,9 +12,12 @@ import com.bumptech.glide.Glide
 import com.ethan.android.notepad.common.utils.AlbumUtils
 import com.ethan.android.notepad.databinding.ImageLoadAnimationBinding
 
+/**
+ * 图片加载
+ */
 @Composable
 @Preview
-fun LoadAnimationPage() {
+fun ImageLoadPage() {
     Box(modifier = Modifier.fillMaxSize()) {
         AndroidView(factory = { c ->
             val binding = ImageLoadAnimationBinding.inflate(LayoutInflater.from(c))

@@ -12,14 +12,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.ethan.android.notepad.common.extension.findBaseActivityVBind
-import com.ethan.android.notepad.ui.component.ComponentActivity
-import com.ethan.android.notepad.ui.composite.CompositeActivity
 import com.ethan.android.notepad.common.model.CardItem
 import com.ethan.android.notepad.common.utils.ShowToast.showToast
 import com.ethan.android.notepad.common.view.ListCardView
 import com.ethan.android.notepad.common.view.StatusBarsView
+import com.ethan.android.notepad.ui.component.ComponentActivity
+import com.ethan.android.notepad.ui.composite.CompositeActivity
 import com.ethan.android.notepad.ui.dialog.DialogActivity
-import com.ethan.android.notepad.ui.material.MaterialActivity
 import com.ethan.android.notepad.ui.media.MediaActivity
 import com.ethan.android.notepad.ui.room.RoomActivity
 import com.ethan.android.notepad.ui.technique.TechniqueActivity
@@ -39,7 +38,6 @@ fun MainPage() {
         CardItem("多媒体组件", true) { MediaActivity.launch(context) },
         CardItem("Room数据库", true) { RoomActivity.launch(context) },
         CardItem("技术、技巧、知识", true) { TechniqueActivity.launch(context) },
-        CardItem("素材组件库", true) { MaterialActivity.launch(context) },
         CardItem("Test", true) { TestActivity.launch(context) },
     )
 
@@ -48,7 +46,6 @@ fun MainPage() {
         val now = System.currentTimeMillis()
         if (now - lastTime > 2000) {
             showToast("再按一次退出程序")
-            lastTime = now
             return@BackHandler
         }
         context.findBaseActivityVBind()?.finish()

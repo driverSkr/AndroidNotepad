@@ -22,6 +22,12 @@ fun ImagePage() {
         CardItem("图片查看组件", true, isCompleted = false) {
             ImagePreviewActivity.launch(context, ImagePageType.ImageZoom)
         },
+        CardItem("图片对比组件", true, isCompleted = false) {
+            ImagePreviewActivity.launch(context, ImagePageType.ImageCompare)
+        },
+        CardItem("图片加载组件", true, isCompleted = false) {
+            ImagePreviewActivity.launch(context, ImagePageType.ImageLoad)
+        },
     )
 
     Column(modifier = Modifier.fillMaxSize()) {

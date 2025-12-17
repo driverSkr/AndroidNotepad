@@ -43,14 +43,6 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.material.MaterialPreviewActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.material.MaterialActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.component.ComponentPreviewActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

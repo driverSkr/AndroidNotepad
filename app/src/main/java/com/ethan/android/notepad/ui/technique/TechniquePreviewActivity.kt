@@ -12,13 +12,12 @@ import com.ethan.android.notepad.theme.ComposeProjectTheme
 import com.ethan.android.notepad.theme.Transparent
 import com.ethan.android.notepad.ui.technique.model.PageType
 import com.ethan.android.notepad.ui.technique.page.AspectRatioPage
+import com.ethan.android.notepad.ui.technique.page.BlurLoadPage
+import com.ethan.android.notepad.ui.technique.page.DownloadPage
 import com.ethan.android.notepad.ui.technique.page.GaussianBlurPage
 import com.ethan.android.notepad.ui.technique.page.GroupRowPage
 import com.ethan.android.notepad.ui.technique.page.ImePaddingPage
 import com.ethan.android.notepad.ui.technique.page.LanguagePage
-import com.ethan.android.notepad.ui.technique.page.LoadAnimationPage
-import com.ethan.android.notepad.ui.technique.page.BlurLoadPage
-import com.ethan.android.notepad.ui.technique.page.DownloadPage
 import com.ethan.android.notepad.ui.technique.page.ModifierPage
 import com.ethan.android.notepad.ui.technique.page.SharedTransitionPage
 import com.ethan.android.notepad.ui.technique.page.ShimmerPage
@@ -49,7 +48,6 @@ class TechniquePreviewActivity : BaseActivityVBind<LayoutComposeContainerBinding
                         Surface(modifier = Modifier.fillMaxSize(), color = Transparent) {
                             when(pageType) {
                                 PageType.LanguagePage -> LanguagePage()
-                                PageType.LoadAnimation -> LoadAnimationPage()
                                 PageType.BlurLoad -> BlurLoadPage()
                                 PageType.GroupRow -> GroupRowPage()
                                 PageType.SwitchBtnColorWithBannerBg -> SwitchBtnColorWithBannerBgPage()

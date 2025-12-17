@@ -49,8 +49,8 @@ import com.ethan.android.notepad.theme.White
 import com.ethan.android.notepad.theme.White20
 import com.ethan.android.notepad.theme.White60
 import com.ethan.android.notepad.ui.animate.BreathingLight
-import com.ethan.android.notepad.ui.material.dialog.view.rememberConfirmDialog
-import com.ethan.android.notepad.ui.material.dialog.view.rememberLoadingDialog
+import com.ethan.android.notepad.ui.dialog.view.rememberConfirmDialog
+import com.ethan.android.notepad.ui.dialog.view.rememberLoadingDialog
 import com.ethan.android.notepad.ui.media.audio.context.LocalAudioContextEntity
 import com.ethan.android.notepad.ui.media.audio.context.ViewType
 import kotlinx.coroutines.Dispatchers

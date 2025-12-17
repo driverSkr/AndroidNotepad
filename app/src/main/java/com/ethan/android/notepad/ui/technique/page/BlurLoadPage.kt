@@ -51,7 +51,7 @@ import com.ethan.android.notepad.common.view.TitleCardView
 import com.ethan.android.notepad.repository.data.blurDataSource
 import com.ethan.android.notepad.theme.Black
 import com.ethan.android.notepad.theme.White16
-import com.ethan.android.notepad.ui.material.dialog.view.rememberLoadingDialog
+import com.ethan.android.notepad.ui.dialog.view.rememberLoadingDialog
 import com.ethan.android.notepad.ui.media.image.view.CommonMaskLoadImageView
 import com.ethan.maskload.BlurHash
 import com.ethan.maskload.BlurHashDecoder

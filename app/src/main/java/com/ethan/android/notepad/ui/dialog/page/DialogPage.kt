@@ -2,6 +2,7 @@ package com.ethan.android.notepad.ui.dialog.page
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -13,10 +14,11 @@ import com.ethan.android.notepad.common.model.CardItem
 import com.ethan.android.notepad.common.utils.DialogHelper
 import com.ethan.android.notepad.common.view.ListCardView
 import com.ethan.android.notepad.common.view.StatusBarsView
-import com.ethan.android.notepad.ui.material.dialog.view.rememberConfirmDialog
-import com.ethan.android.notepad.ui.material.dialog.view.rememberGiftBagDialog
-import com.ethan.android.notepad.ui.material.dialog.view.rememberLoadingDialog
-import com.ethan.android.notepad.ui.material.dialog.view.rememberLoadingWithTitleDialog
+import com.ethan.android.notepad.ui.dialog.view.rememberConfirmDialog
+import com.ethan.android.notepad.ui.dialog.view.rememberGiftBagDialog
+import com.ethan.android.notepad.ui.dialog.view.rememberLoadingDialog
+import com.ethan.android.notepad.ui.dialog.view.rememberLoadingWithTitleDialog
+import com.ethan.android.notepad.ui.dialog.view.rememberLoginDialog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -25,6 +27,7 @@ import kotlinx.coroutines.withContext
 /**
  * 弹窗组件：自己编写或收集的弹窗组件的示例
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @Preview
 fun DialogPage() {
@@ -37,6 +40,7 @@ fun DialogPage() {
     val dialogWithTitle = rememberLoadingWithTitleDialog("请稍等")
     val dialog = rememberLoadingDialog()
     val giftDialog = rememberGiftBagDialog(30)
+    val loginDialog = rememberLoginDialog(context)
 
     val items = listOf(
         CardItem("确认弹窗", false) { confirmDialog.value = true },
@@ -65,6 +69,11 @@ fun DialogPage() {
             }
         },
         CardItem("礼包弹窗", false) { giftDialog.value = true },
+        CardItem("底部登陆弹窗", false) {
+            scope.launch(Dispatchers.Default) {
+                loginDialog.show()
+            }
+        },
         CardItem("BottomSheetScaffold实现底部弹窗", false, isCompleted = false) { },
         CardItem("测试", false, isCompleted = false) {
             DialogHelper.showTestDialog(context as FragmentActivity)

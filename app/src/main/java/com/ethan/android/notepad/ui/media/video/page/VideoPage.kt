@@ -35,7 +35,7 @@ import com.ethan.android.notepad.common.view.ListCardView
 import com.ethan.android.notepad.common.view.StatusBarsView
 import com.ethan.android.notepad.common.view.TitleCardView
 import com.ethan.android.notepad.theme.Black
-import com.ethan.android.notepad.ui.material.dialog.view.rememberLoadingDialog
+import com.ethan.android.notepad.ui.dialog.view.rememberLoadingDialog
 import com.ethan.android.notepad.ui.media.video.view.VideoView
 import com.ethan.videoediting.FfmpegVE
 import kotlinx.coroutines.Dispatchers

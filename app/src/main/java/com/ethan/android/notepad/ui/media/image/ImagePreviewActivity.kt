@@ -11,6 +11,8 @@ import com.ethan.android.notepad.databinding.LayoutComposeContainerBinding
 import com.ethan.android.notepad.theme.ComposeProjectTheme
 import com.ethan.android.notepad.theme.Transparent
 import com.ethan.android.notepad.ui.media.image.context.ImagePageType
+import com.ethan.android.notepad.ui.media.image.page.ImageComparePage
+import com.ethan.android.notepad.ui.media.image.page.ImageLoadPage
 import com.ethan.android.notepad.ui.media.image.page.ImageZoomPage
 import com.ethan.android.notepad.ui.media.image.page.WatermarkImagePage
 import com.skydoves.bundler.bundle
@@ -39,6 +41,8 @@ class ImagePreviewActivity : BaseActivityVBind<LayoutComposeContainerBinding>() 
                             when(pageType) {
                                 ImagePageType.Watermark -> WatermarkImagePage()
                                 ImagePageType.ImageZoom -> ImageZoomPage()
+                                ImagePageType.ImageCompare -> ImageComparePage()
+                                ImagePageType.ImageLoad -> ImageLoadPage()
                                 else -> WatermarkImagePage()
                             }
                         }
