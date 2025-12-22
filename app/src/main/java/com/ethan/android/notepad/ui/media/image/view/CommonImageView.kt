@@ -1,11 +1,17 @@
 package com.ethan.android.notepad.ui.media.image.view
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
@@ -13,12 +19,16 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import coil3.request.transformations
 import com.ethan.android.notepad.R
 import com.ethan.android.notepad.common.utils.AsyncImageUtils
 import com.ethan.android.notepad.common.utils.invisible
+import com.ethan.android.notepad.theme.White
+import com.ethan.android.notepad.theme.White10
+import com.ethan.android.notepad.theme.White8
 import com.ethan.maskload.BlurHashDecoder
 
 /**
@@ -47,6 +57,59 @@ fun OptimizeImageView(url: String) {
                 error = painterResource(id = R.mipmap.not_load_task_img),
                 modifier = Modifier.fillMaxSize(),
             )
+        }
+    }
+}
+
+/**
+ * 带加载状态的图片组件
+ */
+@Composable
+fun ImageWithLoadingView(imageUrl: String) {
+    val context = LocalContext.current
+    val isVisible = remember { mutableStateOf(false) }
+    val isLoading = remember { mutableStateOf(false) }
+    val isError = remember { mutableStateOf(false) }
+    val displayMetrics = context.resources.displayMetrics
+    val widthPixels = displayMetrics.widthPixels
+    val heightPixels = displayMetrics.heightPixels
+
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .onGloballyPositioned { coordinates ->
+            val position = coordinates.positionInRoot()
+            val size = coordinates.size
+            isVisible.value = position.x + size.width > 0f && position.x < widthPixels.toFloat() && position.y + size.height > 0f && position.y < heightPixels.toFloat()
+        }
+    ) {
+        // 优化图片不在显示的情况下，就不使用动图加载器进行处理，这样可以优化性能，仅展示 PleasHold
+        if (isVisible.value) {
+            AsyncImage(
+                model = ImageRequest.Builder(context).data(imageUrl).build(),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                onLoading = { isLoading.value = true },
+                onSuccess = { isLoading.value = false },
+                onError = { isError.value = true },
+                modifier = Modifier.fillMaxSize()
+            )
+        }
+
+        if (isLoading.value) {
+            Box(modifier = Modifier
+                .fillMaxSize()
+                .border(width = 1.dp, color = White8, shape = RoundedCornerShape(6.dp))
+                .background(color = White10, shape = RoundedCornerShape(6.dp))
+            ) {
+                if (!isError.value) {
+                    CircularProgressIndicator(
+                        color = White,
+                        trackColor = White10,
+
+                        modifier = Modifier.align(Alignment.Center).size(16.dp)
+                    )
+                }
+            }
         }
     }
 }

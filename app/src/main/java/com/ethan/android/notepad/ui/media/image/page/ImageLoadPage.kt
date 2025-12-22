@@ -27,6 +27,7 @@ fun ImageLoadPage() {
                 .into(binding.loadImg1)
             binding.root
         },
-            modifier = Modifier.align(Alignment.Center ))
+            modifier = Modifier.align(Alignment.Center )
+        )
     }
 }
