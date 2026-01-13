@@ -19,7 +19,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -57,7 +56,6 @@ import kotlinx.coroutines.delay
 @Composable
 @Preview
 fun TextPage() {
-    var showSelection by remember { mutableStateOf(true) }
     var countdown by remember { mutableIntStateOf(60) }
     val brushColor = Brush.horizontalGradient(colorStops = arrayOf(0.5f to DarkOrange, 1f to Cyan))
 
@@ -73,7 +71,6 @@ fun TextPage() {
             .fillMaxWidth()
             .fillMaxHeight(0.7f)
             .padding(all = 10.dp)
-            .clickable { showSelection = false }
     ) {
         Text(
             text = "一个简单的文本",
@@ -164,14 +161,18 @@ fun TextPage() {
             textDecoration = TextDecoration.LineThrough
         )
 
-        // todo 有空优化一下这个可复制文本
         Spacer(modifier = Modifier.height(20.dp))
-        if (showSelection) {
-            SelectionContainer{
-                Text("这是一段可复制文本", color = Black, fontSize = 18.sp, modifier = Modifier.clickable { })
-            }
-        } else {
-            Text("这是一段可复制文本", color = Black, fontSize = 18.sp, modifier = Modifier.clickable { showSelection = true })
+        Text(
+            text = "带下划线的文本",
+            color = Black,
+            fontWeight = FontWeight.W400,
+            fontSize = 18.sp,
+            textDecoration = TextDecoration.Underline
+        )
+
+        Spacer(modifier = Modifier.height(20.dp))
+        SelectionContainer{
+            Text("这是一段可复制文本", color = Black, fontSize = 18.sp, modifier = Modifier.clickable { })
         }
     }
 }
