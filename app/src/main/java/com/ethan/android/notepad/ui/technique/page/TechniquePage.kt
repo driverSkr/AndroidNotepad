@@ -39,6 +39,7 @@ fun TechniquePage() {
         CardItem("Activity打开与关闭动画", true) { TestActivity1.launch(context) },
         CardItem("加载骨架屏", true) { TechniquePreviewActivity.launch(context, PageType.Shimmer) },
         CardItem("权限请求带弹窗", true) {  },
+        CardItem("可展开的按钮展示区", false) { TechniquePreviewActivity.launch(context, PageType.ExpandGrid) },
     )
 
     val items2 = listOf(

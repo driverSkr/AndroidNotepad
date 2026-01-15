@@ -12,6 +12,7 @@ enum class PageType {
     Modifier,
     Shimmer,        // 骨架屏闪
     Download,       // 资源下载
+    ExpandGrid,     // 可展开按钮区
 
     //Modifier 功能类型
     ImePadding,
