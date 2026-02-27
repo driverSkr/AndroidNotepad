@@ -14,6 +14,7 @@ import com.ethan.android.notepad.ui.technique.model.PageType
 import com.ethan.android.notepad.ui.technique.page.AspectRatioPage
 import com.ethan.android.notepad.ui.technique.page.BlurLoadPage
 import com.ethan.android.notepad.ui.technique.page.DownloadPage
+import com.ethan.android.notepad.ui.technique.page.ExpandButtonGridPage
 import com.ethan.android.notepad.ui.technique.page.GaussianBlurPage
 import com.ethan.android.notepad.ui.technique.page.GroupRowPage
 import com.ethan.android.notepad.ui.technique.page.ImePaddingPage
@@ -59,6 +60,7 @@ class TechniquePreviewActivity : BaseActivityVBind<LayoutComposeContainerBinding
                                 PageType.AspectRatio -> AspectRatioPage()
                                 PageType.Shimmer -> ShimmerPage()
                                 PageType.Download -> DownloadPage()
+                                PageType.ExpandGrid -> ExpandButtonGridPage()
                                 else -> LanguagePage()
                             }
                         }
