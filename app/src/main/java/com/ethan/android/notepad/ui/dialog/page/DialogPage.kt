@@ -4,16 +4,21 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.MutableLiveData
 import com.ethan.android.notepad.common.extension.findBaseActivityVBind
 import com.ethan.android.notepad.common.model.CardItem
 import com.ethan.android.notepad.common.utils.DialogHelper
 import com.ethan.android.notepad.common.view.ListCardView
 import com.ethan.android.notepad.common.view.StatusBarsView
+import com.ethan.android.notepad.ui.dialog.view.FullScreenLoadingDialog
 import com.ethan.android.notepad.ui.dialog.view.rememberConfirmDialog
 import com.ethan.android.notepad.ui.dialog.view.rememberGiftBagDialog
 import com.ethan.android.notepad.ui.dialog.view.rememberLoadingDialog
@@ -41,6 +46,16 @@ fun DialogPage() {
     val dialog = rememberLoadingDialog()
     val giftDialog = rememberGiftBagDialog(30)
     val loginDialog = rememberLoginDialog(context)
+
+    val loadingState = remember { mutableStateOf(false) }
+    val state = MutableLiveData<Int>()
+
+    FullScreenLoadingDialog(
+        activity = context as FragmentActivity,
+        show = loadingState.value,
+        onDismiss = { loadingState.value = false },
+        state = state
+    )
 
     val items = listOf(
         CardItem("确认弹窗", false) { confirmDialog.value = true },
@@ -78,7 +93,25 @@ fun DialogPage() {
         CardItem("测试", false, isCompleted = false) {
             DialogHelper.showTestDialog(context as FragmentActivity)
         },
+        CardItem("全面屏覆盖弹窗", false, isCompleted = false) {
+            loadingState.value = true
+        }
     )
+
+    LaunchedEffect(Unit) {
+        scope.launch(Dispatchers.Default) {
+            delay(4000)
+            state.postValue(0)
+            delay(4000)
+            state.postValue(1)
+            delay(4000)
+            state.postValue(2)
+            delay(4000)
+            state.postValue(3)
+            delay(4000)
+            loadingState.value = false
+        }
+    }
 
     Column(modifier = Modifier.fillMaxSize()) {
         StatusBarsView(title = "弹窗组件")
