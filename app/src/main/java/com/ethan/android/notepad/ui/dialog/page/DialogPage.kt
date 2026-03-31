@@ -50,6 +50,21 @@ fun DialogPage() {
     val loadingState = remember { mutableStateOf(false) }
     val state = MutableLiveData<Int>()
 
+    LaunchedEffect(Unit) {
+        scope.launch(Dispatchers.Default) {
+            delay(4000)
+            state.postValue(0)
+            delay(4000)
+            state.postValue(1)
+            delay(4000)
+            state.postValue(2)
+            delay(4000)
+            state.postValue(3)
+            delay(4000)
+            loadingState.value = false
+        }
+    }
+
     FullScreenLoadingDialog(
         activity = context as FragmentActivity,
         show = loadingState.value,
@@ -97,21 +112,6 @@ fun DialogPage() {
             loadingState.value = true
         }
     )
-
-    LaunchedEffect(Unit) {
-        scope.launch(Dispatchers.Default) {
-            delay(4000)
-            state.postValue(0)
-            delay(4000)
-            state.postValue(1)
-            delay(4000)
-            state.postValue(2)
-            delay(4000)
-            state.postValue(3)
-            delay(4000)
-            loadingState.value = false
-        }
-    }
 
     Column(modifier = Modifier.fillMaxSize()) {
         StatusBarsView(title = "弹窗组件")
